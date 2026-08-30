@@ -1,0 +1,2026 @@
+/**
+ * Terminal Blog - Custom Styles
+ *
+ * Additional styles for terminal effects and theme customizations.
+ *
+ * @package Terminal_Blog_Dev
+ * @since 1.0.0
+ */
+
+/* ========================================
+   CSS Custom Properties (Design Tokens)
+   ======================================== */
+
+:root {
+
+	/* ----------------------------------------
+	   Colors - Dark Theme (Default)
+	   ---------------------------------------- */
+	--theme-bg: #050804;
+	--theme-bg-alt: #0a0f09;
+	--theme-fg: #f6f8f6;
+	--theme-fg-muted: #a8b4a8;
+	--theme-primary: #5bec13;
+	--theme-primary-dark: #4bc410;
+	--theme-border: #2e3928;
+	--theme-error: #f44;
+	--theme-warning: #fa0;
+	--theme-success: #5bec13;
+
+	/* Dark Surface - Constant tokens for header/footer across both modes */
+	--surface-dark-bg: #080e06;
+	--surface-dark-fg: #f6f8f6;
+	--surface-dark-muted: #a8b4a8;
+	--surface-dark-primary: #5bec13;
+	--surface-dark-border: #2e3928;
+
+	/* Card tokens (overridden in light mode) */
+	--theme-card-bg: var(--theme-bg);
+	--theme-card-bg-hover: var(--theme-glow-bg);
+	--theme-card-shadow: 0 1px 3px transparent;
+	--theme-card-shadow-hover: var(--shadow-border-glow-hover);
+
+	/* Code block tokens (overridden in light mode) */
+	--theme-code-bg-start: var(--theme-bg-alt);
+	--theme-code-bg-end: var(--theme-bg);
+
+	/* Glow Effects */
+	--theme-glow: rgba(91, 236, 19, 0.5);
+	--theme-glow-strong: rgba(91, 236, 19, 0.8);
+	--theme-glow-subtle: rgba(91, 236, 19, 0.2);
+	--theme-glow-minimal: rgba(91, 236, 19, 0.1);
+	--theme-glow-bg: rgba(91, 236, 19, 0.03);
+	--theme-scanline: rgba(0, 0, 0, 0.15);
+	--theme-scanline-subtle: rgba(0, 0, 0, 0.08);
+
+	/* ----------------------------------------
+	   Spacing
+	   ---------------------------------------- */
+	--space-2xs: 0.125rem; /* 2px */
+	--space-xs: 0.25rem;   /* 4px */
+	--space-sm: 0.5rem;    /* 8px */
+	--space-md: 0.75rem;   /* 12px */
+	--space-lg: 1rem;      /* 16px */
+	--space-xl: 1.5rem;    /* 24px */
+	--space-2xl: 2rem;     /* 32px */
+
+	/* ----------------------------------------
+	   Border Radius
+	   ---------------------------------------- */
+	--radius-sm: 0.125rem; /* 2px */
+	--radius-md: 0.25rem;  /* 4px */
+	--radius-lg: 0.5rem;   /* 8px */
+	--radius-full: 50%;
+
+	/* ----------------------------------------
+	   Typography
+	   ---------------------------------------- */
+	--letter-spacing-tight: -0.1em;
+	--letter-spacing-snug: -0.05em;
+	--letter-spacing-normal: 0;
+	--letter-spacing-wide: 0.05em;
+	--letter-spacing-wider: 0.1em;
+
+	/* ----------------------------------------
+	   Transitions & Animations
+	   ---------------------------------------- */
+	--transition-fast: 0.15s ease;
+	--transition-base: 0.2s ease;
+	--transition-slow: 0.3s ease;
+
+	--animation-cursor: 1s step-end infinite;
+	--animation-status: 2s ease-in-out infinite;
+	--animation-flicker: 4s ease-in-out infinite;
+	--animation-scanline: 8s linear infinite;
+
+	/* ----------------------------------------
+	   Element Sizes
+	   ---------------------------------------- */
+	--cursor-width-block: 10px;
+	--cursor-width-line: 2px;
+	--cursor-height: 1.2em;
+
+	--button-size-sm: 12px;
+	--scanline-height: 100px;
+
+	--widget-max-width: 320px;
+	--file-meta-min-width: 280px;
+
+	/* ----------------------------------------
+	   Shadows
+	   ---------------------------------------- */
+	--shadow-glow-sm: 0 0 5px var(--theme-glow);
+	--shadow-glow-md: 0 0 10px var(--theme-glow);
+	--shadow-glow-lg: 0 0 15px var(--theme-glow);
+	--shadow-glow-xl: 0 0 20px var(--theme-glow);
+
+	--shadow-text-glow: 0 0 5px var(--theme-glow), 0 0 10px var(--theme-glow-subtle), 0 0 20px var(--theme-glow-minimal);
+	--shadow-text-glow-strong: 0 0 5px var(--theme-glow-strong), 0 0 15px var(--theme-glow), 0 0 30px var(--theme-glow-subtle);
+
+	--shadow-border-glow: 0 0 10px var(--theme-glow-subtle), inset 0 0 10px var(--theme-glow-minimal);
+	--shadow-border-glow-hover: 0 0 20px var(--theme-glow-subtle), inset 0 0 15px var(--theme-glow-minimal);
+
+	/* Fix WP fluid typography - override computed CSS vars with correct values */
+	--wp--preset--font-size--x-small: 0.75rem;
+	--wp--preset--font-size--small: 0.875rem;
+	--wp--preset--font-size--medium: 1rem;
+	--wp--preset--font-size--large: 1.25rem;
+	--wp--preset--font-size--x-large: 1.5rem;
+	--wp--preset--font-size--xx-large: 2rem;
+	--wp--preset--font-size--xxx-large: 2.75rem;
+}
+
+/* ----------------------------------------
+   Light Theme Overrides
+   ---------------------------------------- */
+[data-theme="light"] {
+
+	/* Colors - Higher contrast for WCAG AA */
+	--theme-bg: #edf2ed;
+	--theme-bg-alt: #dde4dd;
+	--theme-fg: #080e06;
+	--theme-fg-muted: #2d3d2d;
+	--theme-primary: #0d5005;
+	--theme-primary-dark: #0a3d04;
+	--theme-border: #556b55;
+
+	/* Card tokens - light mode */
+	--theme-card-bg: #f4f8f4;
+	--theme-card-bg-hover: #eaf2ea;
+	--theme-card-shadow: 0 1px 4px rgba(13, 80, 5, 0.12), 0 0 0 1px rgba(13, 80, 5, 0.08);
+	--theme-card-shadow-hover: 0 3px 10px rgba(13, 80, 5, 0.2), 0 0 0 1px rgba(13, 80, 5, 0.15);
+
+	/* Code block tokens - light mode */
+	--theme-code-bg-start: #e8f0e8;
+	--theme-code-bg-end: #edf2ed;
+
+	/* Glow Effects - Phosphor-tinted for light mode */
+	--theme-glow: rgba(13, 80, 5, 0.4);
+	--theme-glow-strong: rgba(13, 80, 5, 0.6);
+	--theme-glow-subtle: rgba(13, 80, 5, 0.18);
+	--theme-glow-minimal: rgba(13, 80, 5, 0.1);
+	--theme-glow-bg: rgba(13, 80, 5, 0.05);
+	--theme-scanline: rgba(0, 0, 0, 0.05);
+	--theme-scanline-subtle: rgba(0, 0, 0, 0.03);
+}
+
+/* Apply theme variables to body */
+body {
+	background-color: var(--theme-bg);
+	color: var(--theme-fg);
+	transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.wp-block-navigation-item__content {
+	display: inline-flex !important;
+	align-items: center;
+	min-height: 44px;
+}
+
+.terminal-site-brand,
+.terminal-site-header__secondary .wp-block-search {
+	min-width: 0;
+}
+
+.terminal-site-header__primary .wp-block-site-title {
+	overflow-wrap: anywhere;
+}
+
+.terminal-site-header__secondary {
+	align-items: center;
+}
+
+.terminal-site-header__secondary .wp-block-search {
+	width: min(100%, 22rem);
+}
+
+.terminal-topic-index .wp-block-categories-list {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--space-sm, 0.5rem);
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.terminal-topic-index .wp-block-categories-list li {
+	margin: 0;
+}
+
+.terminal-topic-index .wp-block-categories-list a {
+	display: inline-flex;
+	align-items: center;
+	min-height: 44px;
+	padding: var(--space-xs, 0.25rem) var(--space-sm, 0.5rem);
+	border: 1px solid var(--theme-border);
+	border-radius: var(--radius-md);
+	text-decoration: none;
+}
+
+.terminal-topic-index .wp-block-categories-list a:hover {
+	border-color: var(--theme-primary);
+	color: var(--theme-primary);
+}
+
+@media (max-width: 781px) {
+
+	.terminal-site-header__primary,
+	.terminal-site-header__secondary {
+		flex-wrap: nowrap !important;
+	}
+
+	.terminal-site-brand,
+	.terminal-site-header__secondary .wp-block-search {
+		flex: 1 1 auto;
+	}
+
+	.terminal-site-header__primary .theme-toggle-wrapper,
+	.terminal-site-header__secondary .wp-block-navigation {
+		flex: 0 0 auto;
+	}
+
+	.terminal-site-header__secondary .wp-block-search {
+		width: auto;
+	}
+
+	.terminal-site-header__secondary .wp-block-search__input {
+		min-width: 0;
+	}
+}
+
+/* Theme Toggle Button */
+.theme-toggle {
+	display: inline-flex;
+	align-items: center;
+	gap: 0;
+	background: transparent;
+	border: 1px solid var(--theme-primary);
+	border-radius: var(--radius-sm);
+	padding: var(--space-xs) var(--space-sm);
+	font-family: var(--wp--preset--font-family--monospace);
+	font-size: var(--wp--preset--font-size--small, 0.875rem);
+	color: var(--theme-primary);
+	cursor: pointer;
+	text-transform: uppercase;
+	letter-spacing: var(--letter-spacing-wide);
+	transition: all var(--transition-base);
+}
+
+.theme-toggle:hover {
+	background: var(--theme-glow-minimal);
+	box-shadow: var(--shadow-glow-md);
+}
+
+.theme-toggle:focus {
+	outline: 2px solid var(--theme-primary);
+	outline-offset: 2px;
+}
+
+.theme-toggle__label {
+	color: var(--theme-fg-muted);
+}
+
+.theme-toggle__value {
+	color: var(--theme-primary);
+	font-weight: 700;
+	min-width: 3.5em;
+	text-align: center;
+}
+
+/* Toggle animation */
+@keyframes theme-switch {
+
+	0% {
+		opacity: 1;
+		transform: scale(1);
+	}
+
+	50% {
+		opacity: 0;
+		transform: scale(0.95);
+	}
+
+	100% {
+		opacity: 1;
+		transform: scale(1);
+	}
+}
+
+.theme-toggle.switching {
+	animation: theme-switch var(--transition-slow);
+}
+
+/* Light mode specific adjustments */
+[data-theme="light"] .crt-effect::after,
+[data-theme="light"] .crt-effect-subtle::after {
+	background: repeating-linear-gradient(0deg, var(--theme-scanline-subtle), var(--theme-scanline-subtle) 1px, transparent 1px, transparent 2px);
+}
+
+[data-theme="light"] .crt-scanline-scroll::before {
+	background: linear-gradient(to bottom, transparent, var(--theme-glow-bg), transparent);
+}
+
+[data-theme="light"] .phosphor-glow,
+[data-theme="light"] .has-primary-color,
+[data-theme="light"] .wp-block-heading {
+	text-shadow: 0 0 1px rgba(22, 96, 9, 0.3);
+}
+
+[data-theme="light"] .terminal-border {
+	box-shadow: var(--shadow-glow-sm);
+}
+
+/* Light mode: Keep header dark for terminal identity */
+[data-theme="light"] .terminal-site-header {
+	background-color: var(--surface-dark-bg) !important;
+	color: var(--surface-dark-fg);
+}
+
+[data-theme="light"] .terminal-site-header .has-primary-color,
+[data-theme="light"] .terminal-site-header .wp-block-site-title a,
+[data-theme="light"] .terminal-site-header .wp-block-search__button {
+	color: var(--surface-dark-primary) !important;
+}
+
+[data-theme="light"] .terminal-site-header .wp-block-navigation a,
+[data-theme="light"] .terminal-site-header .has-foreground-color {
+	color: var(--surface-dark-fg) !important;
+}
+
+[data-theme="light"] .terminal-site-header .wp-block-search__inside-wrapper,
+[data-theme="light"] .terminal-site-header .wp-block-search {
+	border-color: var(--surface-dark-border) !important;
+	background: var(--surface-dark-bg) !important;
+}
+
+[data-theme="light"] .terminal-site-header .wp-block-search__input {
+	color: var(--surface-dark-fg) !important;
+	background: var(--surface-dark-bg) !important;
+}
+
+[data-theme="light"] .terminal-site-header .wp-block-search__input::placeholder {
+	color: var(--surface-dark-muted) !important;
+}
+
+[data-theme="light"] .terminal-site-header .theme-toggle {
+	color: var(--surface-dark-primary);
+	border-color: var(--surface-dark-primary);
+}
+
+[data-theme="light"] .terminal-site-header .theme-toggle__label {
+	color: var(--surface-dark-muted);
+}
+
+[data-theme="light"] .terminal-site-header .theme-toggle__value {
+	color: var(--surface-dark-primary);
+}
+
+/* ----------------------------------------
+   Featured Image - 16:9 Aspect Ratio Crop
+   ---------------------------------------- */
+.wp-block-post-featured-image {
+	overflow: hidden;
+	border-radius: var(--radius-md);
+}
+
+.wp-block-post-featured-image a {
+	display: block;
+}
+
+.wp-block-post-featured-image img {
+	display: block;
+	width: 100%;
+	height: auto;
+	object-fit: cover;
+}
+
+/* Wrapper positioning */
+.theme-toggle-wrapper {
+	padding: 0 !important;
+}
+
+/* ----------------------------------------
+   CRT Scanline Effect (Full Page)
+   ---------------------------------------- */
+.crt-effect::after {
+	content: "";
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background:
+		repeating-linear-gradient(0deg, var(--theme-scanline), var(--theme-scanline) 1px, transparent 1px, transparent 2px),
+		repeating-linear-gradient(90deg, var(--theme-glow-bg), var(--theme-glow-bg) 1px, transparent 1px, transparent 3px);
+	pointer-events: none;
+	z-index: 9999;
+}
+
+/* CRT Subtle Effect (less intense) */
+.crt-effect-subtle::after {
+	content: "";
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: repeating-linear-gradient(0deg, var(--theme-scanline-subtle), var(--theme-scanline-subtle) 1px, transparent 1px, transparent 2px);
+	pointer-events: none;
+	z-index: 9999;
+}
+
+/* Scrolling Scanline Animation */
+@keyframes scanline-scroll {
+
+	0% {
+		transform: translateY(-100%);
+	}
+
+	100% {
+		transform: translateY(100vh);
+	}
+}
+
+.crt-scanline-scroll::before {
+	content: "";
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: var(--scanline-height);
+	background: linear-gradient(to bottom, transparent, var(--theme-glow-minimal), transparent);
+	animation: scanline-scroll var(--animation-scanline);
+	pointer-events: none;
+	z-index: 9998;
+}
+
+/* ----------------------------------------
+   Phosphor Glow Text Effect
+   ---------------------------------------- */
+.phosphor-glow {
+	text-shadow: var(--shadow-text-glow);
+}
+
+.phosphor-glow-strong {
+	text-shadow: var(--shadow-text-glow-strong);
+}
+
+/* Apply glow to headings */
+.has-primary-color,
+.wp-block-heading {
+	text-shadow: var(--shadow-glow-sm);
+}
+
+/* ----------------------------------------
+   Heading Hierarchy - Size & Weight Cascade
+   Override WP-generated fluid clamp values
+   ---------------------------------------- */
+h1.wp-block-heading,
+h1.wp-block-post-title {
+	font-size: var(--wp--preset--font-size--xxx-large);
+	letter-spacing: 0.04em;
+	line-height: 1.1;
+}
+
+h2.wp-block-heading,
+h2.wp-block-post-title {
+	font-size: var(--wp--preset--font-size--xx-large);
+	letter-spacing: 0.03em;
+	line-height: 1.2;
+}
+
+h3.wp-block-heading,
+h3.wp-block-post-title {
+	font-size: var(--wp--preset--font-size--x-large);
+	letter-spacing: 0.02em;
+	line-height: 1.3;
+}
+
+h4.wp-block-heading,
+h4.wp-block-post-title {
+	font-size: var(--wp--preset--font-size--large);
+	font-weight: 600;
+	letter-spacing: 0.01em;
+	line-height: 1.35;
+}
+
+h5.wp-block-heading {
+	font-size: var(--wp--preset--font-size--medium);
+}
+
+h6.wp-block-heading {
+	font-size: var(--wp--preset--font-size--small);
+}
+
+/* ----------------------------------------
+   Terminal Border Glow
+   ---------------------------------------- */
+.terminal-border {
+	border: 1px solid var(--theme-primary);
+	box-shadow: var(--shadow-border-glow);
+}
+
+.terminal-border:hover {
+	box-shadow: var(--shadow-border-glow-hover);
+}
+
+/* ----------------------------------------
+   Terminal Cursor Animations
+   ---------------------------------------- */
+
+/* Base blink animation */
+@keyframes cursor-blink {
+
+	0%,
+	100% {
+		opacity: 1;
+	}
+
+	50% {
+		opacity: 0;
+	}
+}
+
+/* Legacy class support */
+.terminal-cursor::after {
+	content: "_";
+	animation: cursor-blink var(--animation-cursor);
+	color: var(--theme-primary);
+}
+
+/* Block Cursor - Full rectangle */
+.cursor-block {
+	display: inline-block;
+	width: var(--cursor-width-block);
+	height: var(--cursor-height);
+	background-color: var(--theme-primary);
+	margin-left: var(--cursor-width-line);
+	vertical-align: text-bottom;
+	animation: cursor-blink var(--animation-cursor);
+	box-shadow: var(--shadow-glow-sm);
+}
+
+.terminal-cursor-block .cursor-block {
+	display: inline-block;
+}
+
+/* Underscore Cursor - Classic terminal */
+.cursor-underscore {
+	color: var(--theme-primary);
+	animation: cursor-blink var(--animation-cursor);
+	text-shadow: var(--shadow-glow-sm);
+}
+
+.terminal-cursor-underscore {
+	font-family: var(--wp--preset--font-family--monospace);
+	color: var(--theme-primary);
+}
+
+/* Line Cursor - Thin vertical line */
+.cursor-line {
+	display: inline-block;
+	width: var(--cursor-width-line);
+	height: 1em;
+	background-color: var(--theme-primary);
+	margin-left: var(--cursor-width-line);
+	vertical-align: text-bottom;
+	animation: cursor-blink var(--animation-cursor);
+	box-shadow: var(--shadow-glow-sm);
+}
+
+.terminal-cursor-line {
+	font-family: var(--wp--preset--font-family--monospace);
+	color: var(--theme-primary);
+}
+
+/* Utility classes for adding cursors to any element */
+.has-cursor-block::after {
+	content: "";
+	display: inline-block;
+	width: var(--cursor-width-block);
+	height: var(--cursor-height);
+	background-color: var(--theme-primary);
+	margin-left: var(--space-xs);
+	vertical-align: text-bottom;
+	animation: cursor-blink var(--animation-cursor);
+	box-shadow: var(--shadow-glow-sm);
+}
+
+.has-cursor-underscore::after {
+	content: "_";
+	color: var(--theme-primary);
+	animation: cursor-blink var(--animation-cursor);
+	text-shadow: var(--shadow-glow-sm);
+}
+
+.has-cursor-line::after {
+	content: "";
+	display: inline-block;
+	width: var(--cursor-width-line);
+	height: 1em;
+	background-color: var(--theme-primary);
+	margin-left: var(--cursor-width-line);
+	vertical-align: text-bottom;
+	animation: cursor-blink var(--animation-cursor);
+	box-shadow: var(--shadow-glow-sm);
+}
+
+/* Typing animation for text reveal effect */
+@keyframes typing {
+
+	from {
+		width: 0;
+	}
+
+	to {
+		width: 100%;
+	}
+}
+
+.typing-effect {
+	overflow: hidden;
+	white-space: nowrap;
+	animation: typing 2s steps(30, end);
+}
+
+.typing-effect.has-cursor-block::after,
+.typing-effect.has-cursor-underscore::after,
+.typing-effect.has-cursor-line::after {
+	animation: cursor-blink var(--animation-cursor);
+}
+
+/* ----------------------------------------
+   Terminal Window Pattern Styles
+   ---------------------------------------- */
+.terminal-window {
+	border: 1px solid var(--theme-border);
+	border-radius: var(--radius-lg);
+	overflow: hidden;
+}
+
+.terminal-window-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: var(--space-sm) var(--space-lg);
+	background: var(--theme-bg-alt);
+	border-bottom: 1px solid var(--theme-border);
+}
+
+.terminal-window-buttons {
+	display: flex;
+	gap: var(--space-sm);
+}
+
+.terminal-window-button {
+	width: var(--button-size-sm);
+	height: var(--button-size-sm);
+	border-radius: var(--radius-full);
+}
+
+.terminal-window-button--close {
+	background: var(--theme-error);
+}
+
+.terminal-window-button--minimize {
+	background: var(--theme-warning);
+}
+
+.terminal-window-button--maximize {
+	background: var(--theme-primary);
+}
+
+.terminal-window-content {
+	padding: var(--space-lg);
+	background: var(--theme-bg);
+}
+
+/* ----------------------------------------
+   Post Card Layout & Spacing
+   ---------------------------------------- */
+.wp-block-post {
+	position: relative;
+	overflow: hidden;
+	transition: border-color var(--transition-slow);
+}
+
+/* Equal-height cards with consistent internal layout */
+.wp-block-post > .wp-block-group {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+}
+
+/* Push the read-more link to the bottom */
+.wp-block-post .wp-block-read-more {
+	margin-top: auto;
+	padding-top: var(--space-md);
+}
+
+/* Consistent spacing between card elements */
+.wp-block-post .wp-block-post-title {
+	margin-top: var(--space-md);
+	margin-bottom: 0;
+	text-shadow: none;
+}
+
+.wp-block-post .wp-block-post-excerpt {
+	margin-top: var(--space-sm);
+	margin-bottom: 0;
+	flex: 1;
+}
+
+.wp-block-post .wp-block-post-title a:hover {
+	color: var(--theme-primary);
+	text-shadow: var(--shadow-glow-sm);
+}
+
+/* ----------------------------------------
+   Navigation Enhancements
+   ---------------------------------------- */
+.wp-block-navigation .wp-block-navigation-item__content {
+	transition: color var(--transition-base), text-shadow var(--transition-base);
+}
+
+.wp-block-navigation .wp-block-navigation-item__content:hover {
+	color: var(--theme-primary);
+	text-shadow: var(--shadow-glow-sm);
+}
+
+/* ----------------------------------------
+   Button Enhancements
+   ---------------------------------------- */
+.wp-block-button__link {
+	transition: all var(--transition-base);
+}
+
+.wp-block-button__link:hover {
+	box-shadow: var(--shadow-glow-lg);
+	transform: translateY(-1px);
+}
+
+.wp-block-button__link:active {
+	transform: translateY(0);
+}
+
+/* ----------------------------------------
+   Search Block Styling
+   ---------------------------------------- */
+.wp-block-search,
+.wp-block-search__inside-wrapper,
+.wp-block-search .wp-block-search__inside-wrapper {
+	background: var(--theme-bg) !important;
+	background-color: var(--theme-bg) !important;
+	border: 1px solid var(--theme-primary) !important;
+	border-radius: var(--radius-md) !important;
+}
+
+.wp-block-search__input,
+.wp-block-search .wp-block-search__input,
+input.wp-block-search__input,
+input[type="search"].wp-block-search__input,
+.wp-block-search input,
+.wp-block-search input[type="search"] {
+	background: var(--theme-bg) !important;
+	background-color: var(--theme-bg) !important;
+	color: var(--theme-fg) !important;
+	border: none !important;
+	box-shadow: none !important;
+	-webkit-appearance: none !important;
+	appearance: none !important;
+}
+
+.wp-block-search__input:focus,
+.wp-block-search .wp-block-search__input:focus,
+.wp-block-search input:focus {
+	outline: none !important;
+	box-shadow: none !important;
+	background: var(--theme-bg) !important;
+	background-color: var(--theme-bg) !important;
+}
+
+.wp-block-search__inside-wrapper:focus-within {
+	border-color: var(--theme-primary) !important;
+	box-shadow: 0 0 8px var(--theme-glow) !important;
+}
+
+.wp-block-search__input::placeholder {
+	color: var(--theme-fg-muted) !important;
+	text-transform: uppercase;
+	opacity: 1 !important;
+}
+
+.wp-block-search__button,
+.wp-block-search .wp-block-search__button,
+button.wp-block-search__button {
+	background: transparent !important;
+	background-color: transparent !important;
+	color: var(--theme-primary) !important;
+	border: none !important;
+	border-left: 1px solid var(--theme-border) !important;
+}
+
+.wp-block-search__button:hover {
+	background: var(--theme-glow-minimal) !important;
+}
+
+/* ----------------------------------------
+   Code Block Enhancements
+   ---------------------------------------- */
+.wp-block-code code,
+.wp-block-preformatted pre {
+	color: var(--theme-primary);
+	text-shadow: 0 0 2px var(--theme-glow-subtle);
+}
+
+/* ----------------------------------------
+   Separator Styling
+   ---------------------------------------- */
+.wp-block-separator {
+	border-color: var(--theme-border);
+	opacity: 1;
+}
+
+.wp-block-separator.is-style-wide,
+.wp-block-separator.is-style-default {
+	border-bottom-style: dashed;
+}
+
+/* ----------------------------------------
+   Quote Block Styling
+   ---------------------------------------- */
+.wp-block-quote {
+	position: relative;
+}
+
+.wp-block-quote::before {
+	content: ">";
+	position: absolute;
+	left: calc(var(--space-lg) * -1);
+	color: var(--theme-primary);
+	font-family: var(--wp--preset--font-family--monospace);
+}
+
+/* ----------------------------------------
+   Form Element Styling
+   ---------------------------------------- */
+input[type="text"],
+input[type="email"],
+input[type="url"],
+input[type="password"],
+input[type="search"],
+textarea {
+	background: var(--theme-bg);
+	color: var(--theme-fg);
+	border: 1px solid var(--theme-border);
+	border-radius: var(--radius-md);
+	padding: var(--space-sm) var(--space-lg);
+	font-family: var(--wp--preset--font-family--primary);
+	transition: border-color var(--transition-base), box-shadow var(--transition-base);
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+input[type="password"]:focus,
+input[type="search"]:focus,
+textarea:focus {
+	border-color: var(--theme-primary);
+	box-shadow: var(--shadow-glow-sm);
+	outline: none;
+}
+
+/* ----------------------------------------
+   Comment Form Styling
+   ---------------------------------------- */
+.comment-form label {
+	text-transform: uppercase;
+	font-size: var(--wp--preset--font-size--small);
+	letter-spacing: var(--letter-spacing-wide);
+	color: var(--theme-fg-muted);
+}
+
+.comment-form .submit {
+	background: transparent;
+	color: var(--theme-primary);
+	border: 1px solid var(--theme-primary);
+	padding: var(--space-sm) var(--space-xl);
+	text-transform: uppercase;
+	letter-spacing: var(--letter-spacing-wide);
+	cursor: pointer;
+	transition: all var(--transition-base);
+}
+
+.comment-form .submit:hover {
+	background: var(--theme-primary);
+	color: var(--theme-bg);
+	box-shadow: var(--shadow-glow-md);
+}
+
+/* ----------------------------------------
+   Pagination Styling
+   ---------------------------------------- */
+.wp-block-query-pagination-numbers .page-numbers {
+	padding: var(--space-xs) var(--space-md);
+	border: 1px solid var(--theme-border);
+	border-radius: var(--radius-md);
+	transition: all var(--transition-base);
+}
+
+.wp-block-query-pagination-numbers .page-numbers:hover,
+.wp-block-query-pagination-numbers .page-numbers.current {
+	border-color: var(--theme-primary);
+	color: var(--theme-primary);
+}
+
+/* ----------------------------------------
+   System Status Widget
+   ---------------------------------------- */
+.system-status-widget {
+	max-width: var(--widget-max-width);
+}
+
+.status-indicator-online {
+	animation: status-blink var(--animation-status);
+}
+
+@keyframes status-blink {
+
+	0%,
+	100% {
+		opacity: 1;
+	}
+
+	50% {
+		opacity: 0.5;
+	}
+}
+
+.system-status-widget .has-primary-color {
+	text-shadow: var(--shadow-glow-sm);
+}
+
+/* ASCII Progress Bars */
+.system-status-widget .wp-block-group p span.has-primary-color {
+	letter-spacing: var(--letter-spacing-tight);
+}
+
+/* ----------------------------------------
+   Terminal Comments Styling
+   ---------------------------------------- */
+
+/* Comment headings - enforce hierarchy under post title h1 */
+.wp-block-comments-title,
+.wp-block-post-comments-form h3,
+.comment-reply-title {
+	font-size: 1.25rem;
+	letter-spacing: 0.02em;
+}
+
+.terminal-comments .wp-block-comment-author-name {
+	font-family: var(--wp--preset--font-family--monospace);
+}
+
+.terminal-comments .wp-block-comment-author-name::before {
+	content: "<";
+	color: var(--theme-fg-muted);
+}
+
+.terminal-comments .wp-block-comment-author-name::after {
+	content: ">";
+	color: var(--theme-fg-muted);
+}
+
+.terminal-comments .wp-block-comment-content {
+	font-family: var(--wp--preset--font-family--primary);
+}
+
+.terminal-comments .comment-reply-link,
+.terminal-comments .wp-block-comment-reply-link a {
+	color: var(--theme-primary);
+	text-decoration: none;
+	text-transform: uppercase;
+	font-size: var(--wp--preset--font-size--small);
+	letter-spacing: var(--letter-spacing-wide);
+}
+
+.terminal-comments .comment-reply-link::before,
+.terminal-comments .wp-block-comment-reply-link a::before {
+	content: "[";
+}
+
+.terminal-comments .comment-reply-link::after,
+.terminal-comments .wp-block-comment-reply-link a::after {
+	content: "]";
+}
+
+.terminal-comments .comment-reply-link:hover,
+.terminal-comments .wp-block-comment-reply-link a:hover {
+	text-shadow: var(--shadow-glow-sm);
+}
+
+/* Nested comment replies */
+.terminal-comments .children {
+	margin-left: var(--space-xl);
+	padding-left: var(--space-lg);
+	border-left: 1px dashed var(--theme-border);
+}
+
+.terminal-comments .children .terminal-comment::before {
+	content: "└── ";
+	color: var(--theme-fg-muted);
+	font-family: var(--wp--preset--font-family--monospace);
+	position: absolute;
+	left: calc(var(--space-xl) * -1);
+}
+
+/* Author/Admin comment highlight */
+.terminal-comments .bypostauthor > .terminal-comment {
+	border-left: 2px solid var(--theme-primary);
+}
+
+/* Comment form terminal styling */
+.wp-block-post-comments-form .comment-form {
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-lg);
+}
+
+.wp-block-post-comments-form .comment-form label {
+	display: block;
+	text-transform: uppercase;
+	font-size: var(--wp--preset--font-size--small);
+	letter-spacing: var(--letter-spacing-wide);
+	color: var(--theme-primary);
+	margin-bottom: var(--space-xs);
+	font-family: var(--wp--preset--font-family--monospace);
+}
+
+.wp-block-post-comments-form .comment-form label::before {
+	content: "> ";
+}
+
+.wp-block-post-comments-form .comment-form .comment-form-comment label::after {
+	content: ":";
+}
+
+.wp-block-post-comments-form .comment-form input,
+.wp-block-post-comments-form .comment-form textarea {
+	width: 100%;
+	background: var(--theme-bg);
+	color: var(--theme-fg);
+	border: 1px solid var(--theme-border);
+	border-radius: var(--radius-md);
+	padding: var(--space-md) var(--space-lg);
+	font-family: var(--wp--preset--font-family--primary);
+}
+
+.wp-block-post-comments-form .comment-form input:focus,
+.wp-block-post-comments-form .comment-form textarea:focus {
+	border-color: var(--theme-primary);
+	box-shadow: var(--shadow-glow-sm);
+	outline: none;
+}
+
+.wp-block-post-comments-form .form-submit .submit {
+	background: transparent;
+	color: var(--theme-primary);
+	border: 1px solid var(--theme-primary);
+	border-radius: var(--radius-md);
+	padding: var(--space-md) var(--space-2xl);
+	text-transform: uppercase;
+	letter-spacing: var(--letter-spacing-wide);
+	font-family: var(--wp--preset--font-family--primary);
+	cursor: pointer;
+	transition: all var(--transition-base);
+}
+
+.wp-block-post-comments-form .form-submit .submit::before {
+	content: "[";
+}
+
+.wp-block-post-comments-form .form-submit .submit::after {
+	content: "]";
+}
+
+.wp-block-post-comments-form .form-submit .submit:hover {
+	background: var(--theme-primary);
+	color: var(--theme-bg);
+	box-shadow: var(--shadow-glow-lg);
+}
+
+/* ----------------------------------------
+   ASCII Art Header
+   ---------------------------------------- */
+.ascii-art-header {
+	overflow-x: auto;
+	text-align: center;
+}
+
+.ascii-art {
+	display: inline-block;
+	margin: 0 auto;
+	padding: 0;
+	font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+	color: var(--theme-primary);
+	background: transparent;
+	border: none;
+	line-height: 1.1;
+	white-space: pre;
+	text-align: left;
+	overflow: visible;
+	text-shadow:
+		0 0 5px var(--theme-glow),
+		0 0 10px var(--theme-glow-subtle);
+}
+
+/* Large ASCII art (full banner) */
+.ascii-art--large {
+	font-size: clamp(0.35rem, 1.2vw, 0.75rem);
+	letter-spacing: var(--letter-spacing-snug);
+}
+
+/* Medium ASCII art (compact logo) */
+.ascii-art--medium {
+	font-size: clamp(0.6rem, 2vw, 1.2rem);
+	letter-spacing: var(--letter-spacing-normal);
+}
+
+/* Small ASCII art (figlet style) */
+.ascii-art--small {
+	font-size: clamp(0.4rem, 1.5vw, 0.65rem);
+	letter-spacing: -0.02em;
+}
+
+/* Hover animation */
+.ascii-art-header:hover .ascii-art {
+	text-shadow:
+		0 0 10px var(--theme-glow-strong),
+		0 0 20px var(--theme-glow),
+		0 0 30px var(--theme-glow-subtle);
+	transition: text-shadow var(--transition-slow);
+}
+
+/* Compact variant - hide on small screens */
+.ascii-art-header--compact {
+	display: none;
+}
+
+/* Simple variant - hide by default, show on very small screens */
+.ascii-art-header--simple {
+	display: none;
+}
+
+/* Responsive behavior */
+@media (max-width: 900px) {
+
+	.ascii-art-header:not(.ascii-art-header--compact):not(.ascii-art-header--simple) {
+		display: none;
+	}
+
+	.ascii-art-header--compact {
+		display: block;
+	}
+}
+
+@media (max-width: 500px) {
+
+	.ascii-art-header--compact {
+		display: none;
+	}
+
+	.ascii-art-header--simple {
+		display: block;
+	}
+
+	.ascii-art--small {
+		font-size: 0.35rem;
+	}
+}
+
+/* Light mode adjustments */
+[data-theme="light"] .ascii-art {
+	text-shadow: 0 0 3px var(--theme-glow), 0 0 1px rgba(22, 96, 9, 0.5);
+}
+
+[data-theme="light"] .ascii-art-header:hover .ascii-art {
+	text-shadow: var(--shadow-glow-sm);
+}
+
+/* Animation for boot sequence effect */
+@keyframes ascii-flicker {
+
+	0%,
+	100% {
+		opacity: 1;
+	}
+
+	92% {
+		opacity: 1;
+	}
+
+	93% {
+		opacity: 0.8;
+	}
+
+	94% {
+		opacity: 1;
+	}
+
+	96% {
+		opacity: 0.9;
+	}
+
+	97% {
+		opacity: 1;
+	}
+}
+
+.ascii-art--animated {
+	animation: ascii-flicker var(--animation-flicker);
+}
+
+/* Scanline effect specifically for ASCII art */
+.ascii-art-header--scanlines .ascii-art::after {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: repeating-linear-gradient(0deg, transparent, transparent 1px, var(--theme-scanline-subtle) 1px, var(--theme-scanline-subtle) 2px);
+	pointer-events: none;
+}
+
+/* ----------------------------------------
+   Category Archive / Directory Listing
+   ---------------------------------------- */
+.terminal-directory-listing {
+	font-family: var(--wp--preset--font-family--monospace);
+}
+
+.terminal-directory-listing .directory-header {
+	background: linear-gradient(to bottom, var(--theme-glow-bg) 0%, transparent 100%);
+}
+
+.terminal-directory-listing .directory-path {
+	font-family: var(--wp--preset--font-family--monospace);
+}
+
+/* File entry row hover effect */
+.terminal-directory-listing .file-entry {
+	transition: background-color var(--transition-fast), border-color var(--transition-fast);
+}
+
+.terminal-directory-listing .file-entry:hover {
+	background-color: var(--theme-glow-bg);
+	border-bottom-color: var(--theme-primary);
+}
+
+/* File name link styling */
+.terminal-directory-listing .file-name a {
+	text-decoration: none;
+	transition: text-shadow var(--transition-fast);
+}
+
+.terminal-directory-listing .file-entry:hover .file-name a {
+	text-shadow: var(--shadow-glow-sm);
+}
+
+/* File meta columns alignment */
+.terminal-directory-listing .file-meta-left {
+	min-width: var(--file-meta-min-width);
+	gap: var(--space-xl);
+}
+
+.terminal-directory-listing .file-meta-left p {
+	margin: 0;
+	min-width: 70px;
+}
+
+/* File info section */
+.terminal-directory-listing .file-info {
+	flex: 1;
+	gap: 0;
+}
+
+/* File tags styling */
+.terminal-directory-listing .file-tags a {
+	background: var(--theme-glow-minimal);
+	border: 1px solid var(--theme-border);
+	border-radius: var(--radius-sm);
+	padding: var(--space-2xs) var(--space-sm);
+	text-decoration: none;
+	transition: all var(--transition-fast);
+}
+
+.terminal-directory-listing .file-tags a:hover {
+	border-color: var(--theme-primary);
+	background: var(--theme-glow-subtle);
+}
+
+/* Empty directory state */
+.terminal-directory-listing .empty-directory {
+	background: rgba(255, 170, 0, 0.05);
+}
+
+/* Pagination in directory footer */
+.terminal-directory-listing .wp-block-query-pagination {
+	gap: var(--space-sm);
+}
+
+.terminal-directory-listing .wp-block-query-pagination-numbers .page-numbers {
+	font-family: var(--wp--preset--font-family--monospace);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+
+	.terminal-directory-listing .file-entry {
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 0.5rem;
+	}
+
+	.terminal-directory-listing .file-meta-left {
+		min-width: auto;
+		font-size: var(--wp--preset--font-size--x-small);
+	}
+
+	.terminal-directory-listing .file-info {
+		padding-left: 0;
+		width: 100%;
+	}
+
+	.terminal-directory-listing .file-meta-right {
+		width: 100%;
+		justify-content: flex-start;
+		margin-top: 0.5rem;
+	}
+
+	.terminal-directory-listing .directory-meta {
+		display: none;
+	}
+}
+
+/* ----------------------------------------
+   Site Logo Glitch Effect
+   ---------------------------------------- */
+.wp-block-site-logo {
+	position: relative;
+	overflow: visible;
+}
+
+.wp-block-site-logo a,
+.wp-block-site-logo img {
+	display: block;
+}
+
+.wp-block-site-logo a {
+	position: relative;
+}
+
+/* RGB channel-split pseudo-elements */
+.wp-block-site-logo a::before,
+.wp-block-site-logo a::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	background: inherit;
+	border-radius: 50%;
+	opacity: 0;
+	pointer-events: none;
+	mix-blend-mode: screen;
+	transition: opacity 0.1s;
+}
+
+.wp-block-site-logo:hover a::before,
+.wp-block-site-logo:hover a::after {
+	opacity: 0.7;
+}
+
+.wp-block-site-logo:hover a::before {
+	animation: glitch-channel-r 0.3s steps(2) infinite;
+}
+
+.wp-block-site-logo:hover a::after {
+	animation: glitch-channel-b 0.3s steps(2) infinite;
+}
+
+/* Main image glitch */
+.wp-block-site-logo:hover img {
+	animation: glitch-logo 0.4s steps(1) infinite;
+}
+
+@keyframes glitch-logo {
+	0% {
+		filter: none;
+		transform: translate(0);
+	}
+	10% {
+		filter: brightness(1.8) contrast(1.4);
+		transform: translate(-2px, 1px);
+	}
+	20% {
+		filter: none;
+		transform: translate(0);
+		clip-path: inset(20% 0 40% 0);
+	}
+	30% {
+		clip-path: inset(60% 0 5% 0);
+		transform: translate(3px, 0);
+	}
+	40% {
+		clip-path: none;
+		filter: brightness(1.6) saturate(1.5);
+		transform: translate(0, -1px);
+	}
+	50% {
+		filter: none;
+		transform: translate(0);
+	}
+	60% {
+		filter: brightness(0.4) contrast(2);
+		transform: translate(-1px, 0);
+		clip-path: inset(45% 0 30% 0);
+	}
+	70% {
+		filter: none;
+		clip-path: none;
+		transform: translate(0);
+	}
+	80% {
+		transform: translate(2px, -1px);
+		filter: brightness(2) saturate(2);
+	}
+	90%, 100% {
+		filter: none;
+		transform: translate(0);
+		clip-path: none;
+	}
+}
+
+@keyframes glitch-channel-r {
+	0% { transform: translate(0); background-color: rgba(91, 236, 19, 0.25); }
+	25% { transform: translate(-3px, 1px); background-color: rgba(91, 236, 19, 0.4); }
+	50% { transform: translate(2px, -1px); background-color: rgba(50, 180, 10, 0.3); }
+	75% { transform: translate(-1px, 2px); background-color: rgba(91, 236, 19, 0.35); }
+	100% { transform: translate(0); background-color: rgba(91, 236, 19, 0.25); }
+}
+
+@keyframes glitch-channel-b {
+	0% { transform: translate(0); background-color: rgba(30, 140, 5, 0.3); }
+	25% { transform: translate(3px, -2px); background-color: rgba(120, 255, 50, 0.25); }
+	50% { transform: translate(-2px, 1px); background-color: rgba(30, 140, 5, 0.4); }
+	75% { transform: translate(1px, -1px); background-color: rgba(120, 255, 50, 0.3); }
+	100% { transform: translate(0); background-color: rgba(30, 140, 5, 0.3); }
+}
+
+/* Glitch respects reduced motion */
+@media (prefers-reduced-motion: reduce) {
+	.wp-block-site-logo:hover img {
+		animation: none;
+		filter: brightness(1.2);
+	}
+
+	.wp-block-site-logo:hover a::before,
+	.wp-block-site-logo:hover a::after {
+		animation: none;
+		opacity: 0;
+	}
+}
+
+/* ----------------------------------------
+   CRT Screen Edge Vignette
+   ---------------------------------------- */
+body::before {
+	content: "";
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: radial-gradient(ellipse at center, transparent 60%, rgba(0, 0, 0, 0.45) 100%);
+	pointer-events: none;
+	z-index: 9997;
+}
+
+body.single-post::before {
+	background: radial-gradient(ellipse at center, transparent 72%, rgba(0, 0, 0, 0.2) 100%);
+}
+
+[data-theme="light"] body::before {
+	background: radial-gradient(ellipse at center, transparent 65%, rgba(0, 0, 0, 0.12) 100%);
+}
+
+[data-theme="light"] body.single-post::before {
+	background: radial-gradient(ellipse at center, transparent 78%, rgba(0, 0, 0, 0.06) 100%);
+}
+
+/* ----------------------------------------
+   Post Card Link Feedback
+   ---------------------------------------- */
+.wp-block-post .wp-block-read-more:hover {
+	color: var(--theme-primary);
+	text-shadow: var(--shadow-glow-sm);
+}
+
+.wp-block-post .wp-block-post-excerpt,
+.wp-block-post .wp-block-post-excerpt__excerpt {
+	text-shadow: none;
+}
+
+[data-theme="light"] .wp-block-post .wp-block-post-title {
+	text-shadow: 0 0 1px rgba(22, 96, 9, 0.25);
+}
+
+[data-theme="light"] .wp-block-post .wp-block-post-excerpt,
+[data-theme="light"] .wp-block-post .wp-block-post-excerpt__excerpt {
+	text-shadow: none;
+}
+
+/* ----------------------------------------
+   Code Blocks as Terminal Windows
+   ---------------------------------------- */
+pre.wp-block-code {
+	position: relative;
+	border-top: 2px solid var(--theme-primary);
+	padding-top: 2.5rem;
+	background: linear-gradient(180deg, var(--theme-code-bg-start) 0%, var(--theme-code-bg-end) 100%);
+	border-radius: var(--radius-lg);
+	overflow: hidden;
+}
+
+pre.wp-block-code::before {
+	content: "\25CF  \25CF  \25CF";
+	position: absolute;
+	top: 0.6rem;
+	left: 0.8rem;
+	font-size: 0.7rem;
+	letter-spacing: 0.3em;
+	line-height: 1;
+	background: linear-gradient(90deg, var(--theme-error), var(--theme-warning), var(--theme-success));
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	background-clip: text;
+	pointer-events: none;
+}
+
+pre.wp-block-code code {
+	text-shadow: 0 0 4px var(--theme-glow-subtle), 0 0 10px var(--theme-glow-minimal);
+}
+
+/* ----------------------------------------
+   Syntax Highlighting Plugin Overrides
+   Forces highlight.js theme to respect
+   the terminal dark/light mode colors
+   ---------------------------------------- */
+pre.wp-block-code .hljs,
+pre.wp-block-code code.hljs {
+	background: transparent !important;
+	padding: 0;
+}
+
+/* Line numbers border matches theme */
+.hljs.shcb-line-numbers .shcb-loc::before {
+	border-right-color: var(--theme-border);
+	color: var(--theme-fg-muted);
+}
+
+/* Highlighted line background */
+.hljs > mark.shcb-loc {
+	background-color: var(--theme-glow-subtle) !important;
+}
+
+/* Light mode: override syntax colors for readability */
+[data-theme="light"] pre.wp-block-code .hljs,
+[data-theme="light"] pre.wp-block-code code.hljs {
+	color: #2d3d2d;
+}
+
+[data-theme="light"] pre.wp-block-code .hljs-keyword,
+[data-theme="light"] pre.wp-block-code .hljs-selector-tag,
+[data-theme="light"] pre.wp-block-code .hljs-name,
+[data-theme="light"] pre.wp-block-code .hljs-attr {
+	color: #8b2252;
+}
+
+[data-theme="light"] pre.wp-block-code .hljs-string,
+[data-theme="light"] pre.wp-block-code .hljs-type,
+[data-theme="light"] pre.wp-block-code .hljs-built_in,
+[data-theme="light"] pre.wp-block-code .hljs-selector-id,
+[data-theme="light"] pre.wp-block-code .hljs-selector-attr,
+[data-theme="light"] pre.wp-block-code .hljs-selector-pseudo,
+[data-theme="light"] pre.wp-block-code .hljs-variable,
+[data-theme="light"] pre.wp-block-code .hljs-template-variable {
+	color: #2e7d10;
+}
+
+[data-theme="light"] pre.wp-block-code .hljs-comment,
+[data-theme="light"] pre.wp-block-code .hljs-meta {
+	color: #6a7a6a;
+}
+
+[data-theme="light"] pre.wp-block-code .hljs-number,
+[data-theme="light"] pre.wp-block-code .hljs-literal,
+[data-theme="light"] pre.wp-block-code .hljs-regexp {
+	color: #6f42c1;
+}
+
+[data-theme="light"] pre.wp-block-code .hljs-title,
+[data-theme="light"] pre.wp-block-code .hljs-section,
+[data-theme="light"] pre.wp-block-code .hljs-selector-class {
+	color: #1a6b0a;
+}
+
+[data-theme="light"] pre.wp-block-code .hljs-symbol,
+[data-theme="light"] pre.wp-block-code .hljs-attribute {
+	color: #0550ae;
+}
+
+[data-theme="light"] .hljs.shcb-line-numbers .shcb-loc::before {
+	border-right-color: var(--theme-border);
+	color: var(--theme-fg-muted);
+}
+
+/* ----------------------------------------
+   Accessibility Improvements
+   ---------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.01ms !important;
+	}
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+
+	.has-primary-color {
+		text-shadow: none;
+	}
+
+	.wp-block-button__link:hover {
+		box-shadow: none;
+	}
+}
+
+/* ----------------------------------------
+   Light Mode - Card Background Differentiation
+   ---------------------------------------- */
+[data-theme="light"] .wp-block-post {
+	background-color: var(--theme-card-bg);
+	border-color: var(--theme-border) !important;
+	box-shadow: var(--theme-card-shadow);
+}
+
+/* ----------------------------------------
+   Light Mode - Stronger Outline Buttons
+   ---------------------------------------- */
+[data-theme="light"] .wp-block-button.is-style-outline .wp-block-button__link {
+	border-width: 2px;
+	font-weight: 600;
+}
+
+/* ----------------------------------------
+   Light Mode - Code Blocks
+   ---------------------------------------- */
+[data-theme="light"] pre.wp-block-code {
+	background: linear-gradient(180deg, var(--theme-code-bg-start) 0%, var(--theme-code-bg-end) 100%);
+	border-top-color: var(--theme-primary);
+}
+
+[data-theme="light"] pre.wp-block-code code {
+	text-shadow: none;
+}
+
+/* ----------------------------------------
+   Print Styles
+   ---------------------------------------- */
+@media print {
+
+	body {
+		background: #fff;
+		color: #000;
+	}
+
+	.has-primary-color,
+	.wp-block-heading {
+		color: #000;
+		text-shadow: none;
+	}
+
+	a {
+		color: #000;
+		text-decoration: underline;
+	}
+}
+
+/* ----------------------------------------
+   WCAG 2.2 AA — semantics and interaction
+   ---------------------------------------- */
+.wp-site-blocks > * {
+	margin-block-start: 0;
+}
+
+[data-theme="light"] {
+	--wp--preset--color--primary: #1b5e12;
+	--wp--preset--color--foreground: #101810;
+	--wp--preset--color--foreground-muted: #465446;
+	--wp--preset--color--contrast: #101810;
+}
+
+[data-theme="light"] main .has-primary-color {
+	color: var(--wp--preset--color--primary) !important;
+	text-shadow: none;
+}
+
+[data-theme="light"] main .has-foreground-color,
+[data-theme="light"] main .has-foreground-muted-color {
+	color: var(--wp--preset--color--foreground) !important;
+}
+
+main p a:not(.wp-element-button),
+main li a:not(.wp-element-button),
+main figcaption a:not(.wp-element-button) {
+	text-decoration: underline;
+	text-decoration-thickness: 0.1em;
+	text-underline-offset: 0.18em;
+}
+
+:where(a, button, input, textarea, select, summary, [tabindex]):focus-visible {
+	outline: 3px solid #f6c945 !important;
+	outline-offset: 3px;
+	box-shadow: 0 0 0 2px #111 !important;
+}
+
+.skip-link.screen-reader-text:focus {
+	position: fixed !important;
+	top: 12px;
+	left: 12px;
+	z-index: 100000;
+	width: auto;
+	height: auto;
+	padding: 12px 16px;
+	clip: auto !important;
+	clip-path: none;
+	background: #fff;
+	color: #111;
+	font-weight: 700;
+	text-decoration: underline;
+}
+
+.wp-block-navigation__responsive-container-open,
+.wp-block-navigation__responsive-container-close,
+.theme-toggle,
+.wp-block-query-pagination-numbers .page-numbers,
+.wp-block-query-pagination-previous,
+.wp-block-query-pagination-next,
+.wp-block-search__button {
+	min-width: 44px;
+	min-height: 44px;
+}
+
+.wp-block-navigation__responsive-container-open,
+.wp-block-navigation__responsive-container-close,
+.theme-toggle,
+.wp-block-query-pagination-numbers .page-numbers {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.wp-block-search__input {
+	min-height: 44px;
+}
+
+.terminal-site-footer,
+[data-theme="light"] .terminal-site-footer {
+	background-color: var(--surface-dark-bg) !important;
+	color: var(--surface-dark-muted);
+}
+
+@media (max-width: 781px) {
+	.wp-block-navigation-item__content {
+		display: inline-flex;
+		align-items: center;
+		min-height: 44px;
+		padding-block: 8px;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	html:focus-within {
+		scroll-behavior: auto;
+	}
+}
+
+/* Preserve accessible contrast on permanently dark site chrome. */
+[data-theme="light"] .terminal-site-header .wp-block-site-title a,
+[data-theme="light"] .terminal-site-header .has-primary-color,
+[data-theme="light"] .terminal-site-footer .has-primary-color,
+[data-theme="light"] .terminal-site-footer a {
+	color: var(--surface-dark-primary) !important;
+}
+
+[data-theme="light"] .terminal-site-header .wp-block-site-tagline,
+[data-theme="light"] .terminal-site-header .has-foreground-muted-color,
+[data-theme="light"] .terminal-site-footer .has-foreground-muted-color,
+[data-theme="light"] .terminal-site-footer p:not(.has-primary-color) {
+	color: var(--surface-dark-muted) !important;
+}
+
+[data-theme="light"] .terminal-site-header .wp-block-navigation-item__content,
+[data-theme="light"] .terminal-site-header .wp-block-navigation__responsive-container-open,
+[data-theme="light"] .terminal-site-header .wp-block-navigation__responsive-container-close {
+	color: var(--surface-dark-fg) !important;
+}
+
+.terminal-site-header .wp-block-navigation-item__content[aria-current="page"] {
+	color: var(--surface-dark-primary) !important;
+	font-weight: 700;
+	text-decoration: underline;
+	text-decoration-thickness: 0.14em;
+	text-underline-offset: 0.3em;
+}
+
+.wp-block-social-links .wp-social-link {
+	width: 44px;
+	height: 44px;
+}
+
+.wp-block-social-links .wp-block-social-link-anchor {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 44px;
+	height: 44px;
+}
+
+/* ==========================================
+   Correções da auditoria Impeccable
+   ========================================== */
+
+/* --- P1 #2: blocos de código roláveis no eixo X ---
+   A janela de terminal usava overflow:hidden para conter o
+   border-radius, o que cortava linhas longas de código. */
+pre.wp-block-code {
+	overflow-x: auto;
+	overflow-y: hidden;
+	overscroll-behavior-x: contain;
+	padding-top: 0.75rem;
+	scrollbar-width: thin;
+}
+
+/* Os "semáforos" da janela viram um cabeçalho sticky para
+   continuarem visíveis durante a rolagem horizontal. */
+pre.wp-block-code::before {
+	position: sticky;
+	display: block;
+	top: 0;
+	left: 0;
+	width: max-content;
+	margin-bottom: 0.75rem;
+}
+
+/* Foco visível quando o bloco recebe tabindex para rolagem por teclado. */
+pre.wp-block-code:focus-visible {
+	outline: 2px solid var(--theme-primary);
+	outline-offset: 3px;
+}
+
+/* --- P2 #5: medida de linha confortável no texto corrido ---
+   Limita apenas o texto: código, imagens e embeds mantêm os 800px. */
+.entry-content > p,
+.entry-content > ul,
+.entry-content > ol,
+.entry-content > blockquote,
+.entry-content > .wp-block-list {
+	max-width: 68ch;
+}
+
+/* --- P2 #4: entrelinha de títulos que quebram em várias linhas --- */
+h1.wp-block-heading,
+h1.wp-block-post-title {
+	line-height: 1.2;
+	letter-spacing: 0.02em;
+	text-wrap: balance;
+}
+
+h2.wp-block-heading,
+h2.wp-block-post-title {
+	line-height: 1.28;
+	text-wrap: balance;
+}
+
+h3.wp-block-heading,
+h3.wp-block-post-title {
+	line-height: 1.35;
+}
+
+@media (max-width: 781px) {
+
+	h1.wp-block-post-title {
+		font-size: clamp(1.75rem, 1.35rem + 2vw, 2.25rem);
+		line-height: 1.22;
+		letter-spacing: 0.01em;
+	}
+}
+
+/* --- P1 #1: metadados do artigo quebram em vez de estourar a viewport --- */
+.entry-meta-bar {
+	column-gap: var(--space-md, 1rem);
+	row-gap: 0.5rem;
+}
+
+.entry-meta-bar > * {
+	min-width: 0;
+	max-width: 100%;
+}
+
+.wp-block-post-terms {
+	overflow-wrap: anywhere;
+}
+
+.entry-content > * {
+	max-width: 100%;
+}
+
+/* --- P2 #6: alvos de toque de no mínimo 44px em telas de toque ---
+   O tamanho visual do texto é preservado; só a área cresce. */
+@media (max-width: 781px) {
+
+	.wp-block-post-terms a,
+	.wp-block-post-terms .wp-block-post-terms__separator {
+		display: inline-flex;
+		align-items: center;
+		min-height: 44px;
+	}
+
+	.wp-block-post .wp-block-read-more,
+	.wp-block-read-more {
+		display: inline-flex;
+		align-items: center;
+		min-height: 44px;
+		padding-block: 0.5rem;
+	}
+
+	.wp-block-post-title a {
+		display: inline-block;
+		padding-block: 0.35rem;
+	}
+}
+
+/* --- P2 #7: nunca renderizar a imagem de Gravatar sem origem válida --- */
+.gravatar-enhanced-profile img:not([src]),
+.gravatar-enhanced-profile img[src=""],
+img[src=""] {
+	display: none;
+}
+
+/* --- P1 #3 + P2 #10: botão flutuante de compartilhamento ---
+   Reancorado numa zona segura, dentro dos tokens do tema e sem
+   obstruir o conteúdo (o rodapé ganha folga equivalente). */
+/* Compartilhar só faz sentido onde há uma entrada única: em listagens o
+   botão persistente apenas cobria o título das seções. */
+body:not(.wp-singular) .sws_superaction {
+	display: none;
+}
+
+.sws_superaction {
+	right: max(1rem, env(safe-area-inset-right)) !important;
+	bottom: max(1rem, env(safe-area-inset-bottom));
+	z-index: 20;
+}
+
+.sws_superaction .superwebshare_button {
+	width: 48px !important;
+	height: 48px !important;
+	right: 0 !important;
+	bottom: 0 !important;
+	background-color: var(--theme-primary) !important;
+	color: var(--theme-bg) !important;
+	border: 1px solid var(--theme-primary) !important;
+	box-shadow: var(--shadow-glow-lg, 0 0 16px rgba(91, 236, 19, 0.35)) !important;
+}
+
+.sws_superaction .superwebshare_button:focus-visible {
+	outline: 2px solid var(--theme-fg);
+	outline-offset: 3px;
+}
+
+/* Reserva espaço no fim da página para o botão persistente. */
+@media (max-width: 781px) {
+
+	.sws_superaction {
+		bottom: max(0.75rem, env(safe-area-inset-bottom));
+	}
+
+	body:has(.sws_superaction) .terminal-site-footer {
+		padding-bottom: 5rem;
+	}
+}

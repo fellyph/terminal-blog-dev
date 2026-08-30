@@ -1,0 +1,65 @@
+/**
+ * Terminal Blog - Editor Styles
+ *
+ * Styles for the block editor to match the frontend appearance.
+ *
+ * @package Terminal_Blog
+ * @since 1.0.0
+ */
+
+/* ----------------------------------------
+   Editor Canvas Background
+   ---------------------------------------- */
+.editor-styles-wrapper {
+	background-color: var(--wp--preset--color--background, #050804);
+	color: var(--wp--preset--color--foreground, #f6f8f6);
+	font-family: var(--wp--preset--font-family--primary);
+}
+
+/* ----------------------------------------
+   Heading Glow Effect
+   ---------------------------------------- */
+.editor-styles-wrapper .wp-block-heading {
+	color: var(--wp--preset--color--primary, #5bec13);
+	text-shadow: 0 0 5px rgba(91, 236, 19, 0.3);
+}
+
+/* ----------------------------------------
+   Code Block Styling
+   ---------------------------------------- */
+.editor-styles-wrapper .wp-block-code code,
+.editor-styles-wrapper .wp-block-preformatted pre {
+	color: var(--wp--preset--color--primary, #5bec13);
+	background: var(--wp--preset--color--background-alt, #0a0f09);
+}
+
+/* ----------------------------------------
+   Link Styling
+   ---------------------------------------- */
+.editor-styles-wrapper a {
+	color: var(--wp--preset--color--primary, #5bec13);
+}
+
+/* ----------------------------------------
+   Button Styling
+   ---------------------------------------- */
+.editor-styles-wrapper .wp-block-button__link {
+	border: 1px solid var(--wp--preset--color--primary, #5bec13);
+	background: transparent;
+	color: var(--wp--preset--color--primary, #5bec13);
+}
+
+/* ----------------------------------------
+   Group Block Borders
+   ---------------------------------------- */
+.editor-styles-wrapper .wp-block-group.has-border-color {
+	border-color: var(--wp--preset--color--border, #2e3928);
+}
+
+/* ----------------------------------------
+   Placeholder Text
+   ---------------------------------------- */
+.editor-styles-wrapper .block-editor-block-list__block::placeholder,
+.editor-styles-wrapper input::placeholder {
+	color: var(--wp--preset--color--foreground-muted, #a8b4a8);
+}

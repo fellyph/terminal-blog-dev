@@ -1,0 +1,32 @@
+{
+  "name": "terminal-blog-dev",
+  "version": "1.0.0",
+  "description": "A retro terminal-inspired WordPress block theme with CRT aesthetics",
+  "author": "fellyph",
+  "license": "GPL-2.0-or-later",
+  "scripts": {
+    "plugin-zip": "wp-scripts plugin-zip",
+    "lint:css": "wp-scripts lint-style 'assets/css/**/*.css'",
+    "lint:js": "wp-scripts lint-js 'assets/js/**/*.js'"
+  },
+  "files": [
+    "assets",
+    "parts",
+    "patterns",
+    "templates",
+    "functions.php",
+    "screenshot.png",
+    "style.css",
+    "theme.json"
+  ],
+  "keywords": [
+    "wordpress",
+    "theme",
+    "block-theme",
+    "terminal"
+  ],
+  "devDependencies": {
+    "@wordpress/scripts": "^31.4.0",
+    "puppeteer": "^25.4.0"
+  }
+}

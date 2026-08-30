@@ -1,0 +1,85 @@
+<!-- wp:template-part {"slug":"header"} /-->
+
+<!-- wp:group {"tagName":"main","style":{"spacing":{"padding":{"top":"var:preset|spacing|60","bottom":"var:preset|spacing|70"}}},"layout":{"type":"constrained"}} -->
+<main class="wp-block-group" style="padding-top:var(--wp--preset--spacing--60);padding-bottom:var(--wp--preset--spacing--70)">
+	<!-- wp:group {"align":"wide","style":{"spacing":{"margin":{"bottom":"var:preset|spacing|60"}}},"layout":{"type":"default"}} -->
+	<div class="wp-block-group alignwide" style="margin-bottom:var(--wp--preset--spacing--60)">
+		<!-- wp:heading {"level":1,"style":{"typography":{"fontSize":"clamp(2rem, 5vw, 3.5rem)","textTransform":"uppercase","letterSpacing":"0.02em"}}} -->
+		<h1 class="wp-block-heading" style="font-size:clamp(2rem, 5vw, 3.5rem);letter-spacing:0.02em;text-transform:uppercase">TERMINAL_BLOG</h1>
+		<!-- /wp:heading -->
+
+		<!-- wp:paragraph {"style":{"typography":{"lineHeight":"1.8"}},"textColor":"foreground","fontSize":"large"} -->
+		<p class="has-foreground-color has-text-color has-large-font-size" style="line-height:1.8">Tutoriais práticos sobre WordPress, inteligência artificial, PWAs e JavaScript, escritos por Fellyph Cintra.</p>
+		<!-- /wp:paragraph -->
+
+		<!-- wp:buttons {"style":{"spacing":{"margin":{"top":"var:preset|spacing|40"}}}} -->
+		<div class="wp-block-buttons" style="margin-top:var(--wp--preset--spacing--40)">
+			<!-- wp:button {"className":"is-style-outline"} -->
+			<div class="wp-block-button is-style-outline"><a class="wp-block-button__link wp-element-button" href="#artigos-recentes">[VER_ARTIGOS]</a></div>
+			<!-- /wp:button -->
+
+			<!-- wp:button {"backgroundColor":"transparent","textColor":"foreground-muted","className":"is-style-outline"} -->
+			<div class="wp-block-button is-style-outline"><a class="wp-block-button__link has-foreground-muted-color has-transparent-background-color has-text-color has-background wp-element-button" href="/about">[SOBRE]</a></div>
+			<!-- /wp:button -->
+		</div>
+		<!-- /wp:buttons -->
+	</div>
+	<!-- /wp:group -->
+
+	<!-- wp:separator {"align":"wide","backgroundColor":"border"} -->
+	<hr class="wp-block-separator alignwide has-text-color has-border-color has-alpha-channel-opacity has-border-background-color has-background"/>
+	<!-- /wp:separator -->
+
+	<!-- wp:group {"anchor":"artigos-recentes","align":"wide","style":{"spacing":{"margin":{"top":"var:preset|spacing|60"}}},"layout":{"type":"default"}} -->
+	<div id="artigos-recentes" class="wp-block-group alignwide" style="margin-top:var(--wp--preset--spacing--60)">
+		<!-- wp:heading {"level":2,"style":{"typography":{"textTransform":"uppercase"}}} -->
+		<h2 class="wp-block-heading" style="text-transform:uppercase">ARTIGOS_RECENTES</h2>
+		<!-- /wp:heading -->
+	</div>
+	<!-- /wp:group -->
+
+	<!-- wp:group {"align":"wide","className":"terminal-topic-index","style":{"spacing":{"margin":{"top":"var:preset|spacing|30","bottom":"var:preset|spacing|40"},"blockGap":"var:preset|spacing|30"}},"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"left"}} -->
+	<div class="wp-block-group alignwide terminal-topic-index" style="margin-top:var(--wp--preset--spacing--30);margin-bottom:var(--wp--preset--spacing--40)">
+		<!-- wp:paragraph {"style":{"typography":{"textTransform":"uppercase","letterSpacing":"0.05em","fontStyle":"normal","fontWeight":"700"}},"textColor":"foreground-muted","fontSize":"small"} -->
+		<p class="has-foreground-muted-color has-text-color has-small-font-size" style="font-style:normal;font-weight:700;letter-spacing:0.05em;text-transform:uppercase">EXPLORAR_POR_TÓPICO:</p>
+		<!-- /wp:paragraph -->
+
+		<!-- wp:categories {"showPostCounts":true,"style":{"typography":{"textTransform":"uppercase","letterSpacing":"0.04em"}},"fontSize":"small"} /-->
+	</div>
+	<!-- /wp:group -->
+
+	<!-- wp:query {"queryId":1,"query":{"perPage":6,"pages":0,"offset":0,"postType":"post","order":"desc","orderBy":"date","author":"","search":"","exclude":[],"sticky":"exclude","inherit":false},"align":"wide"} -->
+	<div class="wp-block-query alignwide">
+		<!-- wp:post-template {"layout":{"type":"grid","columnCount":2}} -->
+			<!-- wp:group {"style":{"spacing":{"padding":{"top":"var:preset|spacing|40","right":"var:preset|spacing|40","bottom":"var:preset|spacing|40","left":"var:preset|spacing|40"}},"border":{"width":"1px","color":"var:preset|color|border","radius":"0.25rem"}},"layout":{"type":"default"}} -->
+			<div class="wp-block-group has-border-color" style="border-color:var(--wp--preset--color--border);border-width:1px;border-radius:0.25rem;padding-top:var(--wp--preset--spacing--40);padding-right:var(--wp--preset--spacing--40);padding-bottom:var(--wp--preset--spacing--40);padding-left:var(--wp--preset--spacing--40)">
+				<!-- wp:group {"layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"space-between"}} -->
+				<div class="wp-block-group">
+					<!-- wp:post-date {"format":"Y-m-d","style":{"typography":{"textTransform":"uppercase"}},"textColor":"foreground-muted","fontSize":"small"} /-->
+
+					<!-- wp:post-terms {"term":"category","style":{"typography":{"textTransform":"uppercase"}},"fontSize":"small"} /-->
+				</div>
+				<!-- /wp:group -->
+
+				<!-- wp:post-featured-image {"isLink":true,"aspectRatio":"16/9","style":{"spacing":{"margin":{"top":"var:preset|spacing|30"}},"border":{"radius":"0.25rem"}}} /-->
+
+				<!-- wp:post-title {"level":3,"isLink":true,"style":{"spacing":{"margin":{"top":"var:preset|spacing|20"}},"typography":{"fontSize":"1.35rem","textTransform":"uppercase"}}} /-->
+
+				<!-- wp:post-excerpt {"excerptLength":20,"style":{"spacing":{"margin":{"top":"var:preset|spacing|20"}}},"textColor":"foreground-muted","fontSize":"small"} /-->
+
+				<!-- wp:read-more {"content":"[LER_ARTIGO]","style":{"spacing":{"margin":{"top":"var:preset|spacing|30"}},"typography":{"textTransform":"uppercase","letterSpacing":"0.05em"}},"fontSize":"small"} /-->
+			</div>
+			<!-- /wp:group -->
+		<!-- /wp:post-template -->
+
+		<!-- wp:query-no-results -->
+			<!-- wp:paragraph {"textColor":"foreground-muted"} -->
+			<p class="has-foreground-muted-color has-text-color">Nenhum artigo foi publicado ainda.</p>
+			<!-- /wp:paragraph -->
+		<!-- /wp:query-no-results -->
+		</div>
+	<!-- /wp:query -->
+</main>
+<!-- /wp:group -->
+
+<!-- wp:template-part {"slug":"footer"} /-->
