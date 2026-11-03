@@ -10,5 +10,10 @@ node_modules/
 .codex/
 .agents/
 .impeccable/
+skills-lock.json
+.env
+.env.*
+!.env.example
+.aws/
 dist/
 build/
