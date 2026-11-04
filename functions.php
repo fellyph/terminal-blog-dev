@@ -540,3 +540,23 @@ function terminal_blog_dev_excerpt_more( $more ) {
 	return '...';
 }
 add_filter( 'excerpt_more', 'terminal_blog_dev_excerpt_more' );
+
+/**
+ * Give an empty contact page a truthful state without supplying example data.
+ *
+ * @param string $block_content Rendered post content.
+ * @param array  $block         Parsed block data.
+ * @return string Rendered content or the contact empty state.
+ */
+function terminal_blog_dev_contact_empty_state( $block_content, $block ) {
+	$class_names = preg_split( '/\\s+/', trim( $block['attrs']['className'] ?? '' ) );
+
+	if ( '' !== trim( $block_content ) || ! in_array( 'terminal-contact-content', $class_names, true ) ) {
+		return $block_content;
+	}
+
+	return '<p class="has-foreground-muted-color">' .
+		esc_html__( 'As informações de contato ainda não foram publicadas.', 'terminal-blog-dev' ) .
+		'</p>';
+}
+add_filter( 'render_block_core/post-content', 'terminal_blog_dev_contact_empty_state', 10, 2 );

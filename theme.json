@@ -590,12 +590,12 @@
 	"customTemplates": [
 		{
 			"name": "page-about",
-			"title": "About",
+			"title": "Sobre",
 			"postTypes": ["page"]
 		},
 		{
 			"name": "page-contact",
-			"title": "Contact",
+			"title": "Contato",
 			"postTypes": ["page"]
 		}
 	],
