@@ -1,0 +1,54 @@
+name: PR Preview
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, edited]
+
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+      pull-requests: write
+    steps:
+      - uses: WordPress/action-wp-playground-pr-preview@v4
+        with:
+          blueprint: |
+            {
+              "$schema": "https://playground.wordpress.net/blueprint-schema.json",
+              "landingPage": "/",
+              "preferredVersions": { "php": "8.2", "wp": "latest" },
+              "steps": [
+                {
+                  "step": "installTheme",
+                  "themeData": {
+                    "resource": "git:directory",
+                    "url": "https://github.com/${{ github.repository }}.git",
+                    "ref": "${{ github.event.pull_request.head.sha }}",
+                    "refType": "commit",
+                    "path": "/"
+                  },
+                  "options": { "activate": true, "targetFolderName": "terminal-blog-dev" }
+                },
+                { "step": "resetData" },
+                {
+                  "step": "setSiteOptions",
+                  "options": {
+                    "blogname": "Terminal Blog Dev",
+                    "blogdescription": "Prévia do tema com conteúdo de demonstração.",
+                    "show_on_front": "posts",
+                    "posts_per_page": 6
+                  }
+                },
+                {
+                  "step": "importWxr",
+                  "file": {
+                    "resource": "url",
+                    "url": "https://raw.githubusercontent.com/${{ github.repository }}/${{ github.event.pull_request.head.sha }}/.github/playground/posts.xml"
+                  }
+                },
+                { "step": "login", "username": "admin" }
+              ]
+            }
+          github-token: ${{ secrets.GITHUB_TOKEN }}

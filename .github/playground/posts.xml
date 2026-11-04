@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0"
+  xmlns:excerpt="http://wordpress.org/export/1.2/excerpt/"
+  xmlns:content="http://purl.org/rss/1.0/modules/content/"
+  xmlns:dc="http://purl.org/dc/elements/1.1/"
+  xmlns:wp="http://wordpress.org/export/1.2/">
+  <channel>
+    <title>Terminal Blog Dev — demonstração</title>
+    <link>https://example.test</link>
+    <description>Conteúdo fictício para a prévia do tema no WordPress Playground.</description>
+    <language>pt-BR</language>
+    <wp:wxr_version>1.2</wp:wxr_version>
+    <wp:base_site_url>https://example.test</wp:base_site_url>
+    <wp:base_blog_url>https://example.test</wp:base_blog_url>
+    <wp:author>
+      <wp:author_id>1001</wp:author_id>
+      <wp:author_login><![CDATA[autor-da-previa]]></wp:author_login>
+      <wp:author_email><![CDATA[preview@example.test]]></wp:author_email>
+      <wp:author_display_name><![CDATA[Autor da prévia]]></wp:author_display_name>
+      <wp:author_first_name><![CDATA[Autor da]]></wp:author_first_name>
+      <wp:author_last_name><![CDATA[prévia]]></wp:author_last_name>
+    </wp:author>
+    <wp:category>
+      <wp:term_id>101</wp:term_id>
+      <wp:category_nicename>wordpress</wp:category_nicename>
+      <wp:category_parent></wp:category_parent>
+      <wp:cat_name><![CDATA[WordPress]]></wp:cat_name>
+      <wp:category_description><![CDATA[Temas de blocos, padrões e edição de conteúdo.]]></wp:category_description>
+    </wp:category>
+    <wp:category>
+      <wp:term_id>102</wp:term_id>
+      <wp:category_nicename>inteligencia-artificial</wp:category_nicename>
+      <wp:category_parent></wp:category_parent>
+      <wp:cat_name><![CDATA[Inteligência artificial]]></wp:cat_name>
+      <wp:category_description><![CDATA[Experimentos de escrita e revisão com IA.]]></wp:category_description>
+    </wp:category>
+    <wp:category>
+      <wp:term_id>103</wp:term_id>
+      <wp:category_nicename>desenvolvimento-web</wp:category_nicename>
+      <wp:category_parent></wp:category_parent>
+      <wp:cat_name><![CDATA[Desenvolvimento web]]></wp:cat_name>
+      <wp:category_description><![CDATA[JavaScript, acessibilidade e desempenho na web.]]></wp:category_description>
+    </wp:category>
+    <item>
+      <title>Primeiros passos com um tema de blocos</title>
+      <dc:creator><![CDATA[autor-da-previa]]></dc:creator>
+      <content:encoded><![CDATA[<!-- wp:paragraph -->
+<p>Este artigo de demonstração apresenta a estrutura de uma publicação técnica: introdução, subtítulos, lista e um exemplo de código. Use a página para conferir a leitura e os estilos do tema.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Uma estrutura para começar</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Um tema de blocos reúne modelos, partes de modelos e configurações visuais. Nesta prévia, o conteúdo usa apenas blocos nativos do WordPress para continuar editável.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>Confira a hierarquia dos títulos.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>Compare os modos claro e escuro.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>Abra outro artigo pela navegação ao final da página.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:code -->
+<pre class="wp-block-code"><code>{
+  "version": 3,
+  "settings": {
+    "layout": { "contentSize": "720px" }
+  }
+}</code></pre>
+<!-- /wp:code -->
+
+<!-- wp:paragraph -->
+<p>O código acima é ilustrativo. Nenhuma configuração do tema é alterada ao abrir este post.</p>
+<!-- /wp:paragraph -->]]></content:encoded>
+      <excerpt:encoded><![CDATA[Conheça a estrutura de um artigo técnico com subtítulos, lista e código, usando os blocos nativos do WordPress.]]></excerpt:encoded>
+      <wp:post_id>1001</wp:post_id>
+      <wp:post_date>2026-10-26 10:00:00</wp:post_date>
+      <wp:post_date_gmt>2026-10-26 10:00:00</wp:post_date_gmt>
+      <wp:post_name>primeiros-passos-tema-de-blocos</wp:post_name>
+      <wp:status>publish</wp:status>
+      <wp:post_type>post</wp:post_type>
+      <wp:comment_status>closed</wp:comment_status>
+      <wp:ping_status>closed</wp:ping_status>
+      <wp:is_sticky>0</wp:is_sticky>
+      <category domain="category" nicename="wordpress"><![CDATA[WordPress]]></category>
+      <category domain="post_tag" nicename="temas-de-blocos"><![CDATA[Temas de blocos]]></category>
+      <category domain="post_tag" nicename="editor-do-site"><![CDATA[Editor do site]]></category>
+    </item>
+    <item>
+      <title>Organizando padrões no Editor do site</title>
+      <dc:creator><![CDATA[autor-da-previa]]></dc:creator>
+      <content:encoded><![CDATA[<!-- wp:paragraph -->
+<p>Esta publicação de exemplo ajuda a visualizar um segundo artigo da mesma categoria. Ela também permite testar os arquivos de WordPress e a navegação entre posts.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Do conteúdo à composição</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Observe o espaçamento entre os parágrafos, o comprimento das linhas e o contraste dos links. Uma composição simples facilita a comparação entre diferentes tamanhos de tela.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:quote -->
+<blockquote class="wp-block-quote"><!-- wp:paragraph -->
+<p>Um padrão útil oferece um ponto de partida e deixa espaço para o conteúdo.</p>
+<!-- /wp:paragraph --></blockquote>
+<!-- /wp:quote -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">Um teste de leitura</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>O terceiro nível de título aparece aqui para completar a amostra de tipografia. Todo o texto pode ser ajustado no Editor de blocos durante a revisão da prévia.</p>
+<!-- /wp:paragraph -->]]></content:encoded>
+      <excerpt:encoded><![CDATA[Uma amostra com citação e diferentes níveis de título para revisar a tipografia e a organização do conteúdo.]]></excerpt:encoded>
+      <wp:post_id>1002</wp:post_id>
+      <wp:post_date>2026-10-25 10:00:00</wp:post_date>
+      <wp:post_date_gmt>2026-10-25 10:00:00</wp:post_date_gmt>
+      <wp:post_name>organizando-padroes-editor-do-site</wp:post_name>
+      <wp:status>publish</wp:status>
+      <wp:post_type>post</wp:post_type>
+      <wp:comment_status>closed</wp:comment_status>
+      <wp:ping_status>closed</wp:ping_status>
+      <wp:is_sticky>0</wp:is_sticky>
+      <category domain="category" nicename="wordpress"><![CDATA[WordPress]]></category>
+      <category domain="post_tag" nicename="editor-do-site"><![CDATA[Editor do site]]></category>
+    </item>
+    <item>
+      <title>IA no fluxo de escrita: do rascunho à revisão</title>
+      <dc:creator><![CDATA[autor-da-previa]]></dc:creator>
+      <content:encoded><![CDATA[<!-- wp:paragraph -->
+<p>Um título mais longo permite conferir a quebra de linhas nos cartões e no cabeçalho do artigo. Este conteúdo é uma amostra editorial, criada para a demonstração do tema.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Três momentos de um rascunho</h2>
+<!-- /wp:heading -->
+
+<!-- wp:list {"ordered":true} -->
+<ol class="wp-block-list"><!-- wp:list-item -->
+<li>Definir a pergunta e o público do texto.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>Organizar as ideias em uma sequência de leitura.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>Revisar exemplos, fontes e linguagem antes de publicar.</li>
+<!-- /wp:list-item --></ol>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>A lista numerada completa a amostra de conteúdo. Abra a categoria <strong>Inteligência artificial</strong> para conferir como o tema apresenta os dois artigos desse tópico.</p>
+<!-- /wp:paragraph -->]]></content:encoded>
+      <excerpt:encoded><![CDATA[Um exemplo de artigo com título longo e lista numerada para testar cartões, leitura e arquivos de categoria.]]></excerpt:encoded>
+      <wp:post_id>1003</wp:post_id>
+      <wp:post_date>2026-10-24 10:00:00</wp:post_date>
+      <wp:post_date_gmt>2026-10-24 10:00:00</wp:post_date_gmt>
+      <wp:post_name>ia-fluxo-de-escrita</wp:post_name>
+      <wp:status>publish</wp:status>
+      <wp:post_type>post</wp:post_type>
+      <wp:comment_status>closed</wp:comment_status>
+      <wp:ping_status>closed</wp:ping_status>
+      <wp:is_sticky>0</wp:is_sticky>
+      <category domain="category" nicename="inteligencia-artificial"><![CDATA[Inteligência artificial]]></category>
+      <category domain="post_tag" nicename="ia"><![CDATA[IA]]></category>
+      <category domain="post_tag" nicename="escrita"><![CDATA[Escrita]]></category>
+    </item>
+    <item>
+      <title>Uma checklist para revisar respostas de IA</title>
+      <dc:creator><![CDATA[autor-da-previa]]></dc:creator>
+      <content:encoded><![CDATA[<!-- wp:paragraph -->
+<p>Esta é uma publicação curta, com resumo próprio e duas tags. Ela serve para comparar artigos de comprimentos diferentes na mesma grade.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Perguntas para uma revisão</h2>
+<!-- /wp:heading -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>A resposta corresponde à pergunta inicial?</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>Os exemplos estão claros para quem vai ler?</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>Há pontos que precisam de verificação adicional?</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>Use os termos ao final do artigo para navegar pelos arquivos de tags e observar como os títulos aparecem nesses contextos.</p>
+<!-- /wp:paragraph -->]]></content:encoded>
+      <excerpt:encoded><![CDATA[Uma publicação curta com lista e tags para comparar diferentes comprimentos de conteúdo na grade do blog.]]></excerpt:encoded>
+      <wp:post_id>1004</wp:post_id>
+      <wp:post_date>2026-10-23 10:00:00</wp:post_date>
+      <wp:post_date_gmt>2026-10-23 10:00:00</wp:post_date_gmt>
+      <wp:post_name>checklist-revisar-respostas-ia</wp:post_name>
+      <wp:status>publish</wp:status>
+      <wp:post_type>post</wp:post_type>
+      <wp:comment_status>closed</wp:comment_status>
+      <wp:ping_status>closed</wp:ping_status>
+      <wp:is_sticky>0</wp:is_sticky>
+      <category domain="category" nicename="inteligencia-artificial"><![CDATA[Inteligência artificial]]></category>
+      <category domain="post_tag" nicename="ia"><![CDATA[IA]]></category>
+      <category domain="post_tag" nicename="escrita"><![CDATA[Escrita]]></category>
+    </item>
+    <item>
+      <title>JavaScript com foco em acessibilidade</title>
+      <dc:creator><![CDATA[autor-da-previa]]></dc:creator>
+      <content:encoded><![CDATA[<!-- wp:paragraph -->
+<p>Um exemplo de código em JavaScript complementa a amostra de JSON do primeiro artigo. Compare o espaçamento, a fonte e a rolagem horizontal em uma tela pequena.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Um exemplo para inspecionar</h2>
+<!-- /wp:heading -->
+
+<!-- wp:code -->
+<pre class="wp-block-code"><code>const button = document.querySelector('button');
+
+button?.addEventListener('click', () =&gt; {
+  const expanded = button.getAttribute('aria-expanded') === 'true';
+  button.setAttribute('aria-expanded', String(!expanded));
+});</code></pre>
+<!-- /wp:code -->
+
+<!-- wp:paragraph -->
+<p>O trecho é apenas uma amostra de formatação e não é executado pela página. Para testar o tema, percorra seus links e controles com o teclado.</p>
+<!-- /wp:paragraph -->]]></content:encoded>
+      <excerpt:encoded><![CDATA[Um trecho de JavaScript para avaliar blocos de código, tipografia e leitura em telas pequenas.]]></excerpt:encoded>
+      <wp:post_id>1005</wp:post_id>
+      <wp:post_date>2026-10-22 10:00:00</wp:post_date>
+      <wp:post_date_gmt>2026-10-22 10:00:00</wp:post_date_gmt>
+      <wp:post_name>javascript-acessibilidade</wp:post_name>
+      <wp:status>publish</wp:status>
+      <wp:post_type>post</wp:post_type>
+      <wp:comment_status>closed</wp:comment_status>
+      <wp:ping_status>closed</wp:ping_status>
+      <wp:is_sticky>0</wp:is_sticky>
+      <category domain="category" nicename="desenvolvimento-web"><![CDATA[Desenvolvimento web]]></category>
+      <category domain="post_tag" nicename="javascript"><![CDATA[JavaScript]]></category>
+    </item>
+    <item>
+      <title>Performance web: medir antes de otimizar</title>
+      <dc:creator><![CDATA[autor-da-previa]]></dc:creator>
+      <content:encoded><![CDATA[<!-- wp:paragraph -->
+<p>O sexto artigo completa a grade inicial. As datas diferentes também permitem testar a ordenação das publicações e os links para o artigo anterior e o próximo.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Um registro de observações</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Ao revisar esta prévia, registre o que acontece ao abrir a página, alternar o tema e navegar entre artigos. O objetivo deste conteúdo é oferecer páginas com estrutura suficiente para uma revisão visual.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:quote -->
+<blockquote class="wp-block-quote"><!-- wp:paragraph -->
+<p>Antes de mudar a interface, descreva o comportamento que você quer melhorar.</p>
+<!-- /wp:paragraph --></blockquote>
+<!-- /wp:quote -->
+
+<!-- wp:paragraph -->
+<p>Este ambiente é temporário. Alterações feitas durante a demonstração ficam na instância do Playground.</p>
+<!-- /wp:paragraph -->]]></content:encoded>
+      <excerpt:encoded><![CDATA[Uma amostra com parágrafos e citação para completar a grade e testar a navegação entre artigos.]]></excerpt:encoded>
+      <wp:post_id>1006</wp:post_id>
+      <wp:post_date>2026-10-21 10:00:00</wp:post_date>
+      <wp:post_date_gmt>2026-10-21 10:00:00</wp:post_date_gmt>
+      <wp:post_name>performance-web-medir-antes</wp:post_name>
+      <wp:status>publish</wp:status>
+      <wp:post_type>post</wp:post_type>
+      <wp:comment_status>closed</wp:comment_status>
+      <wp:ping_status>closed</wp:ping_status>
+      <wp:is_sticky>0</wp:is_sticky>
+      <category domain="category" nicename="desenvolvimento-web"><![CDATA[Desenvolvimento web]]></category>
+      <category domain="post_tag" nicename="desempenho"><![CDATA[Desempenho]]></category>
+    </item>
+  </channel>
+</rss>
