@@ -23,6 +23,12 @@ npm run lint:js
 
 O TypeScript fica fixado em 5.3.3 para manter compatibilidade com o parser usado pelo ESLint do WordPress. A validação de JavaScript não depende da instalação global do TypeScript.
 
+## Prévia de pull requests
+
+O workflow `PR Preview` adiciona um botão à descrição dos pull requests deste repositório. Ao abrir a prévia, o WordPress Playground instala e ativa o tema da branch do pull request em um ambiente temporário no navegador.
+
+O tema funciona diretamente com os arquivos versionados, sem etapa de compilação. A integração usa o `GITHUB_TOKEN` fornecido pelo GitHub; não é necessário cadastrar um segredo. Esta configuração atende a branches do próprio repositório. Para prévias de pull requests vindos de forks, use os dois workflows descritos no [guia do WordPress Playground](https://developer.wordpress.org/playground/handbook/guides/github-action-pr-preview/).
+
 ## Licença
 
 GPL-2.0-or-later.
