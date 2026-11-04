@@ -8,6 +8,10 @@ Block theme do blog de Fellyph Cintra, com estética inspirada em terminal e foc
 - PHP 8.0 ou superior
 - Node.js e npm para executar os linters
 
+## Navegação de contato
+
+O cabeçalho padrão não pressupõe que exista uma página de contato. Para adicionar esse destino, publique a página e selecione-a no bloco Navegação do cabeçalho, no Editor do site. Se o cabeçalho já tiver personalizações salvas, edite essa versão da navegação.
+
 ## Desenvolvimento
 
 ```bash
