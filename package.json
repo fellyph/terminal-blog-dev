@@ -4,6 +4,10 @@
   "description": "A retro terminal-inspired WordPress block theme with CRT aesthetics",
   "author": "fellyph",
   "license": "GPL-2.0-or-later",
+  "engines": {
+    "node": ">=22.12.0 <23",
+    "npm": ">=10 <11"
+  },
   "scripts": {
     "plugin-zip": "wp-scripts plugin-zip",
     "lint:css": "wp-scripts lint-style 'assets/css/**/*.css'",
@@ -26,7 +30,8 @@
     "terminal"
   ],
   "devDependencies": {
-    "@wordpress/scripts": "^31.4.0",
-    "puppeteer": "^25.4.0"
+    "@wordpress/scripts": "31.8.0",
+    "puppeteer": "^25.4.0",
+    "typescript": "5.3.3"
   }
 }
