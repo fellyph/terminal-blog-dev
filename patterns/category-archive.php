@@ -1,6 +1,6 @@
 <?php
 /**
- * Title: Category Archive
+ * Title: Arquivo de categorias
  * Slug: terminal-blog-dev/category-archive
  * Categories: query
  * Keywords: archive, category, listing, terminal, directory

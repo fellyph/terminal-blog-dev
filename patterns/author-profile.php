@@ -1,6 +1,6 @@
 <?php
 /**
- * Title: Author Profile - Terminal Style
+ * Title: Perfil do autor
  * Slug: terminal-blog-dev/author-profile
  * Categories: featured
  * Keywords: author, profile, user, whoami

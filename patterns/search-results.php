@@ -1,6 +1,6 @@
 <?php
 /**
- * Title: Search Results - Grep Style
+ * Title: Resultados da busca
  * Slug: terminal-blog-dev/search-results
  * Categories: featured
  * Keywords: search, results, grep

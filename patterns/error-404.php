@@ -1,6 +1,6 @@
 <?php
 /**
- * Title: Error 404 - File Not Found
+ * Title: Erro 404 — Página não encontrada
  * Slug: terminal-blog-dev/error-404
  * Categories: featured
  * Keywords: 404, error, not found
