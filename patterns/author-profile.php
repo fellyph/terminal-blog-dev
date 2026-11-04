@@ -15,7 +15,7 @@
 	<!-- wp:group {"align":"wide","layout":{"type":"default"}} -->
 	<div class="wp-block-group alignwide">
 		<!-- wp:paragraph {"style":{"typography":{"textTransform":"uppercase","letterSpacing":"0.1em"}},"textColor":"foreground-muted","fontSize":"small"} -->
-		<p class="has-foreground-muted-color has-text-color has-small-font-size" style="letter-spacing:0.1em;text-transform:uppercase">// USER_PROFILE_QUERY</p>
+		<p class="has-foreground-muted-color has-text-color has-small-font-size" style="letter-spacing:0.1em;text-transform:uppercase">// PERFIL_DO_AUTOR</p>
 		<!-- /wp:paragraph -->
 
 		<!-- wp:group {"style":{"spacing":{"padding":{"top":"var:preset|spacing|30","right":"var:preset|spacing|40","bottom":"var:preset|spacing|30","left":"var:preset|spacing|40"},"margin":{"top":"var:preset|spacing|30"}},"border":{"width":"1px","color":"var:preset|color|border","radius":"var:custom|border-radius|medium"}},"backgroundColor":"background-alt","layout":{"type":"default"}} -->
@@ -43,9 +43,6 @@
 			<div class="wp-block-group">
 				<!-- wp:post-author-name {"isLink":false,"style":{"typography":{"fontSize":"clamp(1.5rem, 4vw, 2.5rem)","textTransform":"uppercase","letterSpacing":"0.02em","fontStyle":"normal","fontWeight":"700"}}} /-->
 
-				<!-- wp:paragraph {"style":{"typography":{"textTransform":"uppercase","letterSpacing":"0.05em"},"spacing":{"margin":{"top":"var:preset|spacing|20"}}},"textColor":"primary","fontSize":"small"} -->
-				<p class="has-primary-color has-text-color has-small-font-size" style="letter-spacing:0.05em;margin-top:var(--wp--preset--spacing--20);text-transform:uppercase"><?php esc_html_e( 'ROLE: AUTHOR | CONTRIBUTOR', 'terminal-blog-dev' ); ?></p>
-				<!-- /wp:paragraph -->
 
 				<!-- wp:post-author-biography {"style":{"spacing":{"margin":{"top":"var:preset|spacing|30"}},"typography":{"lineHeight":"1.7"}},"textColor":"foreground-muted"} /-->
 			</div>
@@ -53,29 +50,6 @@
 		</div>
 		<!-- /wp:group -->
 
-		<!-- wp:group {"style":{"spacing":{"padding":{"top":"var:preset|spacing|40","right":"var:preset|spacing|40","bottom":"var:preset|spacing|40","left":"var:preset|spacing|40"}},"border":{"width":"1px","color":"var:preset|color|border","radius":"var:custom|border-radius|medium"}},"backgroundColor":"background-alt","layout":{"type":"default"}} -->
-		<div class="wp-block-group has-border-color has-background-alt-background-color has-background" style="border-color:var(--wp--preset--color--border);border-width:1px;border-radius:var(--wp--custom--border-radius--medium);padding-top:var(--wp--preset--spacing--40);padding-right:var(--wp--preset--spacing--40);padding-bottom:var(--wp--preset--spacing--40);padding-left:var(--wp--preset--spacing--40)">
-			<!-- wp:paragraph {"style":{"typography":{"textTransform":"uppercase","letterSpacing":"0.1em"}},"textColor":"primary","fontSize":"small"} -->
-			<p class="has-primary-color has-text-color has-small-font-size" style="letter-spacing:0.1em;text-transform:uppercase">SYSTEM_STATS:</p>
-			<!-- /wp:paragraph -->
-
-			<!-- wp:group {"style":{"spacing":{"margin":{"top":"var:preset|spacing|30"},"blockGap":"var:preset|spacing|20"}},"layout":{"type":"default"}} -->
-			<div class="wp-block-group" style="margin-top:var(--wp--preset--spacing--30)">
-				<!-- wp:paragraph {"fontFamily":"monospace","style":{"typography":{"textTransform":"uppercase"}},"textColor":"foreground-muted","fontSize":"small"} -->
-				<p class="has-foreground-muted-color has-text-color has-small-font-size has-monospace-font-family" style="text-transform:uppercase">TOTAL_POSTS: <span class="has-primary-color">--</span></p>
-				<!-- /wp:paragraph -->
-
-				<!-- wp:paragraph {"fontFamily":"monospace","style":{"typography":{"textTransform":"uppercase"}},"textColor":"foreground-muted","fontSize":"small"} -->
-				<p class="has-foreground-muted-color has-text-color has-small-font-size has-monospace-font-family" style="text-transform:uppercase">MEMBER_SINCE: <span class="has-primary-color">2024-01-15</span></p>
-				<!-- /wp:paragraph -->
-
-				<!-- wp:paragraph {"fontFamily":"monospace","style":{"typography":{"textTransform":"uppercase"}},"textColor":"foreground-muted","fontSize":"small"} -->
-				<p class="has-foreground-muted-color has-text-color has-small-font-size has-monospace-font-family" style="text-transform:uppercase">STATUS: <span class="has-primary-color">ACTIVE</span></p>
-				<!-- /wp:paragraph -->
-			</div>
-			<!-- /wp:group -->
-		</div>
-		<!-- /wp:group -->
 	</div>
 	<!-- /wp:group -->
 
@@ -114,7 +88,7 @@
 					<div class="wp-block-group">
 						<!-- wp:post-terms {"term":"category","style":{"typography":{"textTransform":"uppercase"}},"fontSize":"small"} /-->
 
-						<!-- wp:read-more {"content":"[OPEN]","style":{"typography":{"textTransform":"uppercase","letterSpacing":"0.05em"}},"fontSize":"small"} /-->
+						<!-- wp:read-more {"content":"[LER_ARTIGO]","style":{"typography":{"textTransform":"uppercase","letterSpacing":"0.05em"}},"fontSize":"small"} /-->
 					</div>
 					<!-- /wp:group -->
 				</div>
@@ -123,16 +97,16 @@
 
 			<!-- wp:query-no-results -->
 				<!-- wp:paragraph {"style":{"typography":{"textTransform":"uppercase"}},"textColor":"foreground-muted"} -->
-				<p class="has-foreground-muted-color has-text-color" style="text-transform:uppercase"><?php esc_html_e( 'NO_FILES_FOUND: This author has no posts yet.', 'terminal-blog-dev' ); ?></p>
+				<p class="has-foreground-muted-color has-text-color" style="text-transform:uppercase"><?php esc_html_e( 'Este autor ainda não tem artigos publicados.', 'terminal-blog-dev' ); ?></p>
 				<!-- /wp:paragraph -->
 			<!-- /wp:query-no-results -->
 
 			<!-- wp:group {"style":{"spacing":{"margin":{"top":"var:preset|spacing|40"}}},"layout":{"type":"flex","justifyContent":"center"}} -->
 			<div class="wp-block-group" style="margin-top:var(--wp--preset--spacing--40)">
 				<!-- wp:query-pagination {"style":{"typography":{"textTransform":"uppercase","letterSpacing":"0.05em"}},"fontSize":"small","layout":{"type":"flex","justifyContent":"center"}} -->
-					<!-- wp:query-pagination-previous {"label":"[<< PREV]"} /-->
+					<!-- wp:query-pagination-previous {"label":"[<< ANTERIORES]"} /-->
 					<!-- wp:query-pagination-numbers /-->
-					<!-- wp:query-pagination-next {"label":"[NEXT >>]"} /-->
+					<!-- wp:query-pagination-next {"label":"[PRÓXIMOS >>]"} /-->
 				<!-- /wp:query-pagination -->
 			</div>
 			<!-- /wp:group -->

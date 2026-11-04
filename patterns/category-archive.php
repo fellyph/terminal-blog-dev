@@ -28,11 +28,11 @@
 	<!-- wp:group {"className":"directory-meta","style":{"spacing":{"margin":{"bottom":"var:preset|spacing|30"}}},"layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"space-between"}} -->
 	<div class="wp-block-group directory-meta" style="margin-bottom:var(--wp--preset--spacing--30)">
 		<!-- wp:paragraph {"fontFamily":"monospace","style":{"typography":{"textTransform":"uppercase"}},"textColor":"foreground-muted","fontSize":"x-small"} -->
-		<p class="has-foreground-muted-color has-text-color has-x-small-font-size has-monospace-font-family" style="text-transform:uppercase">PERMISSIONS&nbsp;&nbsp;SIZE&nbsp;&nbsp;&nbsp;&nbsp;DATE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FILENAME</p>
+		<p class="has-foreground-muted-color has-text-color has-x-small-font-size has-monospace-font-family" style="text-transform:uppercase">DATA&nbsp;&nbsp;&nbsp;&nbsp;ARQUIVO</p>
 		<!-- /wp:paragraph -->
 
 		<!-- wp:paragraph {"fontFamily":"monospace","style":{"typography":{"textTransform":"uppercase"}},"textColor":"foreground-muted","fontSize":"x-small"} -->
-		<p class="has-foreground-muted-color has-text-color has-x-small-font-size has-monospace-font-family" style="text-transform:uppercase">[SORT: DATE_DESC]</p>
+		<p class="has-foreground-muted-color has-text-color has-x-small-font-size has-monospace-font-family" style="text-transform:uppercase">[ORDEM: MAIS_RECENTES]</p>
 		<!-- /wp:paragraph -->
 	</div>
 	<!-- /wp:group -->
@@ -49,9 +49,6 @@
 					<p class="has-foreground-muted-color has-text-color has-small-font-size has-monospace-font-family">-rw-r--r--</p>
 					<!-- /wp:paragraph -->
 
-					<!-- wp:paragraph {"fontFamily":"monospace","textColor":"foreground-muted","fontSize":"small"} -->
-					<p class="has-foreground-muted-color has-text-color has-small-font-size has-monospace-font-family">4.2K</p>
-					<!-- /wp:paragraph -->
 
 					<!-- wp:post-date {"format":"M d H:i","fontFamily":"monospace","style":{"typography":{"textTransform":"uppercase"}},"textColor":"foreground-muted","fontSize":"small"} /-->
 				</div>
@@ -86,13 +83,13 @@
 		<!-- wp:group {"className":"directory-footer","style":{"spacing":{"margin":{"top":"var:preset|spacing|40"},"padding":{"top":"var:preset|spacing|30"}}},"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"space-between"}} -->
 		<div class="wp-block-group directory-footer" style="margin-top:var(--wp--preset--spacing--40);padding-top:var(--wp--preset--spacing--30)">
 			<!-- wp:paragraph {"fontFamily":"monospace","style":{"typography":{"textTransform":"uppercase"}},"textColor":"primary","fontSize":"x-small"} -->
-			<p class="has-primary-color has-text-color has-x-small-font-size has-monospace-font-family" style="text-transform:uppercase">// END_OF_LISTING</p>
+			<p class="has-primary-color has-text-color has-x-small-font-size has-monospace-font-family" style="text-transform:uppercase">// FIM_DA_LISTAGEM</p>
 			<!-- /wp:paragraph -->
 
 			<!-- wp:query-pagination {"fontFamily":"monospace","style":{"typography":{"textTransform":"uppercase"}},"fontSize":"small","layout":{"type":"flex","justifyContent":"right"}} -->
-				<!-- wp:query-pagination-previous {"label":"[&lt;PREV]"} /-->
+				<!-- wp:query-pagination-previous {"label":"[ANTERIORES]"} /-->
 				<!-- wp:query-pagination-numbers /-->
-				<!-- wp:query-pagination-next {"label":"[NEXT&gt;]"} /-->
+				<!-- wp:query-pagination-next {"label":"[PRÓXIMOS]"} /-->
 			<!-- /wp:query-pagination -->
 		</div>
 		<!-- /wp:group -->
@@ -101,15 +98,15 @@
 			<!-- wp:group {"className":"empty-directory","style":{"spacing":{"padding":{"top":"var:preset|spacing|50","bottom":"var:preset|spacing|50"}},"border":{"width":"1px","color":"var:preset|color|warning","style":"dashed"}},"layout":{"type":"constrained"}} -->
 			<div class="wp-block-group empty-directory has-border-color" style="border-color:var(--wp--preset--color--warning);border-style:dashed;border-width:1px;padding-top:var(--wp--preset--spacing--50);padding-bottom:var(--wp--preset--spacing--50)">
 				<!-- wp:paragraph {"align":"center","fontFamily":"monospace","style":{"typography":{"textTransform":"uppercase"}},"textColor":"warning"} -->
-				<p class="has-text-align-center has-warning-color has-text-color has-monospace-font-family" style="text-transform:uppercase">ERROR: DIRECTORY_EMPTY</p>
+				<p class="has-text-align-center has-warning-color has-text-color has-monospace-font-family" style="text-transform:uppercase">NENHUM_ARTIGO_ENCONTRADO</p>
 				<!-- /wp:paragraph -->
 
 				<!-- wp:paragraph {"align":"center","fontFamily":"monospace","textColor":"foreground-muted","fontSize":"small"} -->
-				<p class="has-text-align-center has-foreground-muted-color has-text-color has-small-font-size has-monospace-font-family"><?php esc_html_e( 'No files matching the specified criteria were found in this directory.', 'terminal-blog-dev' ); ?></p>
+				<p class="has-text-align-center has-foreground-muted-color has-text-color has-small-font-size has-monospace-font-family"><?php esc_html_e( 'Ainda não há artigos que correspondam a estes critérios.', 'terminal-blog-dev' ); ?></p>
 				<!-- /wp:paragraph -->
 
 				<!-- wp:paragraph {"align":"center","fontFamily":"monospace","style":{"typography":{"textTransform":"uppercase"}},"textColor":"foreground-muted","fontSize":"x-small"} -->
-				<p class="has-text-align-center has-foreground-muted-color has-text-color has-x-small-font-size has-monospace-font-family" style="text-transform:uppercase">Try: ls -la /var/archive/ --all</p>
+				<p class="has-text-align-center has-foreground-muted-color has-text-color has-x-small-font-size has-monospace-font-family" style="text-transform:uppercase">Tente pesquisar outro assunto no blog.</p>
 				<!-- /wp:paragraph -->
 			</div>
 			<!-- /wp:group -->

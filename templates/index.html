@@ -5,15 +5,15 @@
 	<!-- wp:group {"align":"wide","style":{"spacing":{"margin":{"bottom":"var:preset|spacing|60"}}},"layout":{"type":"default"}} -->
 	<div class="wp-block-group alignwide" style="margin-bottom:var(--wp--preset--spacing--60)">
 		<!-- wp:paragraph {"style":{"typography":{"textTransform":"uppercase","letterSpacing":"0.1em"}},"textColor":"foreground-muted","fontSize":"small"} -->
-		<p class="has-foreground-muted-color has-text-color has-small-font-size" style="letter-spacing:0.1em;text-transform:uppercase">// SYSTEM_LOG: RECENT_ENTRIES</p>
+		<p class="has-foreground-muted-color has-text-color has-small-font-size" style="letter-spacing:0.1em;text-transform:uppercase">// ARTIGOS_RECENTES</p>
 		<!-- /wp:paragraph -->
 
 		<!-- wp:heading {"level":1,"style":{"typography":{"textTransform":"uppercase"}}} -->
-		<h1 class="wp-block-heading" style="text-transform:uppercase">BLOG_INDEX</h1>
+		<h1 class="wp-block-heading" style="text-transform:uppercase">ÍNDICE_DO_BLOG</h1>
 		<!-- /wp:heading -->
 
 		<!-- wp:paragraph {"textColor":"foreground-muted"} -->
-		<p class="has-foreground-muted-color has-text-color">Loading recent transmissions from the network...</p>
+		<p class="has-foreground-muted-color has-text-color">Artigos publicados no blog.</p>
 		<!-- /wp:paragraph -->
 	</div>
 	<!-- /wp:group -->
@@ -55,16 +55,16 @@
 		<!-- wp:group {"style":{"spacing":{"margin":{"top":"var:preset|spacing|50"}}},"layout":{"type":"flex","justifyContent":"center"}} -->
 		<div class="wp-block-group" style="margin-top:var(--wp--preset--spacing--50)">
 			<!-- wp:query-pagination {"layout":{"type":"flex","justifyContent":"center"}} -->
-				<!-- wp:query-pagination-previous {"label":"[PREV]"} /-->
+				<!-- wp:query-pagination-previous {"label":"[ANTERIORES]"} /-->
 				<!-- wp:query-pagination-numbers /-->
-				<!-- wp:query-pagination-next {"label":"[NEXT]"} /-->
+				<!-- wp:query-pagination-next {"label":"[PRÓXIMOS]"} /-->
 			<!-- /wp:query-pagination -->
 		</div>
 		<!-- /wp:group -->
 
 		<!-- wp:query-no-results -->
 			<!-- wp:paragraph {"textColor":"warning"} -->
-			<p class="has-warning-color has-text-color">ERROR 404: NO_RECORDS_FOUND // Check query parameters and try again.</p>
+			<p class="has-warning-color has-text-color">Nenhum artigo encontrado. Use a busca para encontrar outro assunto.</p>
 			<!-- /wp:paragraph -->
 		<!-- /wp:query-no-results -->
 	</div>

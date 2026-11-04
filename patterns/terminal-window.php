@@ -41,7 +41,7 @@
 		<!-- /wp:paragraph -->
 
 		<!-- wp:paragraph {"textColor":"foreground"} -->
-		<p class="has-foreground-color has-text-color"><?php esc_html_e( 'Your content goes here. This terminal window pattern can be used to highlight important information or code snippets.', 'terminal-blog-dev' ); ?></p>
+		<p class="has-foreground-color has-text-color"><?php esc_html_e( 'Use esta janela para destacar informações ou trechos de código.', 'terminal-blog-dev' ); ?></p>
 		<!-- /wp:paragraph -->
 	</div>
 	<!-- /wp:group -->
