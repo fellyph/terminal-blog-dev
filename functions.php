@@ -43,22 +43,6 @@ function terminal_blog_dev_critical_css() {
 	?>
 	<style id="terminal-critical-css">
 	/* Critical CSS - Above the fold styles */
-	:root {
-		--theme-bg: #050804;
-		--theme-bg-alt: #0a0f09;
-		--theme-fg: #f6f8f6;
-		--theme-fg-muted: #a8b4a8;
-		--theme-primary: #5bec13;
-		--theme-border: #2e3928;
-	}
-	[data-theme="light"] {
-		--theme-bg: #f6f8f6;
-		--theme-bg-alt: #e8ebe8;
-		--theme-fg: #050804;
-		--theme-fg-muted: #4a5a4a;
-		--theme-primary: #2e7d10;
-		--theme-border: #a8b4a8;
-	}
 	html { background-color: var(--theme-bg); }
 	body {
 		margin: 0;
@@ -105,7 +89,7 @@ function terminal_blog_dev_setup() {
 	add_theme_support( 'editor-styles' );
 
 	// Enqueue editor styles
-	add_editor_style( 'assets/css/editor-style.css' );
+	add_editor_style( array( 'assets/css/colors.css', 'assets/css/editor-style.css' ) );
 
 	// Add support for responsive embedded content
 	add_theme_support( 'responsive-embeds' );
@@ -160,11 +144,19 @@ function terminal_blog_dev_scripts() {
 		wp_get_theme()->get( 'Version' )
 	);
 
-	// Enqueue custom styles - no dependency to avoid chaining
+	// Keep shared color tokens render-blocking for the frontend and editor.
+	wp_enqueue_style(
+		'terminal-blog-dev-colors',
+		get_template_directory_uri() . '/assets/css/colors.css',
+		array(),
+		wp_get_theme()->get( 'Version' )
+	);
+
+	// The effect stylesheet depends on the shared palette.
 	wp_enqueue_style(
 		'terminal-blog-dev-custom',
 		get_template_directory_uri() . '/assets/css/custom.css',
-		array(),
+		array( 'terminal-blog-dev-colors' ),
 		wp_get_theme()->get( 'Version' )
 	);
 

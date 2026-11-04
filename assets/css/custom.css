@@ -14,46 +14,6 @@
 :root {
 
 	/* ----------------------------------------
-	   Colors - Dark Theme (Default)
-	   ---------------------------------------- */
-	--theme-bg: #050804;
-	--theme-bg-alt: #0a0f09;
-	--theme-fg: #f6f8f6;
-	--theme-fg-muted: #a8b4a8;
-	--theme-primary: #5bec13;
-	--theme-primary-dark: #4bc410;
-	--theme-border: #2e3928;
-	--theme-error: #f44;
-	--theme-warning: #fa0;
-	--theme-success: #5bec13;
-
-	/* Dark Surface - Constant tokens for header/footer across both modes */
-	--surface-dark-bg: #080e06;
-	--surface-dark-fg: #f6f8f6;
-	--surface-dark-muted: #a8b4a8;
-	--surface-dark-primary: #5bec13;
-	--surface-dark-border: #2e3928;
-
-	/* Card tokens (overridden in light mode) */
-	--theme-card-bg: var(--theme-bg);
-	--theme-card-bg-hover: var(--theme-glow-bg);
-	--theme-card-shadow: 0 1px 3px transparent;
-	--theme-card-shadow-hover: var(--shadow-border-glow-hover);
-
-	/* Code block tokens (overridden in light mode) */
-	--theme-code-bg-start: var(--theme-bg-alt);
-	--theme-code-bg-end: var(--theme-bg);
-
-	/* Glow Effects */
-	--theme-glow: rgba(91, 236, 19, 0.5);
-	--theme-glow-strong: rgba(91, 236, 19, 0.8);
-	--theme-glow-subtle: rgba(91, 236, 19, 0.2);
-	--theme-glow-minimal: rgba(91, 236, 19, 0.1);
-	--theme-glow-bg: rgba(91, 236, 19, 0.03);
-	--theme-scanline: rgba(0, 0, 0, 0.15);
-	--theme-scanline-subtle: rgba(0, 0, 0, 0.08);
-
-	/* ----------------------------------------
 	   Spacing
 	   ---------------------------------------- */
 	--space-2xs: 0.125rem; /* 2px */
@@ -128,40 +88,6 @@
 	--wp--preset--font-size--x-large: 1.5rem;
 	--wp--preset--font-size--xx-large: 2rem;
 	--wp--preset--font-size--xxx-large: 2.75rem;
-}
-
-/* ----------------------------------------
-   Light Theme Overrides
-   ---------------------------------------- */
-[data-theme="light"] {
-
-	/* Colors - Higher contrast for WCAG AA */
-	--theme-bg: #edf2ed;
-	--theme-bg-alt: #dde4dd;
-	--theme-fg: #080e06;
-	--theme-fg-muted: #2d3d2d;
-	--theme-primary: #0d5005;
-	--theme-primary-dark: #0a3d04;
-	--theme-border: #556b55;
-
-	/* Card tokens - light mode */
-	--theme-card-bg: #f4f8f4;
-	--theme-card-bg-hover: #eaf2ea;
-	--theme-card-shadow: 0 1px 4px rgba(13, 80, 5, 0.12), 0 0 0 1px rgba(13, 80, 5, 0.08);
-	--theme-card-shadow-hover: 0 3px 10px rgba(13, 80, 5, 0.2), 0 0 0 1px rgba(13, 80, 5, 0.15);
-
-	/* Code block tokens - light mode */
-	--theme-code-bg-start: #e8f0e8;
-	--theme-code-bg-end: #edf2ed;
-
-	/* Glow Effects - Phosphor-tinted for light mode */
-	--theme-glow: rgba(13, 80, 5, 0.4);
-	--theme-glow-strong: rgba(13, 80, 5, 0.6);
-	--theme-glow-subtle: rgba(13, 80, 5, 0.18);
-	--theme-glow-minimal: rgba(13, 80, 5, 0.1);
-	--theme-glow-bg: rgba(13, 80, 5, 0.05);
-	--theme-scanline: rgba(0, 0, 0, 0.05);
-	--theme-scanline-subtle: rgba(0, 0, 0, 0.03);
 }
 
 /* Apply theme variables to body */
@@ -1618,7 +1544,7 @@ pre.wp-block-code code.hljs {
 
 [data-theme="light"] pre.wp-block-code .hljs-comment,
 [data-theme="light"] pre.wp-block-code .hljs-meta {
-	color: #6a7a6a;
+	color: #506050;
 }
 
 [data-theme="light"] pre.wp-block-code .hljs-number,
@@ -1725,23 +1651,6 @@ pre.wp-block-code code.hljs {
    ---------------------------------------- */
 .wp-site-blocks > * {
 	margin-block-start: 0;
-}
-
-[data-theme="light"] {
-	--wp--preset--color--primary: #1b5e12;
-	--wp--preset--color--foreground: #101810;
-	--wp--preset--color--foreground-muted: #465446;
-	--wp--preset--color--contrast: #101810;
-}
-
-[data-theme="light"] main .has-primary-color {
-	color: var(--wp--preset--color--primary) !important;
-	text-shadow: none;
-}
-
-[data-theme="light"] main .has-foreground-color,
-[data-theme="light"] main .has-foreground-muted-color {
-	color: var(--wp--preset--color--foreground) !important;
 }
 
 main p a:not(.wp-element-button),
