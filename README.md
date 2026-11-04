@@ -4,7 +4,7 @@ Block theme do blog de Fellyph Cintra, com estética inspirada em terminal e foc
 
 ## Requisitos
 
-- WordPress 6.4 ou superior
+- WordPress 6.6 ou superior (configuração `theme.json` versão 3)
 - PHP 8.0 ou superior
 - Node.js 22 LTS (22.12 ou superior) e npm 10 para executar os linters
 

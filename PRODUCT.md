@@ -33,7 +33,7 @@ O tema combina uma experiência editorial orientada à leitura com uma identidad
 ## Capabilities and Constraints
 
 - Block theme baseado em `theme.json` versão 3, templates HTML, template parts e patterns PHP.
-- Compatibilidade declarada com WordPress 6.4 ou superior e PHP 8.0 ou superior.
+- Compatibilidade declarada com WordPress 6.6 ou superior e PHP 8.0 ou superior.
 - O conteúdo e os labels operacionais devem priorizar PT-BR. Termos técnicos podem permanecer em inglês quando forem a forma reconhecida pelo público.
 - Alterações devem usar recursos nativos do WordPress e não modificar arquivos do WordPress Core.
 - O tema deve funcionar no Site Editor e manter consistência entre editor e frontend.
