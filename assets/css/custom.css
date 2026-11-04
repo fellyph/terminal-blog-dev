@@ -1450,7 +1450,7 @@ pre.wp-block-code code.hljs {
 	}
 
 	90%,
- 100% {
+	100% {
 		filter: none;
 		transform: translate(0);
 		clip-path: none;
