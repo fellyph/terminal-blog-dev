@@ -15,6 +15,7 @@
 	const STORAGE_KEY = 'terminal-blog-theme';
 	const DARK_THEME = 'dark';
 	const LIGHT_THEME = 'light';
+	let sessionTheme = null;
 	const STRINGS =
 		typeof terminalBlogThemeI18n === 'object'
 			? terminalBlogThemeI18n
@@ -31,14 +32,30 @@
 	}
 
 	/**
+	 * Read a valid persisted preference when browser storage is available.
+	 *
+	 * @return {string|null} A saved theme, or null when unavailable or invalid.
+	 */
+	function getStoredTheme() {
+		try {
+			const stored = localStorage.getItem( STORAGE_KEY );
+			return stored === DARK_THEME || stored === LIGHT_THEME
+				? stored
+				: null;
+		} catch {
+			return null;
+		}
+	}
+
+	/**
 	 * Get the user's preferred theme from various sources
 	 * Priority: localStorage > system preference > default (dark)
 	 */
 	function getPreferredTheme() {
-		// Check localStorage first
-		const stored = localStorage.getItem( STORAGE_KEY );
-		if ( stored === DARK_THEME || stored === LIGHT_THEME ) {
-			return stored;
+		// Keep an explicit choice for this page even when persistence fails.
+		const preferred = sessionTheme || getStoredTheme();
+		if ( preferred ) {
+			return preferred;
 		}
 
 		// Check system preference
@@ -89,8 +106,13 @@
 			document.documentElement.getAttribute( 'data-theme' ) || DARK_THEME;
 		const next = current === DARK_THEME ? LIGHT_THEME : DARK_THEME;
 
-		// Save preference
-		localStorage.setItem( STORAGE_KEY, next );
+		// Persistence is optional; it must not block the visible state change.
+		sessionTheme = next;
+		try {
+			localStorage.setItem( STORAGE_KEY, next );
+		} catch {
+			// The choice remains available for the rest of this page session.
+		}
 
 		// Apply with animation
 		const toggles = document.querySelectorAll( '.theme-toggle' );
@@ -139,7 +161,7 @@
 				.matchMedia( '(prefers-color-scheme: light)' )
 				.addEventListener( 'change', function ( e ) {
 					// Only auto-switch if user hasn't manually set a preference
-					if ( ! localStorage.getItem( STORAGE_KEY ) ) {
+					if ( ! sessionTheme && ! getStoredTheme() ) {
 						applyTheme( e.matches ? LIGHT_THEME : DARK_THEME );
 					}
 				} );

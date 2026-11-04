@@ -29,7 +29,7 @@ add_action( 'wp_head', 'terminal_blog_dev_resource_hints', 1 );
 function terminal_blog_dev_early_theme_script() {
 	?>
 	<script id="terminal-early-theme">
-	(function(){var t=localStorage.getItem('terminal-blog-theme');if(!t){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme:light)').matches?'light':'dark'}document.documentElement.setAttribute('data-theme',t)})();
+	(function(){var t;try{t=localStorage.getItem('terminal-blog-theme')}catch(e){/* Storage is optional. */}if(t!=='dark'&&t!=='light'){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme:light)').matches?'light':'dark'}document.documentElement.setAttribute('data-theme',t)})();
 	</script>
 	<?php
 }
