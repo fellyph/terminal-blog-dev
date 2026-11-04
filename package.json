@@ -7,7 +7,8 @@
   "scripts": {
     "plugin-zip": "wp-scripts plugin-zip",
     "lint:css": "wp-scripts lint-style 'assets/css/**/*.css'",
-    "lint:js": "wp-scripts lint-js 'assets/js/**/*.js'"
+    "lint:js": "wp-scripts lint-js 'assets/js/**/*.js'",
+    "test:theme-toggle": "node --test tests/theme-toggle.test.cjs"
   },
   "files": [
     "assets",
