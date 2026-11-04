@@ -14,5 +14,41 @@ jobs:
     steps:
       - uses: WordPress/action-wp-playground-pr-preview@v4
         with:
-          theme-path: .
+          blueprint: |
+            {
+              "$schema": "https://playground.wordpress.net/blueprint-schema.json",
+              "landingPage": "/",
+              "preferredVersions": { "php": "8.2", "wp": "latest" },
+              "steps": [
+                {
+                  "step": "installTheme",
+                  "themeData": {
+                    "resource": "git:directory",
+                    "url": "https://github.com/${{ github.repository }}.git",
+                    "ref": "${{ github.event.pull_request.head.sha }}",
+                    "refType": "commit",
+                    "path": "/"
+                  },
+                  "options": { "activate": true, "targetFolderName": "terminal-blog-dev" }
+                },
+                { "step": "resetData" },
+                {
+                  "step": "setSiteOptions",
+                  "options": {
+                    "blogname": "Terminal Blog Dev",
+                    "blogdescription": "Prévia do tema com conteúdo de demonstração.",
+                    "show_on_front": "posts",
+                    "posts_per_page": 6
+                  }
+                },
+                {
+                  "step": "importWxr",
+                  "file": {
+                    "resource": "url",
+                    "url": "https://raw.githubusercontent.com/${{ github.repository }}/${{ github.event.pull_request.head.sha }}/.github/playground/posts.xml"
+                  }
+                },
+                { "step": "login", "username": "admin" }
+              ]
+            }
           github-token: ${{ secrets.GITHUB_TOKEN }}

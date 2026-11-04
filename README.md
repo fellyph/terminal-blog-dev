@@ -27,6 +27,10 @@ O TypeScript fica fixado em 5.3.3 para manter compatibilidade com o parser usado
 
 O workflow `PR Preview` adiciona um botão à descrição dos pull requests deste repositório. Ao abrir a prévia, o WordPress Playground instala e ativa o tema da branch do pull request em um ambiente temporário no navegador.
 
+O Blueprint abre a página inicial com seis posts de demonstração em português, divididos entre WordPress, inteligência artificial e desenvolvimento web. Os artigos incluem resumos, datas, autor, seis tags e blocos nativos de parágrafo, título, lista, citação e código. O conteúdo está em [`.github/playground/posts.xml`](.github/playground/posts.xml), no formato de exportação do WordPress (WXR).
+
+O tema e o WXR são carregados do mesmo commit do pull request. O Blueprint remove o conteúdo inicial do Playground antes da importação e entra como administrador para permitir a edição dos exemplos. Esses dados existem apenas na prévia; instalar ou ativar o tema em outro site não cria posts.
+
 O tema funciona diretamente com os arquivos versionados, sem etapa de compilação. A integração usa o `GITHUB_TOKEN` fornecido pelo GitHub; não é necessário cadastrar um segredo. Esta configuração atende a branches do próprio repositório. Para prévias de pull requests vindos de forks, use os dois workflows descritos no [guia do WordPress Playground](https://developer.wordpress.org/playground/handbook/guides/github-action-pr-preview/).
 
 ## Licença
