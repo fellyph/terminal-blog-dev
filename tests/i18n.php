@@ -85,6 +85,9 @@ foreach ( array(
 	'> SISTEMA INICIADO' => '> SYSTEM INITIALIZED',
 	'Pesquisar novamente' => 'Search "again" & learn -->',
 	'Desenvolvido com %s.' => 'Powered by %s.',
+	'Artigos deste arquivo' => 'Archive articles',
+	'Pesquisar artigos…' => 'Search "articles" -->',
+	'[LER_ARTIGO]' => '[READ_ARTICLE]',
 ) as $source => $translation ) {
 	$catalog->add_entry( new Translation_Entry( array( 'singular' => $source, 'translations' => array( $translation ) ) ) );
 }
@@ -99,6 +102,11 @@ try {
 	$search = terminal_blog_dev_find_footer_block( parse_blocks( terminal_i18n_pattern( 'search-results' ) ), 'core/search' );
 	terminal_i18n_check( 'Search "again" & learn -->' === $search['attrs']['label'], 'Quotes, ampersands and comment terminators in translations must round-trip through block JSON.' );
 	terminal_i18n_check( str_contains( terminal_i18n_pattern( 'footer-credits' ), 'Powered by <a' ), 'The translated sentence must retain its format placeholder and link.' );
+	$archive = terminal_i18n_pattern( 'category-archive' );
+	terminal_i18n_check( str_contains( $archive, '>Archive articles</p>' ), 'Archive interface copy must honor the active catalog.' );
+	$archive_search = terminal_blog_dev_find_footer_block( parse_blocks( $archive ), 'core/search' );
+	$archive_link = terminal_blog_dev_find_footer_block( parse_blocks( $archive ), 'core/read-more' );
+	terminal_i18n_check( 'Search "articles" -->' === $archive_search['attrs']['placeholder'] && '[READ_ARTICLE]' === $archive_link['attrs']['content'], 'Archive search and read-more translations must survive block JSON serialization.' );
 	$translated_fixture = terminal_blog_dev_localize_template( $fixture );
 	$search = parse_blocks( $translated_fixture->content )[0]['innerBlocks'][2];
 	terminal_i18n_check( 'Search "again" & learn -->' === $search['attrs']['label'], 'Legacy template labels must also honor the active catalog.' );

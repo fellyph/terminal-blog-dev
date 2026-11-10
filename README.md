@@ -22,6 +22,14 @@ Para aplicar o novo rodapé em um site com personalizações salvas: abra **Apar
 
 As sugestões de cabeçalho e rodapé que dependem de blocos não registrados, como conta e carrinho do WooCommerce sem o plugin ativo, são omitidas do editor. Isso inclui dependências em padrões aninhados. Instalar o plugin necessário torna essas opções disponíveis novamente. O filtro afeta apenas as sugestões; não modifica as partes salvas nem as demais categorias. Para conferir a integração com o registro real de blocos, execute `studio wp eval-file /caminho/absoluto/do/tema/tests/header-patterns.php` e `studio wp eval-file /caminho/absoluto/do/tema/tests/footer-patterns.php`.
 
+## Arquivos de artigos
+
+O modelo de arquivo usa a largura ampla do tema, com o nome da categoria ou tag sem prefixo, descrição, pesquisa e artigos organizados por data, título, resumo e categorias. Em telas pequenas, a listagem vira uma coluna com margens laterais e controles de pelo menos 44 px. A pesquisa procura em todo o blog; a listagem e sua paginação herdam a consulta principal do WordPress, preservando os filtros de categoria, tag e data e a quantidade de artigos configurada no site.
+
+A pasta decorativa é um SVG nativo em pixel art, com quatro quadros em grade de 64 × 64 e uma paleta de quatro cores para cada tema de cores. A animação dura 1,8 segundo, toca uma vez e fica desativada com a preferência de movimento reduzido. A arte não entra na leitura de tecnologias assistivas. Os rótulos do arquivo usam gettext; o antigo título padrão `Nome Archives` do Yoast também é localizado, preservando títulos SEO personalizados.
+
+Para conferir a integração com consultas reais, paginação, estado vazio, acessibilidade e títulos SEO, execute `studio wp eval-file /caminho/absoluto/do/tema/tests/archive.php`. O teste usa os artigos da instalação local sem criar nem alterar conteúdo. Modelos de arquivo personalizados no Editor do site continuam tendo prioridade; para usar este layout, insira o padrão **Arquivo de artigos** no modelo salvo.
+
 ## Idioma e traduções
 
 Os textos decorativos e de interface têm português brasileiro como padrão e suporte a gettext nos patterns PHP. O tema mantém os prompts, colchetes, sublinhados e nomes de arquivo da identidade visual, com rótulos como `PRONTO PARA DIGITAR`, `SISTEMA INICIADO`, `CARREGANDO_ARQUIVO` e `MIN DE LEITURA`. Comandos reais, marcas, identificadores e URLs são preservados.

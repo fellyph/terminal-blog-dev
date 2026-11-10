@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="64" viewBox="0 0 256 64" shape-rendering="crispEdges">
+<title>Pasta de artigos em pixel art</title>
+<desc>Uma pasta com um documento, desenhada em pixel art.</desc>
+<view id="frame-1" viewBox="0 0 64 64"/>
+<defs>
+<g id="back">
+<path fill="#5bec13" d="M6 22h20v4h30v28H6z"/>
+<path fill="#2e3928" d="M8 24h16v4h30v24H8z"/>
+</g>
+<g id="paper">
+<path fill="#5bec13" d="M24 12h18v2h2v2h2v2h2v28H24z"/>
+<path fill="#a8b4a8" d="M26 14h14v6h6v24H26z"/>
+<path fill="#2e3928" d="M30 24h12v2H30zm0 6h12v2H30zm0 6h8v2h-8z"/>
+</g>
+<g id="front">
+<path fill="#5bec13" d="M4 34h56v22H4z"/>
+<path fill="#2e3928" d="M6 36h52v18H6z"/>
+<path fill="#4bc410" d="M6 36h52v2H6zm0 16h52v2H6z"/>
+<path fill="#5bec13" d="M12 44h12v2H12z"/>
+</g>
+</defs>
+<g><use href="#back"/><use href="#paper"/><use href="#front"/></g>
+<g transform="translate(64 0)"><use href="#back"/><use href="#paper" transform="translate(0 -4)"/><use href="#front"/></g>
+<g transform="translate(128 0)"><use href="#back"/><use href="#paper" transform="translate(0 -8)"/><use href="#front"/></g>
+<g transform="translate(192 0)"><use href="#back"/><use href="#paper" transform="translate(0 -4)"/><use href="#front"/></g>
+</svg>

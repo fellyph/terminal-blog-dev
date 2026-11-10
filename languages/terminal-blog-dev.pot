@@ -2,21 +2,21 @@
 # This file is distributed under the GNU General Public License v2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Terminal Blog Dev 1.3.4\n"
+"Project-Id-Version: Terminal Blog Dev 1.3.5\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/theme/terminal-blog-dev\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-11-10T20:34:28+00:00\n"
+"POT-Creation-Date: 2026-11-10T22:03:45+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: terminal-blog-dev\n"
 
 #. Theme Name of the theme
 #: style.css
-#: functions.php:472
+#: functions.php:474
 msgid "Terminal Blog Dev"
 msgstr ""
 
@@ -40,60 +40,60 @@ msgstr ""
 msgid "https://fellyph.com.br"
 msgstr ""
 
-#: functions.php:203
+#: functions.php:205
 msgid "Pausar"
 msgstr ""
 
-#: functions.php:204
+#: functions.php:206
 msgid "Animar"
 msgstr ""
 
-#: functions.php:205
+#: functions.php:207
 msgid "Pausar animação do rodapé"
 msgstr ""
 
-#: functions.php:206
+#: functions.php:208
 msgid "Reproduzir animação do rodapé"
 msgstr ""
 
-#: functions.php:226
+#: functions.php:228
 #: patterns/theme-toggle.php:14
 msgid "TEMA"
 msgstr ""
 
-#: functions.php:227
+#: functions.php:229
 msgid "Escuro"
 msgstr ""
 
-#: functions.php:228
+#: functions.php:230
 msgid "Claro"
 msgstr ""
 
-#: functions.php:229
+#: functions.php:231
 msgid "Alternar tema de cores"
 msgstr ""
 
-#: functions.php:230
+#: functions.php:232
 msgid "Tema atual"
 msgstr ""
 
-#: functions.php:231
+#: functions.php:233
 msgid "Tema alterado para"
 msgstr ""
 
-#: functions.php:473
+#: functions.php:475
 msgid "Padrões em estilo terminal para o tema Terminal Blog Dev."
 msgstr ""
 
-#: functions.php:529
+#: functions.php:531
 msgid "Bloco de código, rolável na horizontal"
 msgstr ""
 
-#: functions.php:558
+#: functions.php:560
 msgid "Compartilhar este artigo"
 msgstr ""
 
-#: functions.php:663
+#: functions.php:665
 msgid "As informações de contato ainda não foram publicadas."
 msgstr ""
 
@@ -103,6 +103,12 @@ msgstr ""
 
 #: includes/agent-readiness.php:164
 msgid "Pesquisa artigos publicados no blog e abre os resultados. Use para encontrar tutoriais ou publicações por assunto."
+msgstr ""
+
+#. translators: %s: Name of the category, tag, or taxonomy term.
+#: includes/archive.php:53
+#, php-format
+msgid "Arquivo de %s"
 msgstr ""
 
 #: includes/footer-patterns.php:53
@@ -137,6 +143,7 @@ msgstr ""
 
 #: includes/i18n.php:25
 #: patterns/author-profile.php:91
+#: patterns/category-archive.php:57
 msgid "[LER_ARTIGO]"
 msgstr ""
 
@@ -152,6 +159,7 @@ msgid "Pesquisar novamente"
 msgstr ""
 
 #: includes/i18n.php:28
+#: patterns/category-archive.php:40
 #: patterns/header-search.php:17
 msgid "Pesquisar no blog"
 msgstr ""
@@ -187,7 +195,6 @@ msgid "C:\\USUARIO\\SOBRE> cat leia-me.txt"
 msgstr ""
 
 #: includes/i18n.php:35
-#: patterns/category-archive.php:19
 msgid "leitor@terminal:~$ ls -la /var/arquivo/"
 msgstr ""
 
@@ -283,48 +290,51 @@ msgstr ""
 
 #: patterns/category-archive.php
 msgctxt "Pattern title"
-msgid "Arquivo de categorias"
+msgid "Arquivo de artigos"
 msgstr ""
 
 #: patterns/category-archive.php
 msgctxt "Pattern description"
-msgid "Listagem de artigos como arquivos de um terminal para páginas de categoria e arquivo."
+msgid "Arquivo amplo com títulos legíveis, datas, resumos, pesquisa e uma pasta animada em pixel art."
 msgstr ""
 
-#: patterns/category-archive.php:31
-msgid "DATA    ARQUIVO"
+#: patterns/category-archive.php:33
+msgid "Artigos deste arquivo"
 msgstr ""
 
-#: patterns/category-archive.php:35
-msgid "[ORDEM: MAIS_RECENTES]"
+#: patterns/category-archive.php:36
+msgid "Mais recentes primeiro"
 msgstr ""
 
-#: patterns/category-archive.php:64
-msgid ".md"
+#: patterns/category-archive.php:40
+msgid "Pesquisar artigos…"
 msgstr ""
 
-#: patterns/category-archive.php:86
-msgid "// FIM_DA_LISTAGEM"
+#: patterns/category-archive.php:40
+#: patterns/header-search.php:17
+msgid "Pesquisar"
 msgstr ""
 
-#: patterns/category-archive.php:90
-msgid "[ANTERIORES]"
+#: patterns/category-archive.php:63
+msgid "[ANTERIOR]"
 msgstr ""
 
-#: patterns/category-archive.php:92
-msgid "[PRÓXIMOS]"
+#: patterns/category-archive.php:65
+msgid "[PRÓXIMA]"
 msgstr ""
 
-#: patterns/category-archive.php:101
-msgid "NENHUM_ARTIGO_ENCONTRADO"
+#: patterns/category-archive.php:72
+msgid "Nenhum artigo neste arquivo"
 msgstr ""
 
-#: patterns/category-archive.php:105
-msgid "Ainda não há artigos que correspondam a estes critérios."
+#: patterns/category-archive.php:75
+msgid "Use a pesquisa para encontrar outro assunto ou volte à página inicial."
 msgstr ""
 
-#: patterns/category-archive.php:109
-msgid "Tente pesquisar outro assunto no blog."
+#: patterns/category-archive.php:80
+#: patterns/error-404.php:52
+#: patterns/search-results.php:124
+msgid "[VOLTAR_AO_INÍCIO]"
 msgstr ""
 
 #: patterns/comments-terminal.php
@@ -377,11 +387,6 @@ msgstr ""
 
 #: patterns/error-404.php:46
 msgid "A página solicitada não foi encontrada. Verifique o endereço, volte ao início ou pesquise outro assunto."
-msgstr ""
-
-#: patterns/error-404.php:52
-#: patterns/search-results.php:124
-msgid "[VOLTAR_AO_INÍCIO]"
 msgstr ""
 
 #: patterns/error-404.php:56
@@ -511,10 +516,6 @@ msgstr ""
 
 #: patterns/header-search.php:17
 msgid "Buscar artigos…"
-msgstr ""
-
-#: patterns/header-search.php:17
-msgid "Pesquisar"
 msgstr ""
 
 #: patterns/header-standard.php
