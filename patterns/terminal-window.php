@@ -1,10 +1,10 @@
 <?php
 /**
- * Title: Terminal Window
+ * Title: Janela de terminal
  * Slug: terminal-blog-dev/terminal-window
  * Categories: featured
- * Keywords: terminal, window, code
- * Description: A styled terminal window container.
+ * Keywords: terminal, janela, código
+ * Description: Um contêiner com a aparência de uma janela de terminal.
  * Viewport Width: 800
  */
 ?>
@@ -37,7 +37,7 @@
 	<!-- wp:group {"style":{"spacing":{"padding":{"top":"var:preset|spacing|40","right":"var:preset|spacing|40","bottom":"var:preset|spacing|40","left":"var:preset|spacing|40"}}},"layout":{"type":"default"}} -->
 	<div class="wp-block-group" style="padding-top:var(--wp--preset--spacing--40);padding-right:var(--wp--preset--spacing--40);padding-bottom:var(--wp--preset--spacing--40);padding-left:var(--wp--preset--spacing--40)">
 		<!-- wp:paragraph {"style":{"typography":{"textTransform":"uppercase"}},"textColor":"primary","fontSize":"small"} -->
-		<p class="has-primary-color has-text-color has-small-font-size" style="text-transform:uppercase">C:\USER\BLOG&gt; _</p>
+		<p class="has-primary-color has-text-color has-small-font-size" style="text-transform:uppercase"><?php esc_html_e( 'C:\\USUARIO\\BLOG> _', 'terminal-blog-dev' ); ?></p>
 		<!-- /wp:paragraph -->
 
 		<!-- wp:paragraph {"textColor":"foreground"} -->

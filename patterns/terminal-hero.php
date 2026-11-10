@@ -1,10 +1,10 @@
 <?php
 /**
- * Title: Terminal Hero
+ * Title: Apresentação do blog
  * Slug: terminal-blog-dev/terminal-hero
  * Categories: featured, banner
- * Keywords: hero, banner, terminal
- * Description: A terminal-style hero section with title and call to action.
+ * Keywords: terminal, apresentação, blog
+ * Description: Apresentação do blog com título e links em estilo terminal.
  * Viewport Width: 1400
  */
 ?>

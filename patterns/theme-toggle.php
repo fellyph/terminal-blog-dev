@@ -1,10 +1,10 @@
 <?php
 /**
- * Title: Theme Toggle
+ * Title: Seletor de cores
  * Slug: terminal-blog-dev/theme-toggle
  * Categories: terminal-blog-dev
- * Keywords: theme, toggle, dark, light, mode, switch
- * Description: Dark/light mode toggle button with terminal aesthetic.
+ * Keywords: tema, cores, claro, escuro
+ * Description: Botão para alternar entre as cores claras e escuras em estilo terminal.
  * Viewport Width: 400
  */
 ?>

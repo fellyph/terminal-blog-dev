@@ -3,8 +3,8 @@
  * Title: Erro 404 — Página não encontrada
  * Slug: terminal-blog-dev/error-404
  * Categories: featured
- * Keywords: 404, error, not found
- * Description: A terminal-style error page with retro CRT aesthetics.
+ * Keywords: 404, erro, página não encontrada
+ * Description: Página de erro com a estética de um terminal e monitor CRT.
  * Template Types: 404
  * Viewport Width: 1400
  */
@@ -14,11 +14,11 @@
 	<!-- wp:group {"align":"wide","style":{"border":{"width":"1px","color":"var:preset|color|error","radius":"var:custom|border-radius|medium"},"spacing":{"padding":{"top":"var:preset|spacing|60","right":"var:preset|spacing|60","bottom":"var:preset|spacing|60","left":"var:preset|spacing|60"}}},"layout":{"type":"default"}} -->
 	<div class="wp-block-group alignwide has-border-color" style="border-color:var(--wp--preset--color--error);border-width:1px;border-radius:var(--wp--custom--border-radius--medium);padding-top:var(--wp--preset--spacing--60);padding-right:var(--wp--preset--spacing--60);padding-bottom:var(--wp--preset--spacing--60);padding-left:var(--wp--preset--spacing--60)">
 		<!-- wp:paragraph {"style":{"typography":{"textTransform":"uppercase","letterSpacing":"0.1em"}},"textColor":"error","fontSize":"small"} -->
-		<p class="has-error-color has-text-color has-small-font-size" style="letter-spacing:0.1em;text-transform:uppercase">PÁGINA_NÃO_ENCONTRADA</p>
+		<p class="has-error-color has-text-color has-small-font-size" style="letter-spacing:0.1em;text-transform:uppercase"><?php esc_html_e( 'PÁGINA_NÃO_ENCONTRADA', 'terminal-blog-dev' ); ?></p>
 		<!-- /wp:paragraph -->
 
 		<!-- wp:heading {"level":1,"style":{"typography":{"fontSize":"clamp(3rem, 8vw, 6rem)","textTransform":"uppercase","letterSpacing":"-0.02em","fontStyle":"normal","fontWeight":"700"}},"textColor":"error"} -->
-		<h1 class="wp-block-heading has-error-color has-text-color" style="font-size:clamp(3rem, 8vw, 6rem);font-style:normal;font-weight:700;letter-spacing:-0.02em;text-transform:uppercase">ERRO 404</h1>
+		<h1 class="wp-block-heading has-error-color has-text-color" style="font-size:clamp(3rem, 8vw, 6rem);font-style:normal;font-weight:700;letter-spacing:-0.02em;text-transform:uppercase"><?php esc_html_e( 'ERRO 404', 'terminal-blog-dev' ); ?></h1>
 		<!-- /wp:heading -->
 
 		<!-- wp:separator {"backgroundColor":"border","className":"is-style-wide"} -->
@@ -28,16 +28,16 @@
 		<!-- wp:group {"style":{"spacing":{"margin":{"top":"var:preset|spacing|40"}}},"layout":{"type":"default"}} -->
 		<div class="wp-block-group" style="margin-top:var(--wp--preset--spacing--40)">
 			<!-- wp:paragraph {"fontFamily":"monospace","style":{"typography":{"textTransform":"uppercase","letterSpacing":"0.05em"}},"textColor":"foreground-muted","fontSize":"small"} -->
-			<p class="has-foreground-muted-color has-text-color has-small-font-size has-monospace-font-family" style="letter-spacing:0.05em;text-transform:uppercase">&gt; VERIFIQUE_O_ENDEREÇO</p>
+			<p class="has-foreground-muted-color has-text-color has-small-font-size has-monospace-font-family" style="letter-spacing:0.05em;text-transform:uppercase"><?php esc_html_e( '> VERIFIQUE_O_ENDEREÇO', 'terminal-blog-dev' ); ?></p>
 			<!-- /wp:paragraph -->
 
 			<!-- wp:paragraph {"fontFamily":"monospace","style":{"typography":{"textTransform":"uppercase","letterSpacing":"0.05em"}},"textColor":"foreground-muted","fontSize":"small"} -->
-			<p class="has-foreground-muted-color has-text-color has-small-font-size has-monospace-font-family" style="letter-spacing:0.05em;text-transform:uppercase">&gt; ERRO: PÁGINA_NÃO_ENCONTRADA</p>
+			<p class="has-foreground-muted-color has-text-color has-small-font-size has-monospace-font-family" style="letter-spacing:0.05em;text-transform:uppercase"><?php esc_html_e( '> ERRO: PÁGINA_NÃO_ENCONTRADA', 'terminal-blog-dev' ); ?></p>
 			<!-- /wp:paragraph -->
 
 
 			<!-- wp:paragraph {"fontFamily":"monospace","style":{"typography":{"textTransform":"uppercase","letterSpacing":"0.05em"}},"textColor":"foreground-muted","fontSize":"small"} -->
-			<p class="has-foreground-muted-color has-text-color has-small-font-size has-monospace-font-family" style="letter-spacing:0.05em;text-transform:uppercase">&gt; ESCOLHA_UMA_OPÇÃO_ABAIXO</p>
+			<p class="has-foreground-muted-color has-text-color has-small-font-size has-monospace-font-family" style="letter-spacing:0.05em;text-transform:uppercase"><?php esc_html_e( '> ESCOLHA_UMA_OPÇÃO_ABAIXO', 'terminal-blog-dev' ); ?></p>
 			<!-- /wp:paragraph -->
 		</div>
 		<!-- /wp:group -->
@@ -60,6 +60,6 @@
 	</div>
 	<!-- /wp:group -->
 
-	<!-- wp:search {"label":"Pesquisar no site","showLabel":false,"placeholder":"buscar_artigos>","buttonText":"[BUSCAR]","buttonPosition":"button-inside","style":{"spacing":{"margin":{"top":"var:preset|spacing|50"}},"border":{"radius":"var:custom|border-radius|medium","width":"1px"}},"borderColor":"border","fontSize":"small"} /-->
+	<!-- wp:search {"label":<?php echo wp_json_encode( __( 'Pesquisar no site', 'terminal-blog-dev' ), JSON_HEX_TAG | JSON_HEX_AMP ); ?>,"showLabel":false,"placeholder":<?php echo wp_json_encode( __( 'buscar_artigos>', 'terminal-blog-dev' ), JSON_HEX_TAG | JSON_HEX_AMP ); ?>,"buttonText":<?php echo wp_json_encode( __( '[BUSCAR]', 'terminal-blog-dev' ), JSON_HEX_TAG | JSON_HEX_AMP ); ?>,"buttonPosition":"button-inside","style":{"spacing":{"margin":{"top":"var:preset|spacing|50"}},"border":{"radius":"var:custom|border-radius|medium","width":"1px"}},"borderColor":"border","fontSize":"small"} /-->
 </div>
 <!-- /wp:group -->

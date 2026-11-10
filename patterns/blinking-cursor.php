@@ -1,10 +1,10 @@
 <?php
 /**
- * Title: Blinking Cursor
+ * Title: Cursor piscante
  * Slug: terminal-blog-dev/blinking-cursor
  * Categories: text
- * Keywords: cursor, blink, terminal, animation
- * Description: Decorative blinking cursor elements for terminal aesthetic.
+ * Keywords: cursor, terminal, animação
+ * Description: Cursores decorativos piscantes com a estética de um terminal.
  * Viewport Width: 800
  */
 ?>
@@ -16,11 +16,11 @@
 	<!-- /wp:heading -->
 
 	<!-- wp:paragraph {"className":"has-cursor-underscore"} -->
-	<p class="has-cursor-underscore">&gt; READY FOR INPUT</p>
+	<p class="has-cursor-underscore"><?php esc_html_e( '> PRONTO PARA DIGITAR', 'terminal-blog-dev' ); ?></p>
 	<!-- /wp:paragraph -->
 
 	<!-- wp:paragraph {"className":"has-cursor-line"} -->
-	<p class="has-cursor-line">&gt; SYSTEM INITIALIZED</p>
+	<p class="has-cursor-line"><?php esc_html_e( '> SISTEMA INICIADO', 'terminal-blog-dev' ); ?></p>
 	<!-- /wp:paragraph -->
 
 </div>

@@ -1,10 +1,10 @@
 <?php
 /**
- * Title: ASCII Art Header
+ * Title: Arte ASCII de terminal
  * Slug: terminal-blog-dev/ascii-art-header
  * Categories: banner, terminal-blog-dev
- * Keywords: ascii, art, logo, header, terminal, banner
- * Description: Stylized ASCII art text header for terminal aesthetic.
+ * Keywords: ascii, arte, logo, cabeçalho, terminal, banner
+ * Description: Arte ASCII para decorar o blog com a estética de um terminal.
  * Viewport Width: 1200
  */
 ?>
@@ -24,7 +24,7 @@
 		<!-- /wp:html -->
 
 		<!-- wp:paragraph {"align":"center","fontFamily":"monospace","style":{"typography":{"letterSpacing":"0.3em","textTransform":"uppercase"}},"textColor":"foreground-muted","fontSize":"small"} -->
-		<p class="has-text-align-center has-foreground-muted-color has-text-color has-small-font-size has-monospace-font-family" style="letter-spacing:0.3em;text-transform:uppercase">[ BLOG_OS v2.0.26 // SYSTEM_ONLINE ]</p>
+		<p class="has-text-align-center has-foreground-muted-color has-text-color has-small-font-size has-monospace-font-family" style="letter-spacing:0.3em;text-transform:uppercase"><?php esc_html_e( '[ BLOG_SO v2.0.26 // SISTEMA_ATIVO ]', 'terminal-blog-dev' ); ?></p>
 		<!-- /wp:paragraph -->
 
 	</div>

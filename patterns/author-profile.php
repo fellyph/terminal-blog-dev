@@ -3,8 +3,8 @@
  * Title: Perfil do autor
  * Slug: terminal-blog-dev/author-profile
  * Categories: featured
- * Keywords: author, profile, user, whoami
- * Description: A terminal-style author profile with whoami command aesthetic.
+ * Keywords: autor, perfil, usuário, whoami
+ * Description: Perfil do autor com a estética do comando whoami.
  * Template Types: author
  * Viewport Width: 1400
  */
@@ -15,7 +15,7 @@
 	<!-- wp:group {"align":"wide","layout":{"type":"default"}} -->
 	<div class="wp-block-group alignwide">
 		<!-- wp:paragraph {"style":{"typography":{"textTransform":"uppercase","letterSpacing":"0.1em"}},"textColor":"foreground-muted","fontSize":"small"} -->
-		<p class="has-foreground-muted-color has-text-color has-small-font-size" style="letter-spacing:0.1em;text-transform:uppercase">// PERFIL_DO_AUTOR</p>
+		<p class="has-foreground-muted-color has-text-color has-small-font-size" style="letter-spacing:0.1em;text-transform:uppercase"><?php esc_html_e( '// PERFIL_DO_AUTOR', 'terminal-blog-dev' ); ?></p>
 		<!-- /wp:paragraph -->
 
 		<!-- wp:group {"style":{"spacing":{"padding":{"top":"var:preset|spacing|30","right":"var:preset|spacing|40","bottom":"var:preset|spacing|30","left":"var:preset|spacing|40"},"margin":{"top":"var:preset|spacing|30"}},"border":{"width":"1px","color":"var:preset|color|border","radius":"var:custom|border-radius|medium"}},"backgroundColor":"background-alt","layout":{"type":"default"}} -->
@@ -62,7 +62,7 @@
 		<!-- wp:group {"style":{"spacing":{"padding":{"top":"var:preset|spacing|30","right":"var:preset|spacing|40","bottom":"var:preset|spacing|30","left":"var:preset|spacing|40"},"margin":{"bottom":"var:preset|spacing|40"}},"border":{"width":"1px","color":"var:preset|color|border","radius":"var:custom|border-radius|medium"}},"backgroundColor":"background-alt","layout":{"type":"default"}} -->
 		<div class="wp-block-group has-border-color has-background-alt-background-color has-background" style="border-color:var(--wp--preset--color--border);border-width:1px;border-radius:var(--wp--custom--border-radius--medium);margin-bottom:var(--wp--preset--spacing--40);padding-top:var(--wp--preset--spacing--30);padding-right:var(--wp--preset--spacing--40);padding-bottom:var(--wp--preset--spacing--30);padding-left:var(--wp--preset--spacing--40)">
 			<!-- wp:paragraph {"fontFamily":"monospace","textColor":"primary","fontSize":"medium"} -->
-			<p class="has-primary-color has-text-color has-medium-font-size has-monospace-font-family">&gt; ls -la ~/posts --limit=6</p>
+			<p class="has-primary-color has-text-color has-medium-font-size has-monospace-font-family"><?php esc_html_e( '> ls -la ~/artigos --limit=6', 'terminal-blog-dev' ); ?></p>
 			<!-- /wp:paragraph -->
 		</div>
 		<!-- /wp:group -->
@@ -88,7 +88,7 @@
 					<div class="wp-block-group">
 						<!-- wp:post-terms {"term":"category","style":{"typography":{"textTransform":"uppercase"}},"fontSize":"small"} /-->
 
-						<!-- wp:read-more {"content":"[LER_ARTIGO]","style":{"typography":{"textTransform":"uppercase","letterSpacing":"0.05em"}},"fontSize":"small"} /-->
+						<!-- wp:read-more {"content":<?php echo wp_json_encode( __( '[LER_ARTIGO]', 'terminal-blog-dev' ), JSON_HEX_TAG | JSON_HEX_AMP ); ?>,"style":{"typography":{"textTransform":"uppercase","letterSpacing":"0.05em"}},"fontSize":"small"} /-->
 					</div>
 					<!-- /wp:group -->
 				</div>
@@ -104,9 +104,9 @@
 			<!-- wp:group {"style":{"spacing":{"margin":{"top":"var:preset|spacing|40"}}},"layout":{"type":"flex","justifyContent":"center"}} -->
 			<div class="wp-block-group" style="margin-top:var(--wp--preset--spacing--40)">
 				<!-- wp:query-pagination {"style":{"typography":{"textTransform":"uppercase","letterSpacing":"0.05em"}},"fontSize":"small","layout":{"type":"flex","justifyContent":"center"}} -->
-					<!-- wp:query-pagination-previous {"label":"[<< ANTERIORES]"} /-->
+					<!-- wp:query-pagination-previous {"label":<?php echo wp_json_encode( __( '[<< ANTERIORES]', 'terminal-blog-dev' ), JSON_HEX_TAG | JSON_HEX_AMP ); ?>} /-->
 					<!-- wp:query-pagination-numbers /-->
-					<!-- wp:query-pagination-next {"label":"[PRÓXIMOS >>]"} /-->
+					<!-- wp:query-pagination-next {"label":<?php echo wp_json_encode( __( '[PRÓXIMOS >>]', 'terminal-blog-dev' ), JSON_HEX_TAG | JSON_HEX_AMP ); ?>} /-->
 				<!-- /wp:query-pagination -->
 			</div>
 			<!-- /wp:group -->

@@ -1,6 +1,6 @@
 <svg id="animated" xmlns="http://www.w3.org/2000/svg" width="768" height="144" viewBox="0 0 768 144" shape-rendering="crispEdges">
-<title>Terminal after hours</title>
-<desc>A twelve-colour pixel-art workspace with a green CRT terminal, red glasses, books, plants, and a city at night.</desc>
+<title>Terminal à noite</title>
+<desc>Ambiente de trabalho em pixel art com 12 cores, um terminal CRT verde, óculos vermelhos, livros, plantas e uma cidade à noite.</desc>
 <style>
 @keyframes terminal-cursor { 0%, 55%, 100% { visibility: visible; } 56%, 99% { visibility: hidden; } }
 @keyframes terminal-steam {

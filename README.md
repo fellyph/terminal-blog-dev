@@ -22,6 +22,14 @@ Para aplicar o novo rodapé em um site com personalizações salvas: abra **Apar
 
 As sugestões de cabeçalho e rodapé que dependem de blocos não registrados, como conta e carrinho do WooCommerce sem o plugin ativo, são omitidas do editor. Isso inclui dependências em padrões aninhados. Instalar o plugin necessário torna essas opções disponíveis novamente. O filtro afeta apenas as sugestões; não modifica as partes salvas nem as demais categorias. Para conferir a integração com o registro real de blocos, execute `studio wp eval-file /caminho/absoluto/do/tema/tests/header-patterns.php` e `studio wp eval-file /caminho/absoluto/do/tema/tests/footer-patterns.php`.
 
+## Idioma e traduções
+
+Os textos decorativos e de interface têm português brasileiro como padrão e suporte a gettext nos patterns PHP. O tema mantém os prompts, colchetes, sublinhados e nomes de arquivo da identidade visual, com rótulos como `PRONTO PARA DIGITAR`, `SISTEMA INICIADO`, `CARREGANDO_ARQUIVO` e `MIN DE LEITURA`. Comandos reais, marcas, identificadores e URLs são preservados.
+
+Rótulos conhecidos de versões anteriores, como `[ABOUT_ME.SH]`, `LOADING_FILE` e `search_query>`, também são localizados ao carregar os modelos salvos. Isso mantém o Editor do site e o frontend consistentes sem sobrescrever personalizações no banco. Textos de artigos, código, navegação e blocos de plugins não são traduzidos por substituição global. Nos arquivos HTML e nos metadados da pixel art, o português serve de alternativa estática.
+
+O catálogo de tradução e as instruções estão em [`languages/`](languages/README.md). Para os textos nativos do WordPress, mantenha o idioma do site em **Português do Brasil**, em **Configurações → Geral**.
+
 ## Desenvolvimento
 
 ```bash

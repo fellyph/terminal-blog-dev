@@ -3,8 +3,8 @@
  * Title: Resultados da busca
  * Slug: terminal-blog-dev/search-results
  * Categories: featured
- * Keywords: search, results, grep
- * Description: A terminal-style search results display with grep aesthetic.
+ * Keywords: pesquisa, resultados, grep
+ * Description: Resultados da busca com a estética do comando grep.
  * Template Types: search
  * Viewport Width: 1400
  */
@@ -14,11 +14,11 @@
 	<!-- wp:group {"align":"wide","layout":{"type":"default"}} -->
 	<div class="wp-block-group alignwide">
 		<!-- wp:paragraph {"style":{"typography":{"textTransform":"uppercase","letterSpacing":"0.1em"}},"textColor":"foreground-muted","fontSize":"small"} -->
-		<p class="has-foreground-muted-color has-text-color has-small-font-size" style="letter-spacing:0.1em;text-transform:uppercase">// PESQUISA_NO_BLOG</p>
+		<p class="has-foreground-muted-color has-text-color has-small-font-size" style="letter-spacing:0.1em;text-transform:uppercase"><?php esc_html_e( '// PESQUISA_NO_BLOG', 'terminal-blog-dev' ); ?></p>
 		<!-- /wp:paragraph -->
 
 		<!-- wp:heading {"level":1,"style":{"typography":{"textTransform":"uppercase","letterSpacing":"0.02em"}}} -->
-		<h1 class="wp-block-heading" style="letter-spacing:0.02em;text-transform:uppercase">RESULTADOS_DA_BUSCA</h1>
+		<h1 class="wp-block-heading" style="letter-spacing:0.02em;text-transform:uppercase"><?php esc_html_e( 'RESULTADOS_DA_BUSCA', 'terminal-blog-dev' ); ?></h1>
 		<!-- /wp:heading -->
 
 		<!-- wp:group {"style":{"spacing":{"padding":{"top":"var:preset|spacing|30","right":"var:preset|spacing|40","bottom":"var:preset|spacing|30","left":"var:preset|spacing|40"},"margin":{"top":"var:preset|spacing|40"}},"border":{"width":"1px","color":"var:preset|color|border","radius":"var:custom|border-radius|medium"}},"backgroundColor":"background-alt","layout":{"type":"default"}} -->
@@ -26,13 +26,13 @@
 			<!-- wp:group {"layout":{"type":"flex","flexWrap":"nowrap"}} -->
 			<div class="wp-block-group">
 				<!-- wp:paragraph {"fontFamily":"monospace","textColor":"primary","fontSize":"medium"} -->
-				<p class="has-primary-color has-text-color has-medium-font-size has-monospace-font-family">&gt; grep -ri "</p>
+				<p class="has-primary-color has-text-color has-medium-font-size has-monospace-font-family"><?php esc_html_e( '> grep -ri "', 'terminal-blog-dev' ); ?></p>
 				<!-- /wp:paragraph -->
 
 				<!-- wp:query-title {"type":"search","fontFamily":"monospace","textColor":"primary","fontSize":"medium"} /-->
 
 				<!-- wp:paragraph {"fontFamily":"monospace","textColor":"primary","fontSize":"medium"} -->
-				<p class="has-primary-color has-text-color has-medium-font-size has-monospace-font-family">" ./posts/*</p>
+				<p class="has-primary-color has-text-color has-medium-font-size has-monospace-font-family"><?php esc_html_e( '" ./artigos/*', 'terminal-blog-dev' ); ?></p>
 				<!-- /wp:paragraph -->
 			</div>
 			<!-- /wp:group -->
@@ -44,7 +44,7 @@
 			<!-- wp:query-title {"type":"search","style":{"typography":{"textTransform":"uppercase","letterSpacing":"0.05em"}},"textColor":"foreground-muted","fontSize":"small"} /-->
 
 			<!-- wp:paragraph {"style":{"typography":{"textTransform":"uppercase","letterSpacing":"0.05em"}},"textColor":"primary","fontSize":"small"} -->
-			<p class="has-primary-color has-text-color has-small-font-size" style="letter-spacing:0.05em;text-transform:uppercase">BUSCA_CONCLUÍDA</p>
+			<p class="has-primary-color has-text-color has-small-font-size" style="letter-spacing:0.05em;text-transform:uppercase"><?php esc_html_e( 'BUSCA_CONCLUÍDA', 'terminal-blog-dev' ); ?></p>
 			<!-- /wp:paragraph -->
 		</div>
 		<!-- /wp:group -->
@@ -63,13 +63,13 @@
 				<!-- wp:group {"layout":{"type":"flex","flexWrap":"nowrap"}} -->
 				<div class="wp-block-group">
 					<!-- wp:paragraph {"fontFamily":"monospace","style":{"typography":{"textTransform":"uppercase","letterSpacing":"0.05em"}},"textColor":"primary","fontSize":"small"} -->
-					<p class="has-primary-color has-text-color has-small-font-size has-monospace-font-family" style="letter-spacing:0.05em;text-transform:uppercase">./posts/</p>
+					<p class="has-primary-color has-text-color has-small-font-size has-monospace-font-family" style="letter-spacing:0.05em;text-transform:uppercase"><?php esc_html_e( './artigos/', 'terminal-blog-dev' ); ?></p>
 					<!-- /wp:paragraph -->
 
 					<!-- wp:post-date {"format":"Y-m-d","fontFamily":"monospace","style":{"typography":{"textTransform":"uppercase","letterSpacing":"0.05em"}},"textColor":"primary","fontSize":"small"} /-->
 
 					<!-- wp:paragraph {"fontFamily":"monospace","style":{"typography":{"textTransform":"uppercase","letterSpacing":"0.05em"}},"textColor":"primary","fontSize":"small"} -->
-					<p class="has-primary-color has-text-color has-small-font-size has-monospace-font-family" style="letter-spacing:0.05em;text-transform:uppercase">-post.md</p>
+					<p class="has-primary-color has-text-color has-small-font-size has-monospace-font-family" style="letter-spacing:0.05em;text-transform:uppercase"><?php esc_html_e( '-artigo.md', 'terminal-blog-dev' ); ?></p>
 					<!-- /wp:paragraph -->
 				</div>
 				<!-- /wp:group -->
@@ -92,7 +92,7 @@
 					</div>
 					<!-- /wp:group -->
 
-					<!-- wp:read-more {"content":"[ABRIR_ARQUIVO]","style":{"typography":{"textTransform":"uppercase","letterSpacing":"0.05em"}},"fontSize":"small"} /-->
+					<!-- wp:read-more {"content":<?php echo wp_json_encode( __( '[ABRIR_ARQUIVO]', 'terminal-blog-dev' ), JSON_HEX_TAG | JSON_HEX_AMP ); ?>,"style":{"typography":{"textTransform":"uppercase","letterSpacing":"0.05em"}},"fontSize":"small"} /-->
 				</div>
 				<!-- /wp:group -->
 			</div>
@@ -103,11 +103,11 @@
 			<!-- wp:group {"style":{"spacing":{"padding":{"top":"var:preset|spacing|60","right":"var:preset|spacing|60","bottom":"var:preset|spacing|60","left":"var:preset|spacing|60"}},"border":{"width":"1px","color":"var:preset|color|border","radius":"var:custom|border-radius|medium"}},"backgroundColor":"background-alt","layout":{"type":"default"}} -->
 			<div class="wp-block-group has-border-color has-background-alt-background-color has-background" style="border-color:var(--wp--preset--color--border);border-width:1px;border-radius:var(--wp--custom--border-radius--medium);padding-top:var(--wp--preset--spacing--60);padding-right:var(--wp--preset--spacing--60);padding-bottom:var(--wp--preset--spacing--60);padding-left:var(--wp--preset--spacing--60)">
 				<!-- wp:paragraph {"style":{"typography":{"textTransform":"uppercase","letterSpacing":"0.05em"}},"textColor":"warning","fontSize":"small"} -->
-				<p class="has-warning-color has-text-color has-small-font-size" style="letter-spacing:0.05em;text-transform:uppercase">NENHUM_RESULTADO_ENCONTRADO</p>
+				<p class="has-warning-color has-text-color has-small-font-size" style="letter-spacing:0.05em;text-transform:uppercase"><?php esc_html_e( 'NENHUM_RESULTADO_ENCONTRADO', 'terminal-blog-dev' ); ?></p>
 				<!-- /wp:paragraph -->
 
 				<!-- wp:heading {"level":2,"style":{"typography":{"textTransform":"uppercase"}}} -->
-				<h2 class="wp-block-heading" style="text-transform:uppercase">BUSCA_SEM_RESULTADOS</h2>
+				<h2 class="wp-block-heading" style="text-transform:uppercase"><?php esc_html_e( 'BUSCA_SEM_RESULTADOS', 'terminal-blog-dev' ); ?></h2>
 				<!-- /wp:heading -->
 
 				<!-- wp:paragraph {"textColor":"foreground-muted"} -->
@@ -132,9 +132,9 @@
 		<!-- wp:group {"align":"wide","style":{"spacing":{"margin":{"top":"var:preset|spacing|50"}}},"layout":{"type":"flex","justifyContent":"center"}} -->
 		<div class="wp-block-group alignwide" style="margin-top:var(--wp--preset--spacing--50)">
 			<!-- wp:query-pagination {"style":{"typography":{"textTransform":"uppercase","letterSpacing":"0.05em"}},"fontSize":"small","layout":{"type":"flex","justifyContent":"center"}} -->
-				<!-- wp:query-pagination-previous {"label":"[<< ANTERIORES]"} /-->
+				<!-- wp:query-pagination-previous {"label":<?php echo wp_json_encode( __( '[<< ANTERIORES]', 'terminal-blog-dev' ), JSON_HEX_TAG | JSON_HEX_AMP ); ?>} /-->
 				<!-- wp:query-pagination-numbers /-->
-				<!-- wp:query-pagination-next {"label":"[PRÓXIMOS >>]"} /-->
+				<!-- wp:query-pagination-next {"label":<?php echo wp_json_encode( __( '[PRÓXIMOS >>]', 'terminal-blog-dev' ), JSON_HEX_TAG | JSON_HEX_AMP ); ?>} /-->
 			<!-- /wp:query-pagination -->
 		</div>
 		<!-- /wp:group -->
@@ -144,10 +144,10 @@
 	<!-- wp:group {"align":"wide","style":{"spacing":{"margin":{"top":"var:preset|spacing|60"}}},"layout":{"type":"default"}} -->
 	<div class="wp-block-group alignwide" style="margin-top:var(--wp--preset--spacing--60)">
 		<!-- wp:paragraph {"style":{"typography":{"textTransform":"uppercase","letterSpacing":"0.1em"}},"textColor":"foreground-muted","fontSize":"small"} -->
-		<p class="has-foreground-muted-color has-text-color has-small-font-size" style="letter-spacing:0.1em;text-transform:uppercase">// NOVA_BUSCA</p>
+		<p class="has-foreground-muted-color has-text-color has-small-font-size" style="letter-spacing:0.1em;text-transform:uppercase"><?php esc_html_e( '// NOVA_BUSCA', 'terminal-blog-dev' ); ?></p>
 		<!-- /wp:paragraph -->
 
-		<!-- wp:search {"label":"Pesquisar novamente","showLabel":false,"placeholder":"buscar_artigos>","buttonText":"[BUSCAR]","buttonPosition":"button-inside","style":{"border":{"radius":"var:custom|border-radius|medium","width":"1px"}},"borderColor":"border","fontSize":"small"} /-->
+		<!-- wp:search {"label":<?php echo wp_json_encode( __( 'Pesquisar novamente', 'terminal-blog-dev' ), JSON_HEX_TAG | JSON_HEX_AMP ); ?>,"showLabel":false,"placeholder":<?php echo wp_json_encode( __( 'buscar_artigos>', 'terminal-blog-dev' ), JSON_HEX_TAG | JSON_HEX_AMP ); ?>,"buttonText":<?php echo wp_json_encode( __( '[BUSCAR]', 'terminal-blog-dev' ), JSON_HEX_TAG | JSON_HEX_AMP ); ?>,"buttonPosition":"button-inside","style":{"border":{"radius":"var:custom|border-radius|medium","width":"1px"}},"borderColor":"border","fontSize":"small"} /-->
 	</div>
 	<!-- /wp:group -->
 </div>

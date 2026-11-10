@@ -14,7 +14,7 @@
 	<!-- wp:group {"align":"wide","className":"terminal-header__row","layout":{"type":"flex","justifyContent":"space-between","flexWrap":"wrap"}} -->
 	<div class="wp-block-group alignwide terminal-header__row">
 		<!-- wp:pattern {"slug":"terminal-blog-dev/header-brand"} /-->
-		<!-- wp:search {"label":"Pesquisar no blog","showLabel":false,"placeholder":"Buscar artigos…","buttonText":"Pesquisar","buttonUseIcon":true,"buttonPosition":"button-inside","className":"terminal-header__search","style":{"border":{"radius":"0.25rem","width":"1px"}},"borderColor":"border"} /-->
+		<!-- wp:search {"label":<?php echo wp_json_encode( __( 'Pesquisar no blog', 'terminal-blog-dev' ), JSON_HEX_TAG | JSON_HEX_AMP ); ?>,"showLabel":false,"placeholder":<?php echo wp_json_encode( __( 'Buscar artigos…', 'terminal-blog-dev' ), JSON_HEX_TAG | JSON_HEX_AMP ); ?>,"buttonText":<?php echo wp_json_encode( __( 'Pesquisar', 'terminal-blog-dev' ), JSON_HEX_TAG | JSON_HEX_AMP ); ?>,"buttonUseIcon":true,"buttonPosition":"button-inside","className":"terminal-header__search","style":{"border":{"radius":"0.25rem","width":"1px"}},"borderColor":"border"} /-->
 	</div>
 	<!-- /wp:group -->
 	<!-- wp:group {"align":"wide","className":"terminal-header__row terminal-header__bar","layout":{"type":"flex","justifyContent":"space-between","flexWrap":"wrap"}} -->

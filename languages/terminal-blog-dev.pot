@@ -1,0 +1,810 @@
+# Copyright (C) 2026 Fellyph Cintra
+# This file is distributed under the GNU General Public License v2 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: Terminal Blog Dev 1.3.4\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/theme/terminal-blog-dev\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-11-10T20:34:28+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.12.0\n"
+"X-Domain: terminal-blog-dev\n"
+
+#. Theme Name of the theme
+#: style.css
+#: functions.php:472
+msgid "Terminal Blog Dev"
+msgstr ""
+
+#. Theme URI of the theme
+#: style.css
+msgid "https://github.com/fellyph/terminal-blog-dev"
+msgstr ""
+
+#. Description of the theme
+#: style.css
+msgid "A retro terminal-inspired WordPress block theme with CRT aesthetics, neon green accents, and monospace typography. Built from Stitch designs."
+msgstr ""
+
+#. Author of the theme
+#: style.css
+msgid "Fellyph Cintra"
+msgstr ""
+
+#. Author URI of the theme
+#: style.css
+msgid "https://fellyph.com.br"
+msgstr ""
+
+#: functions.php:203
+msgid "Pausar"
+msgstr ""
+
+#: functions.php:204
+msgid "Animar"
+msgstr ""
+
+#: functions.php:205
+msgid "Pausar animação do rodapé"
+msgstr ""
+
+#: functions.php:206
+msgid "Reproduzir animação do rodapé"
+msgstr ""
+
+#: functions.php:226
+#: patterns/theme-toggle.php:14
+msgid "TEMA"
+msgstr ""
+
+#: functions.php:227
+msgid "Escuro"
+msgstr ""
+
+#: functions.php:228
+msgid "Claro"
+msgstr ""
+
+#: functions.php:229
+msgid "Alternar tema de cores"
+msgstr ""
+
+#: functions.php:230
+msgid "Tema atual"
+msgstr ""
+
+#: functions.php:231
+msgid "Tema alterado para"
+msgstr ""
+
+#: functions.php:473
+msgid "Padrões em estilo terminal para o tema Terminal Blog Dev."
+msgstr ""
+
+#: functions.php:529
+msgid "Bloco de código, rolável na horizontal"
+msgstr ""
+
+#: functions.php:558
+msgid "Compartilhar este artigo"
+msgstr ""
+
+#: functions.php:663
+msgid "As informações de contato ainda não foram publicadas."
+msgstr ""
+
+#: includes/agent-readiness.php:153
+msgid "Palavras ou assunto dos artigos que deseja encontrar."
+msgstr ""
+
+#: includes/agent-readiness.php:164
+msgid "Pesquisa artigos publicados no blog e abre os resultados. Use para encontrar tutoriais ou publicações por assunto."
+msgstr ""
+
+#: includes/footer-patterns.php:53
+msgid "Menu do rodapé"
+msgstr ""
+
+#: includes/i18n.php:19
+msgid "// CARREGANDO_ARQUIVO..."
+msgstr ""
+
+#: includes/i18n.php:20
+msgid "// ARTIGOS_RECENTES"
+msgstr ""
+
+#: includes/i18n.php:21
+msgid "// BUSCANDO_POR_ALGO?"
+msgstr ""
+
+#: includes/i18n.php:22
+msgid "[SOBRE.SH]"
+msgstr ""
+
+#: includes/i18n.php:23
+msgid "[EXPLORAR_CONTEÚDO]"
+msgstr ""
+
+#: includes/i18n.php:24
+#: patterns/post-card.php:48
+#: patterns/search-results.php:95
+msgid "[ABRIR_ARQUIVO]"
+msgstr ""
+
+#: includes/i18n.php:25
+#: patterns/author-profile.php:91
+msgid "[LER_ARTIGO]"
+msgstr ""
+
+#: includes/i18n.php:26
+#: patterns/error-404.php:63
+#: patterns/search-results.php:150
+msgid "[BUSCAR]"
+msgstr ""
+
+#: includes/i18n.php:27
+#: patterns/search-results.php:150
+msgid "Pesquisar novamente"
+msgstr ""
+
+#: includes/i18n.php:28
+#: patterns/header-search.php:17
+msgid "Pesquisar no blog"
+msgstr ""
+
+#: includes/i18n.php:29
+#: patterns/error-404.php:63
+#: patterns/search-results.php:150
+msgid "buscar_artigos>"
+msgstr ""
+
+#: includes/i18n.php:30
+#: patterns/blinking-cursor.php:19
+msgid "> PRONTO PARA DIGITAR"
+msgstr ""
+
+#: includes/i18n.php:31
+#: patterns/blinking-cursor.php:23
+msgid "> SISTEMA INICIADO"
+msgstr ""
+
+#: includes/i18n.php:32
+#: patterns/ascii-art-header.php:27
+msgid "[ BLOG_SO v2.0.26 // SISTEMA_ATIVO ]"
+msgstr ""
+
+#: includes/i18n.php:33
+#: patterns/terminal-window.php:40
+msgid "C:\\USUARIO\\BLOG> _"
+msgstr ""
+
+#: includes/i18n.php:34
+msgid "C:\\USUARIO\\SOBRE> cat leia-me.txt"
+msgstr ""
+
+#: includes/i18n.php:35
+#: patterns/category-archive.php:19
+msgid "leitor@terminal:~$ ls -la /var/arquivo/"
+msgstr ""
+
+#: includes/i18n.php:36
+#: patterns/author-profile.php:65
+msgid "> ls -la ~/artigos --limit=6"
+msgstr ""
+
+#: includes/i18n.php:37
+#: patterns/search-results.php:35
+msgid "\" ./artigos/*"
+msgstr ""
+
+#: includes/i18n.php:38
+#: patterns/search-results.php:66
+msgid "./artigos/"
+msgstr ""
+
+#: includes/i18n.php:39
+#: patterns/search-results.php:72
+msgid "-artigo.md"
+msgstr ""
+
+#: includes/i18n.php:40
+#: patterns/post-card.php:26
+msgid "DATA: 2026-01-15"
+msgstr ""
+
+#: includes/i18n.php:41
+#: patterns/post-card.php:32
+msgid "CATEGORIA"
+msgstr ""
+
+#: includes/i18n.php:42
+#: patterns/post-card.php:38
+msgid "Título-do-artigo.txt"
+msgstr ""
+
+#: includes/i18n.php:43
+#: patterns/post-card.php:52
+msgid "~5 MIN DE LEITURA"
+msgstr ""
+
+#: patterns/ascii-art-header.php
+msgctxt "Pattern title"
+msgid "Arte ASCII de terminal"
+msgstr ""
+
+#: patterns/ascii-art-header.php
+msgctxt "Pattern description"
+msgid "Arte ASCII para decorar o blog com a estética de um terminal."
+msgstr ""
+
+#: patterns/author-profile.php
+msgctxt "Pattern title"
+msgid "Perfil do autor"
+msgstr ""
+
+#: patterns/author-profile.php
+msgctxt "Pattern description"
+msgid "Perfil do autor com a estética do comando whoami."
+msgstr ""
+
+#: patterns/author-profile.php:18
+msgid "// PERFIL_DO_AUTOR"
+msgstr ""
+
+#: patterns/author-profile.php:100
+msgid "Este autor ainda não tem artigos publicados."
+msgstr ""
+
+#: patterns/author-profile.php:107
+#: patterns/comments-terminal.php:52
+#: patterns/search-results.php:135
+msgid "[<< ANTERIORES]"
+msgstr ""
+
+#: patterns/author-profile.php:109
+#: patterns/comments-terminal.php:54
+#: patterns/search-results.php:137
+msgid "[PRÓXIMOS >>]"
+msgstr ""
+
+#: patterns/blinking-cursor.php
+msgctxt "Pattern title"
+msgid "Cursor piscante"
+msgstr ""
+
+#: patterns/blinking-cursor.php
+msgctxt "Pattern description"
+msgid "Cursores decorativos piscantes com a estética de um terminal."
+msgstr ""
+
+#: patterns/category-archive.php
+msgctxt "Pattern title"
+msgid "Arquivo de categorias"
+msgstr ""
+
+#: patterns/category-archive.php
+msgctxt "Pattern description"
+msgid "Listagem de artigos como arquivos de um terminal para páginas de categoria e arquivo."
+msgstr ""
+
+#: patterns/category-archive.php:31
+msgid "DATA    ARQUIVO"
+msgstr ""
+
+#: patterns/category-archive.php:35
+msgid "[ORDEM: MAIS_RECENTES]"
+msgstr ""
+
+#: patterns/category-archive.php:64
+msgid ".md"
+msgstr ""
+
+#: patterns/category-archive.php:86
+msgid "// FIM_DA_LISTAGEM"
+msgstr ""
+
+#: patterns/category-archive.php:90
+msgid "[ANTERIORES]"
+msgstr ""
+
+#: patterns/category-archive.php:92
+msgid "[PRÓXIMOS]"
+msgstr ""
+
+#: patterns/category-archive.php:101
+msgid "NENHUM_ARTIGO_ENCONTRADO"
+msgstr ""
+
+#: patterns/category-archive.php:105
+msgid "Ainda não há artigos que correspondam a estes critérios."
+msgstr ""
+
+#: patterns/category-archive.php:109
+msgid "Tente pesquisar outro assunto no blog."
+msgstr ""
+
+#: patterns/comments-terminal.php
+msgctxt "Pattern title"
+msgid "Comentários em estilo terminal"
+msgstr ""
+
+#: patterns/comments-terminal.php
+msgctxt "Pattern description"
+msgid "Comentários com a aparência de um registro de conversa IRC."
+msgstr ""
+
+#: patterns/comments-terminal.php:17
+msgid "> ler ./comentarios.log"
+msgstr ""
+
+#: patterns/comments-terminal.php:66
+msgid "> adicionar comentário"
+msgstr ""
+
+#: patterns/error-404.php
+msgctxt "Pattern title"
+msgid "Erro 404 — Página não encontrada"
+msgstr ""
+
+#: patterns/error-404.php
+msgctxt "Pattern description"
+msgid "Página de erro com a estética de um terminal e monitor CRT."
+msgstr ""
+
+#: patterns/error-404.php:17
+msgid "PÁGINA_NÃO_ENCONTRADA"
+msgstr ""
+
+#: patterns/error-404.php:21
+msgid "ERRO 404"
+msgstr ""
+
+#: patterns/error-404.php:31
+msgid "> VERIFIQUE_O_ENDEREÇO"
+msgstr ""
+
+#: patterns/error-404.php:35
+msgid "> ERRO: PÁGINA_NÃO_ENCONTRADA"
+msgstr ""
+
+#: patterns/error-404.php:40
+msgid "> ESCOLHA_UMA_OPÇÃO_ABAIXO"
+msgstr ""
+
+#: patterns/error-404.php:46
+msgid "A página solicitada não foi encontrada. Verifique o endereço, volte ao início ou pesquise outro assunto."
+msgstr ""
+
+#: patterns/error-404.php:52
+#: patterns/search-results.php:124
+msgid "[VOLTAR_AO_INÍCIO]"
+msgstr ""
+
+#: patterns/error-404.php:56
+#: patterns/search-results.php:120
+#: patterns/terminal-hero.php:26
+msgid "[VER_ARTIGOS]"
+msgstr ""
+
+#: patterns/error-404.php:63
+msgid "Pesquisar no site"
+msgstr ""
+
+#: patterns/footer-brand.php
+msgctxt "Pattern title"
+msgid "Identidade do rodapé"
+msgstr ""
+
+#: patterns/footer-compact.php
+msgctxt "Pattern title"
+msgid "Rodapé compacto"
+msgstr ""
+
+#: patterns/footer-compact.php
+msgctxt "Pattern description"
+msgid "Título e menu em uma faixa que se reorganiza no celular, com os links sociais existentes e crédito do WordPress."
+msgstr ""
+
+#: patterns/footer-content.php
+msgctxt "Pattern title"
+msgid "Conteúdo do rodapé"
+msgstr ""
+
+#: patterns/footer-credits.php
+msgctxt "Pattern title"
+msgid "Crédito do rodapé"
+msgstr ""
+
+#. translators: %s: Link to WordPress.
+#: patterns/footer-credits.php:11
+#, php-format
+msgid "Desenvolvido com %s."
+msgstr ""
+
+#: patterns/footer-navigation.php
+msgctxt "Pattern title"
+msgid "Navegação do rodapé"
+msgstr ""
+
+#: patterns/footer-navigation.php
+msgctxt "Pattern description"
+msgid "Mantém o menu ou os links do rodapé atual. Sem menu, usa uma lista de páginas."
+msgstr ""
+
+#: patterns/footer-pixel-art.php
+msgctxt "Pattern title"
+msgid "Rodapé com pixel art"
+msgstr ""
+
+#: patterns/footer-pixel-art.php
+msgctxt "Pattern description"
+msgid "Cena de um terminal em pixel art, com versões clara e escura, identidade do site, menu e links sociais existentes."
+msgstr ""
+
+#: patterns/footer-social-links.php
+msgctxt "Pattern title"
+msgid "Links sociais do rodapé"
+msgstr ""
+
+#: patterns/footer-social-links.php
+msgctxt "Pattern description"
+msgid "Preserva os perfis configurados no rodapé atual, sem inventar destinos."
+msgstr ""
+
+#: patterns/footer-standard.php
+msgctxt "Pattern title"
+msgid "Rodapé padrão"
+msgstr ""
+
+#: patterns/footer-standard.php
+msgctxt "Pattern description"
+msgid "Nome e descrição do site, menu do rodapé e links sociais existentes, sem ilustração."
+msgstr ""
+
+#: patterns/header-brand.php
+msgctxt "Pattern title"
+msgid "Marca do cabeçalho"
+msgstr ""
+
+#: patterns/header-brand.php
+msgctxt "Pattern description"
+msgid "Logo, título e descrição definidos nas configurações do site."
+msgstr ""
+
+#: patterns/header-compact.php
+msgctxt "Pattern title"
+msgid "Cabeçalho compacto"
+msgstr ""
+
+#: patterns/header-compact.php
+msgctxt "Pattern description"
+msgid "Nome do site, menu e seletor de cores em uma faixa compacta. Ideal para dar mais espaço aos artigos."
+msgstr ""
+
+#: patterns/header-navigation.php
+msgctxt "Pattern title"
+msgid "Navegação do cabeçalho"
+msgstr ""
+
+#: patterns/header-navigation.php
+msgctxt "Pattern description"
+msgid "Reutiliza o menu do cabeçalho atual ou oferece uma lista de páginas."
+msgstr ""
+
+#: patterns/header-navigation.php:10
+msgid "Menu principal"
+msgstr ""
+
+#: patterns/header-search.php
+msgctxt "Pattern title"
+msgid "Cabeçalho com busca"
+msgstr ""
+
+#: patterns/header-search.php
+msgctxt "Pattern description"
+msgid "Logo e nome do site com busca visível, menu e seletor de cores. Indicado para um blog com muitos artigos."
+msgstr ""
+
+#: patterns/header-search.php:17
+msgid "Buscar artigos…"
+msgstr ""
+
+#: patterns/header-search.php:17
+msgid "Pesquisar"
+msgstr ""
+
+#: patterns/header-standard.php
+msgctxt "Pattern title"
+msgid "Cabeçalho padrão"
+msgstr ""
+
+#: patterns/header-standard.php
+msgctxt "Pattern description"
+msgid "Logo e nome do site com menu e seletor de cores. Uma opção para blogs e páginas de conteúdo."
+msgstr ""
+
+#: patterns/post-card.php
+msgctxt "Pattern title"
+msgid "Cartão de artigo"
+msgstr ""
+
+#: patterns/post-card.php
+msgctxt "Pattern description"
+msgid "Cartão de artigo com metadados e a estética de um terminal."
+msgstr ""
+
+#: patterns/post-card.php:42
+msgid "Um breve resumo do artigo apresenta o conteúdo que o leitor vai encontrar..."
+msgstr ""
+
+#: patterns/search-results.php
+msgctxt "Pattern title"
+msgid "Resultados da busca"
+msgstr ""
+
+#: patterns/search-results.php
+msgctxt "Pattern description"
+msgid "Resultados da busca com a estética do comando grep."
+msgstr ""
+
+#: patterns/search-results.php:17
+msgid "// PESQUISA_NO_BLOG"
+msgstr ""
+
+#: patterns/search-results.php:21
+msgid "RESULTADOS_DA_BUSCA"
+msgstr ""
+
+#: patterns/search-results.php:29
+msgid "> grep -ri \""
+msgstr ""
+
+#: patterns/search-results.php:47
+msgid "BUSCA_CONCLUÍDA"
+msgstr ""
+
+#: patterns/search-results.php:106
+msgid "NENHUM_RESULTADO_ENCONTRADO"
+msgstr ""
+
+#: patterns/search-results.php:110
+msgid "BUSCA_SEM_RESULTADOS"
+msgstr ""
+
+#: patterns/search-results.php:114
+msgid "Nenhum artigo corresponde à sua busca. Tente outras palavras ou explore os artigos do blog."
+msgstr ""
+
+#: patterns/search-results.php:147
+msgid "// NOVA_BUSCA"
+msgstr ""
+
+#: patterns/system-status.php
+msgctxt "Pattern title"
+msgid "Informações do blog"
+msgstr ""
+
+#: patterns/system-status.php
+msgctxt "Pattern description"
+msgid "Informações reais do site, sem simular métricas de infraestrutura."
+msgstr ""
+
+#: patterns/terminal-hero.php
+msgctxt "Pattern title"
+msgid "Apresentação do blog"
+msgstr ""
+
+#: patterns/terminal-hero.php
+msgctxt "Pattern description"
+msgid "Apresentação do blog com título e links em estilo terminal."
+msgstr ""
+
+#: patterns/terminal-hero.php:20
+msgid "Tutoriais práticos sobre WordPress, inteligência artificial, PWAs e JavaScript, escritos por Fellyph Cintra."
+msgstr ""
+
+#: patterns/terminal-hero.php:30
+msgid "[SOBRE]"
+msgstr ""
+
+#: patterns/terminal-window.php
+msgctxt "Pattern title"
+msgid "Janela de terminal"
+msgstr ""
+
+#: patterns/terminal-window.php
+msgctxt "Pattern description"
+msgid "Um contêiner com a aparência de uma janela de terminal."
+msgstr ""
+
+#: patterns/terminal-window.php:44
+msgid "Use esta janela para destacar informações ou trechos de código."
+msgstr ""
+
+#: patterns/theme-toggle.php
+msgctxt "Pattern title"
+msgid "Seletor de cores"
+msgstr ""
+
+#: patterns/theme-toggle.php
+msgctxt "Pattern description"
+msgid "Botão para alternar entre as cores claras e escuras em estilo terminal."
+msgstr ""
+
+#: patterns/theme-toggle.php:14
+msgid "ESCURO"
+msgstr ""
+
+#: theme.json
+msgctxt "Gradient name"
+msgid "Terminal Glow"
+msgstr ""
+
+#: theme.json
+msgctxt "Gradient name"
+msgid "CRT Scanline"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Primary (Neon Green)"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Primary Dark"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Secondary"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Background"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Background Alt"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Foreground"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Foreground Muted"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Border"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Error"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Warning"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Success"
+msgstr ""
+
+#: theme.json
+msgctxt "Space size name"
+msgid "1"
+msgstr ""
+
+#: theme.json
+msgctxt "Space size name"
+msgid "2"
+msgstr ""
+
+#: theme.json
+msgctxt "Space size name"
+msgid "3"
+msgstr ""
+
+#: theme.json
+msgctxt "Space size name"
+msgid "4"
+msgstr ""
+
+#: theme.json
+msgctxt "Space size name"
+msgid "5"
+msgstr ""
+
+#: theme.json
+msgctxt "Space size name"
+msgid "6"
+msgstr ""
+
+#: theme.json
+msgctxt "Space size name"
+msgid "7"
+msgstr ""
+
+#: theme.json
+msgctxt "Space size name"
+msgid "8"
+msgstr ""
+
+#: theme.json
+msgctxt "Font family name"
+msgid "Space Grotesk"
+msgstr ""
+
+#: theme.json
+msgctxt "Font family name"
+msgid "Monospace"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
+msgid "Extra Small"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
+msgid "Small"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
+msgid "Medium"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
+msgid "Large"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
+msgid "Extra Large"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
+msgid "2X Large"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
+msgid "3X Large"
+msgstr ""
+
+#: theme.json
+msgctxt "Template part name"
+msgid "Header"
+msgstr ""
+
+#: theme.json
+msgctxt "Template part name"
+msgid "Footer"
+msgstr ""
+
+#: theme.json
+msgctxt "Custom template name"
+msgid "Sobre"
+msgstr ""
+
+#: theme.json
+msgctxt "Custom template name"
+msgid "Contato"
+msgstr ""

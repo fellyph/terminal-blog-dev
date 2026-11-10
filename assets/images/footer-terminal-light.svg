@@ -1,6 +1,6 @@
 <svg id="animated" xmlns="http://www.w3.org/2000/svg" width="768" height="144" viewBox="0 0 768 144" shape-rendering="crispEdges">
-<title>Terminal in daylight</title>
-<desc>A sixteen-colour pixel-art workspace in daylight, with a cream CRT terminal, red glasses, books, plants, a sage city skyline, clouds, and sunshine.</desc>
+<title>Terminal durante o dia</title>
+<desc>Ambiente de trabalho em pixel art com 16 cores, um terminal CRT creme, óculos vermelhos, livros, plantas, uma cidade em tons de verde, nuvens e sol.</desc>
 <style>
 @keyframes terminal-cursor { 0%, 55%, 100% { visibility: visible; } 56%, 99% { visibility: hidden; } }
 @keyframes terminal-steam {

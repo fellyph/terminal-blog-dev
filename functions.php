@@ -11,6 +11,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 require_once get_template_directory() . '/includes/agent-readiness.php';
+require_once get_template_directory() . '/includes/i18n.php';
 require_once get_template_directory() . '/includes/template-part-patterns.php';
 require_once get_template_directory() . '/includes/footer-patterns.php';
 
@@ -469,7 +470,7 @@ function terminal_blog_dev_register_pattern_category() {
 		'terminal-blog-dev',
 		array(
 			'label'       => __( 'Terminal Blog Dev', 'terminal-blog-dev' ),
-			'description' => __( 'Terminal-themed patterns for the Terminal Blog Dev theme.', 'terminal-blog-dev' ),
+			'description' => __( 'Padrões em estilo terminal para o tema Terminal Blog Dev.', 'terminal-blog-dev' ),
 		)
 	);
 }

@@ -1,10 +1,10 @@
 <?php
 /**
- * Title: Post Card
+ * Title: Cartão de artigo
  * Slug: terminal-blog-dev/post-card
  * Categories: posts
- * Keywords: post, card, blog
- * Description: A terminal-style post card with metadata.
+ * Keywords: artigo, cartão, blog
+ * Description: Cartão de artigo com metadados e a estética de um terminal.
  * Viewport Width: 620
  */
 ?>
@@ -23,23 +23,23 @@
 			<!-- /wp:paragraph -->
 
 			<!-- wp:paragraph {"style":{"typography":{"textTransform":"uppercase"}},"textColor":"foreground-muted","fontSize":"small"} -->
-			<p class="has-foreground-muted-color has-text-color has-small-font-size" style="text-transform:uppercase">DATE: 2026-01-15</p>
+			<p class="has-foreground-muted-color has-text-color has-small-font-size" style="text-transform:uppercase"><?php esc_html_e( 'DATA: 2026-01-15', 'terminal-blog-dev' ); ?></p>
 			<!-- /wp:paragraph -->
 		</div>
 		<!-- /wp:group -->
 
 		<!-- wp:paragraph {"style":{"typography":{"textTransform":"uppercase"}},"textColor":"primary","fontSize":"small"} -->
-		<p class="has-primary-color has-text-color has-small-font-size" style="text-transform:uppercase"><?php esc_html_e( 'CATEGORY', 'terminal-blog-dev' ); ?></p>
+		<p class="has-primary-color has-text-color has-small-font-size" style="text-transform:uppercase"><?php esc_html_e( 'CATEGORIA', 'terminal-blog-dev' ); ?></p>
 		<!-- /wp:paragraph -->
 	</div>
 	<!-- /wp:group -->
 
 	<!-- wp:heading {"level":3,"style":{"spacing":{"margin":{"top":"var:preset|spacing|20"}}}} -->
-	<h3 class="wp-block-heading" style="margin-top:var(--wp--preset--spacing--20)"><?php esc_html_e( 'Post-Title-Here.txt', 'terminal-blog-dev' ); ?></h3>
+	<h3 class="wp-block-heading" style="margin-top:var(--wp--preset--spacing--20)"><?php esc_html_e( 'Título-do-artigo.txt', 'terminal-blog-dev' ); ?></h3>
 	<!-- /wp:heading -->
 
 	<!-- wp:paragraph {"style":{"spacing":{"margin":{"top":"var:preset|spacing|20"}}},"textColor":"foreground-muted","fontSize":"small"} -->
-	<p class="has-foreground-muted-color has-text-color has-small-font-size" style="margin-top:var(--wp--preset--spacing--20)"><?php esc_html_e( 'A brief excerpt of the post content goes here, providing a preview of what readers can expect...', 'terminal-blog-dev' ); ?></p>
+	<p class="has-foreground-muted-color has-text-color has-small-font-size" style="margin-top:var(--wp--preset--spacing--20)"><?php esc_html_e( 'Um breve resumo do artigo apresenta o conteúdo que o leitor vai encontrar...', 'terminal-blog-dev' ); ?></p>
 	<!-- /wp:paragraph -->
 
 	<!-- wp:group {"style":{"spacing":{"margin":{"top":"var:preset|spacing|30"}}},"layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"space-between"}} -->
@@ -49,7 +49,7 @@
 		<!-- /wp:paragraph -->
 
 		<!-- wp:paragraph {"style":{"typography":{"textTransform":"uppercase"}},"textColor":"foreground-muted","fontSize":"small"} -->
-		<p class="has-foreground-muted-color has-text-color has-small-font-size" style="text-transform:uppercase"><?php esc_html_e( '~5 MIN READ', 'terminal-blog-dev' ); ?></p>
+		<p class="has-foreground-muted-color has-text-color has-small-font-size" style="text-transform:uppercase"><?php esc_html_e( '~5 MIN DE LEITURA', 'terminal-blog-dev' ); ?></p>
 		<!-- /wp:paragraph -->
 	</div>
 	<!-- /wp:group -->

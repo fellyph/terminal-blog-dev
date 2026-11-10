@@ -1,10 +1,10 @@
 <?php
 /**
- * Title: Comments - Terminal Style
+ * Title: Comentários em estilo terminal
  * Slug: terminal-blog-dev/comments-terminal
  * Categories: featured
- * Keywords: comments, discussion, terminal, irc
- * Description: A terminal-style comments section with IRC/chat log aesthetic.
+ * Keywords: comentários, conversa, terminal, irc
+ * Description: Comentários com a aparência de um registro de conversa IRC.
  * Viewport Width: 800
  */
 ?>
@@ -14,7 +14,7 @@
 	<!-- wp:group {"style":{"spacing":{"padding":{"top":"var:preset|spacing|30","right":"var:preset|spacing|40","bottom":"var:preset|spacing|30","left":"var:preset|spacing|40"},"margin":{"bottom":"var:preset|spacing|40"}},"border":{"width":"1px","color":"var:preset|color|border","radius":"var:custom|border-radius|medium"}},"backgroundColor":"background-alt","layout":{"type":"flex","flexWrap":"wrap","justifyContent":"left"}} -->
 	<div class="wp-block-group has-border-color has-background-alt-background-color has-background" style="border-color:var(--wp--preset--color--border);border-width:1px;border-radius:var(--wp--custom--border-radius--medium);margin-bottom:var(--wp--preset--spacing--40);padding-top:var(--wp--preset--spacing--30);padding-right:var(--wp--preset--spacing--40);padding-bottom:var(--wp--preset--spacing--30);padding-left:var(--wp--preset--spacing--40)">
 		<!-- wp:paragraph {"fontFamily":"monospace","textColor":"primary","fontSize":"medium"} -->
-		<p class="has-primary-color has-text-color has-medium-font-size has-monospace-font-family">&gt; ler ./comentarios.log</p>
+		<p class="has-primary-color has-text-color has-medium-font-size has-monospace-font-family"><?php esc_html_e( '> ler ./comentarios.log', 'terminal-blog-dev' ); ?></p>
 		<!-- /wp:paragraph -->
 	</div>
 	<!-- /wp:group -->
@@ -49,9 +49,9 @@
 		<!-- /wp:comment-template -->
 
 		<!-- wp:comments-pagination {"style":{"typography":{"textTransform":"uppercase","letterSpacing":"0.05em"},"spacing":{"margin":{"top":"var:preset|spacing|40"}}},"fontSize":"small","layout":{"type":"flex","justifyContent":"center"}} -->
-			<!-- wp:comments-pagination-previous {"label":"[<< ANTERIORES]"} /-->
+			<!-- wp:comments-pagination-previous {"label":<?php echo wp_json_encode( __( '[<< ANTERIORES]', 'terminal-blog-dev' ), JSON_HEX_TAG | JSON_HEX_AMP ); ?>} /-->
 			<!-- wp:comments-pagination-numbers /-->
-			<!-- wp:comments-pagination-next {"label":"[PRÓXIMOS >>]"} /-->
+			<!-- wp:comments-pagination-next {"label":<?php echo wp_json_encode( __( '[PRÓXIMOS >>]', 'terminal-blog-dev' ), JSON_HEX_TAG | JSON_HEX_AMP ); ?>} /-->
 		<!-- /wp:comments-pagination -->
 	</div>
 	<!-- /wp:comments -->
@@ -63,7 +63,7 @@
 	<!-- wp:group {"style":{"spacing":{"padding":{"top":"var:preset|spacing|30","right":"var:preset|spacing|40","bottom":"var:preset|spacing|30","left":"var:preset|spacing|40"},"margin":{"bottom":"var:preset|spacing|30"}},"border":{"width":"1px","color":"var:preset|color|border","radius":"var:custom|border-radius|medium"}},"backgroundColor":"background-alt","layout":{"type":"default"}} -->
 	<div class="wp-block-group has-border-color has-background-alt-background-color has-background" style="border-color:var(--wp--preset--color--border);border-width:1px;border-radius:var(--wp--custom--border-radius--medium);margin-bottom:var(--wp--preset--spacing--30);padding-top:var(--wp--preset--spacing--30);padding-right:var(--wp--preset--spacing--40);padding-bottom:var(--wp--preset--spacing--30);padding-left:var(--wp--preset--spacing--40)">
 		<!-- wp:paragraph {"fontFamily":"monospace","textColor":"primary","fontSize":"medium"} -->
-		<p class="has-primary-color has-text-color has-medium-font-size has-monospace-font-family">&gt; adicionar comentário</p>
+		<p class="has-primary-color has-text-color has-medium-font-size has-monospace-font-family"><?php esc_html_e( '> adicionar comentário', 'terminal-blog-dev' ); ?></p>
 		<!-- /wp:paragraph -->
 	</div>
 	<!-- /wp:group -->
