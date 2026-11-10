@@ -1,0 +1,67 @@
+/**
+ * A 768 × 144 pixel scene, shared by the frontend and the Site Editor.
+ * The centre crop keeps the workstation visible on narrow screens.
+ */
+.terminal-footer-art {
+	position: relative;
+	min-height: clamp(12rem, 18.75vw, 24rem);
+	margin-block-start: 0;
+	margin-block-end: var(--wp--preset--spacing--50);
+	background-color: var(--theme-bg);
+	background-image: url(../images/footer-terminal.svg);
+	background-position: center bottom;
+	background-repeat: no-repeat;
+	background-size: cover;
+	image-rendering: pixelated;
+	pointer-events: none;
+}
+
+.terminal-footer-art.is-animated {
+	background-image: url(../images/footer-terminal.svg#animated);
+}
+
+[data-theme="light"] .terminal-footer-art {
+	background-image: url(../images/footer-terminal-light.svg);
+}
+
+[data-theme="light"] .terminal-footer-art.is-animated {
+	background-image: url(../images/footer-terminal-light.svg#animated);
+}
+
+.terminal-footer-art__toggle {
+	position: absolute;
+	inset-block-start: 0.5rem;
+	inset-inline-end: clamp(0.5rem, 2vw, 2rem);
+	min-width: 44px;
+	min-height: 44px;
+	padding: 0.25rem 0.75rem;
+	border: 1px solid var(--theme-border);
+	border-radius: 0;
+	background: var(--theme-bg);
+	color: var(--theme-fg-muted);
+	font-family: inherit;
+	font-size: var(--wp--preset--font-size--small);
+	cursor: pointer;
+	pointer-events: auto;
+}
+
+.terminal-footer-art__toggle:hover {
+	color: var(--theme-primary);
+	border-color: var(--theme-primary);
+}
+
+.terminal-footer-art__toggle:focus-visible {
+	outline: 2px solid var(--theme-primary);
+	outline-offset: 3px;
+}
+
+.terminal-footer-art__toggle[hidden] {
+	display: none;
+}
+
+@media print {
+
+	.terminal-footer-art {
+		display: none;
+	}
+}

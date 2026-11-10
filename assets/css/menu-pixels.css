@@ -1,0 +1,106 @@
+/**
+ * A stepped terminal prompt and loading line for the main navigation.
+ * One brief response per hover/focus; no looping movement or layout shift.
+ */
+.terminal-site-header .wp-block-navigation-item__content {
+	position: relative;
+	padding-inline-start: 12px;
+	text-decoration: none;
+}
+
+.terminal-site-header .wp-block-navigation-item__content::before {
+	content: "";
+	position: absolute;
+	inset-inline-start: 2px;
+	top: calc(50% - 5px);
+	width: 2px;
+	height: 2px;
+	background: var(--theme-primary);
+	box-shadow:
+		2px 2px var(--theme-primary),
+		4px 4px var(--theme-primary),
+		2px 6px var(--theme-primary),
+		0 8px var(--theme-primary);
+	opacity: 0;
+	pointer-events: none;
+}
+
+.terminal-site-header .wp-block-navigation-item__content::after {
+	content: "";
+	position: absolute;
+	inset-inline: 12px 0;
+	bottom: 3px;
+	height: 2px;
+	background: var(--theme-primary);
+	transform: scaleX(0);
+	transform-origin: left;
+	pointer-events: none;
+}
+
+.terminal-site-header .wp-block-navigation-item__content:focus-visible {
+	color: var(--theme-primary) !important;
+	text-shadow: none;
+}
+
+.terminal-site-header .wp-block-navigation-item__content:focus-visible::before {
+	opacity: 1;
+	animation: terminal-menu-prompt 240ms steps(2, end);
+}
+
+.terminal-site-header .wp-block-navigation-item__content:focus-visible::after {
+	transform: scaleX(1);
+	animation: terminal-menu-line 320ms steps(5, end);
+}
+
+@media (hover: hover) {
+
+	.terminal-site-header .wp-block-navigation-item__content:hover {
+		color: var(--theme-primary) !important;
+		text-shadow: none;
+	}
+
+	.terminal-site-header .wp-block-navigation-item__content:hover::before {
+		opacity: 1;
+		animation: terminal-menu-prompt 240ms steps(2, end);
+	}
+
+	.terminal-site-header .wp-block-navigation-item__content:hover::after {
+		transform: scaleX(1);
+		animation: terminal-menu-line 320ms steps(5, end);
+	}
+}
+
+/* Keep the reserved pixels when the core mobile menu resets link padding. */
+.terminal-site-header .wp-block-navigation .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation-item__content {
+	padding-inline-start: 12px;
+}
+
+@keyframes terminal-menu-prompt {
+
+	from {
+		transform: translateX(-2px);
+	}
+
+	to {
+		transform: translateX(0);
+	}
+}
+
+@keyframes terminal-menu-line {
+
+	from {
+		transform: scaleX(0);
+	}
+
+	to {
+		transform: scaleX(1);
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+	.terminal-site-header .wp-block-navigation-item__content::before,
+	.terminal-site-header .wp-block-navigation-item__content::after {
+		animation: none !important;
+	}
+}

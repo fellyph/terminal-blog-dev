@@ -63,6 +63,11 @@ function terminal_blog_dev_critical_css() {
 	/* Prevent layout shift */
 	.wp-block-navigation { min-height: 24px; }
 	.wp-block-site-title { min-height: 28px; }
+	.wp-block-site-logo { line-height: 0; }
+	.wp-block-site-logo a, .wp-block-site-logo img { display: block; }
+	.wp-block-site-logo img { height: auto; max-width: 100%; }
+	.wp-block-site-logo.is-default-size img { width: 120px; }
+	.wp-block-navigation-item__content { display: inline-flex !important; align-items: center; min-height: 44px; }
 	/* Theme toggle button critical */
 	.theme-toggle {
 		background: transparent;
@@ -91,7 +96,7 @@ function terminal_blog_dev_setup() {
 	add_theme_support( 'editor-styles' );
 
 	// Enqueue editor styles
-	add_editor_style( array( 'assets/css/colors.css', 'assets/css/editor-style.css' ) );
+	add_editor_style( array( 'assets/css/colors.css', 'assets/css/editor-style.css', 'assets/css/footer-art.css', 'assets/css/menu-pixels.css' ) );
 
 	// Add support for responsive embedded content
 	add_theme_support( 'responsive-embeds' );
@@ -135,31 +140,66 @@ function terminal_blog_dev_setup() {
 add_action( 'after_setup_theme', 'terminal_blog_dev_setup' );
 
 /**
+ * Load built CSS, with a source fallback for development checkouts.
+ * Small files opt into WordPress's size-limited inline styles and URL rewriting.
+ *
+ * @param string $name         Stylesheet basename.
+ * @param array  $dependencies Style dependencies.
+ * @param bool   $inline       Whether WordPress may inline this stylesheet.
+ */
+function terminal_blog_dev_enqueue_css( $name, $dependencies = array(), $inline = true ) {
+	$file = '/assets/css/' . $name . '.min.css';
+	if ( ! is_readable( get_template_directory() . $file ) ) {
+		$file = '/assets/css/' . $name . '.css';
+	}
+	$path   = get_template_directory() . $file;
+	$handle = 'terminal-blog-dev-' . $name;
+	wp_enqueue_style( $handle, get_template_directory_uri() . $file, $dependencies, (string) filemtime( $path ) );
+	if ( $inline ) {
+		wp_style_add_data( $handle, 'path', $path );
+	}
+}
+
+/**
  * Enqueue scripts and styles
  */
 function terminal_blog_dev_scripts() {
-	// Enqueue main stylesheet
-	wp_enqueue_style(
+	// The parent style.css contains metadata only. Keep its handle for inline
+	// effects and dependencies, while preserving a child theme's stylesheet.
+	wp_register_style(
 		'terminal-blog-dev-style',
-		get_stylesheet_uri(),
+		is_child_theme() ? get_stylesheet_uri() : false,
 		array(),
 		wp_get_theme()->get( 'Version' )
 	);
+	wp_enqueue_style( 'terminal-blog-dev-style' );
 
-	// Keep shared color tokens render-blocking for the frontend and editor.
-	wp_enqueue_style(
-		'terminal-blog-dev-colors',
-		get_template_directory_uri() . '/assets/css/colors.css',
+	terminal_blog_dev_enqueue_css( 'colors' );
+	terminal_blog_dev_enqueue_css( 'custom', array( 'terminal-blog-dev-colors' ), false );
+	terminal_blog_dev_enqueue_css( 'footer-art', array( 'terminal-blog-dev-colors' ) );
+	terminal_blog_dev_enqueue_css( 'menu-pixels', array( 'terminal-blog-dev-custom' ) );
+
+	// Pause decorative motion when the footer is not visible.
+	wp_enqueue_script(
+		'terminal-blog-dev-footer-art',
+		get_template_directory_uri() . '/assets/js/footer-art.js',
 		array(),
-		wp_get_theme()->get( 'Version' )
+		wp_get_theme()->get( 'Version' ),
+		array(
+			'strategy'  => 'defer',
+			'in_footer' => true,
+		)
 	);
 
-	// The effect stylesheet depends on the shared palette.
-	wp_enqueue_style(
-		'terminal-blog-dev-custom',
-		get_template_directory_uri() . '/assets/css/custom.css',
-		array( 'terminal-blog-dev-colors' ),
-		wp_get_theme()->get( 'Version' )
+	wp_localize_script(
+		'terminal-blog-dev-footer-art',
+		'terminalFooterMotionI18n',
+		array(
+			'pause'      => __( 'Pausar', 'terminal-blog-dev' ),
+			'play'       => __( 'Animar', 'terminal-blog-dev' ),
+			'pauseLabel' => __( 'Pausar animação do rodapé', 'terminal-blog-dev' ),
+			'playLabel'  => __( 'Reproduzir animação do rodapé', 'terminal-blog-dev' ),
+		)
 	);
 
 	// Enqueue theme toggle script - early execution needed for theme
@@ -267,6 +307,35 @@ function terminal_blog_dev_navigation_link_current_state( $block_content, $block
 add_filter( 'render_block_core/navigation-link', 'terminal_blog_dev_navigation_link_current_state', 10, 2 );
 
 /**
+ * Reserve the logo's displayed dimensions before its image and styles load.
+ * Core already scales explicitly sized logos; its default-size variant still
+ * carries the attachment's original dimensions and an oversized srcset hint.
+ *
+ * @param string $html  Rendered logo block.
+ * @param array  $block Parsed block data.
+ * @return string Rendered logo with accurate intrinsic dimensions.
+ */
+function terminal_blog_dev_logo_dimensions( $html, $block ) {
+	$processor = new WP_HTML_Tag_Processor( $html );
+	if ( ! $processor->next_tag( array( 'tag_name' => 'IMG', 'class_name' => 'custom-logo' ) ) ) {
+		return $html;
+	}
+	$width  = (int) $processor->get_attribute( 'width' );
+	$height = (int) $processor->get_attribute( 'height' );
+	if ( $width <= 0 || $height <= 0 ) {
+		return $html;
+	}
+	$display_width = absint( $block['attrs']['width'] ?? 120 ) ?: 120;
+	$processor->set_attribute( 'width', $display_width );
+	$processor->set_attribute( 'height', max( 1, (int) round( $height * $display_width / $width ) ) );
+	if ( $processor->get_attribute( 'srcset' ) ) {
+		$processor->set_attribute( 'sizes', sprintf( '(max-width: %1$dpx) 100vw, %1$dpx', $display_width ) );
+	}
+	return $processor->get_updated_html();
+}
+add_filter( 'render_block_core/site-logo', 'terminal_blog_dev_logo_dimensions', 10, 2 );
+
+/**
  * Add fetchpriority and async loading hints to stylesheets.
  * Defers non-critical CSS to improve LCP.
  *
@@ -284,19 +353,16 @@ function terminal_blog_dev_optimize_css_loading( $tag, $handle, $href ) {
 	// Non-critical stylesheets to defer.
 	$defer_styles = array(
 		'terminal-blog-dev-custom',
-		'wp-block-navigation',
 	);
 
 	if ( in_array( $handle, $defer_styles, true ) ) {
-		// Use print media trick to defer CSS loading
-		// The onload switches it back to screen media after load.
-		$tag = str_replace(
-			"media='all'",
-			"media='print' onload=\"this.media='all'\"",
-			$tag
-		);
-		// Add noscript fallback.
-		$tag .= '<noscript><link rel="stylesheet" href="' . esc_url( $href ) . '"></noscript>' . "\n";
+		$processor = new WP_HTML_Tag_Processor( $tag );
+		if ( $processor->next_tag( 'link' ) && 'all' === $processor->get_attribute( 'media' ) ) {
+			$processor->set_attribute( 'media', 'print' );
+			$processor->set_attribute( 'onload', "this.onload=null;this.media='all'" );
+			$tag = $processor->get_updated_html();
+			$tag .= '<noscript><link rel="stylesheet" href="' . esc_url( $href ) . '"></noscript>' . "\n";
+		}
 	}
 
 	return $tag;
@@ -503,6 +569,21 @@ function terminal_blog_dev_trim_unused_assets() {
 	// Editor-only stylesheet that the plugin also queues on the frontend.
 	wp_dequeue_style( 'gravatar-enhanced-patterns-edit' );
 
+	// These small plugin styles are required by their markup. Opt them into
+	// core's inline CSS instead of removing functionality or deferring a modal's
+	// visibility rules. Core also resolves Super Web Share's relative icon URLs.
+	$inline_styles = array(
+		'gravatar-enhanced-patterns-shared' => 'gravatar-enhanced/build/patterns-shared.css',
+		'gravatar-enhanced-patterns-view'   => 'gravatar-enhanced/build/patterns-view.css',
+		'super-web-share'                  => 'super-web-share/public/css/super-web-share-public.min.css',
+	);
+	foreach ( $inline_styles as $handle => $file ) {
+		$path = WP_PLUGIN_DIR . '/' . $file;
+		if ( wp_style_is( $handle, 'enqueued' ) && is_readable( $path ) ) {
+			wp_style_add_data( $handle, 'path', $path );
+		}
+	}
+
 	// Comment avatar enhancements only matter where comments render.
 	$has_comments = is_singular() && ( comments_open() || get_comments_number() > 0 );
 
@@ -518,6 +599,29 @@ function terminal_blog_dev_trim_unused_assets() {
 	// renders markup. Only the floating button is repositioned, in custom.css.
 }
 add_action( 'wp_enqueue_scripts', 'terminal_blog_dev_trim_unused_assets', 100 );
+
+/**
+ * Allow room for the opted-in CSS without displacing core's navigation and
+ * other block styles from their existing inline budget. Respect an opt-out.
+ *
+ * @param int $limit Existing WordPress inline CSS allowance in bytes.
+ * @return int Adjusted allowance.
+ */
+function terminal_blog_dev_inline_css_budget( $limit ) {
+	if ( is_admin() || $limit <= 0 ) {
+		return $limit;
+	}
+	$styles = wp_styles();
+	// Navigation is above the fold and must no longer depend on deferred CSS.
+	foreach ( array( 'terminal-blog-dev-colors', 'terminal-blog-dev-footer-art', 'terminal-blog-dev-menu-pixels', 'gravatar-enhanced-patterns-shared', 'gravatar-enhanced-patterns-view', 'super-web-share', 'wp-block-navigation' ) as $handle ) {
+		$path = $styles->get_data( $handle, 'path' );
+		if ( wp_style_is( $handle, 'enqueued' ) && $path && is_readable( $path ) ) {
+			$limit += (int) filesize( $path );
+		}
+	}
+	return $limit;
+}
+add_filter( 'styles_inline_size_limit', 'terminal_blog_dev_inline_css_budget' );
 
 /**
  * Modify excerpt length

@@ -12,16 +12,24 @@ Block theme do blog de Fellyph Cintra, com estética inspirada em terminal e foc
 
 O cabeçalho padrão não pressupõe que exista uma página de contato. Para adicionar esse destino, publique a página e selecione-a no bloco Navegação do cabeçalho, no Editor do site. Se o cabeçalho já tiver personalizações salvas, edite essa versão da navegação.
 
+Cabeçalhos e rodapés personalizados no Editor do site ficam salvos no banco de dados e têm prioridade sobre `parts/header.html` e `parts/footer.html`. Atualizar o tema ou sua versão não substitui essas partes: para aplicar o novo layout, atualize as versões salvas no Editor do site, preservando o logo, os menus e os links sociais. Essas personalizações também precisam ser transferidas separadamente entre o ambiente local e o site publicado; elas não entram em um commit Git.
+
 ## Desenvolvimento
 
 ```bash
 nvm use
 npm ci
+npm run build:css
 npm run lint:css
 npm run lint:js
+npm run check:css
 ```
 
 O TypeScript fica fixado em 5.3.3 para manter compatibilidade com o parser usado pelo ESLint do WordPress. A validação de JavaScript não depende da instalação global do TypeScript.
+
+Edite os arquivos CSS sem o sufixo `.min` em `assets/css/` e execute `npm run build:css` antes de testar no navegador. Os arquivos minificados são versionados e usados no site; `npm run check:css` verifica se estão atualizados. O empacotamento com `npm run plugin-zip` também executa essa compilação.
+
+Os estilos pequenos do tema, a navegação e os estilos compatíveis do Gravatar e Super Web Share são incluídos no HTML pelo WordPress. Isso evita requisições bloqueantes sem remover os estilos dos plugins. O CSS maior de efeitos permanece assíncrono, com alternativa para navegadores sem JavaScript; as dimensões do logo e a estrutura inicial da navegação ficam disponíveis antes dele. O limite de CSS inline mantém espaço para os estilos dos blocos, e um limite definido como zero continua sendo respeitado. Scripts de consentimento e analytics mantêm a ordem original.
 
 ## Descoberta por agentes
 
@@ -37,6 +45,7 @@ Verificação local, com PHP DOM, PHP CGI (`php-cgi`), Node.js e os arquivos de 
 
 ```bash
 npm run test:agent-readiness
+npm run check:css
 ```
 
 Se o tema estiver fora de uma instalação, defina `WP_TEST_CORE_DIR` com o caminho do WordPress. Os testes usam suas APIs de HTML e URL, sem carregar a configuração, os plugins ou o banco de dados. Cobrem preferências de mídia, conteúdo protegido, preservação de código, marcação da pesquisa e respostas CGI `GET`/`HEAD`, sem abrir um servidor. Defina `PHP_CGI` se o executável CGI tiver outro caminho. No navegador com WebMCP, confirme `search_blog` no painel Application → WebMCP do DevTools, execute uma pesquisa e verifique a navegação, a recuperação sem resultados e a ausência de duplicação. Confira também a categoria Agentic browsing do Lighthouse quando disponível.

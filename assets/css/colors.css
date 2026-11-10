@@ -2,7 +2,7 @@
  * Shared frontend/editor color tokens.
  *
  * The light palette overrides WordPress presets as well as custom effects.
- * Header and footer keep the theme's dark terminal surface in either mode.
+ * Header and footer follow the selected frontend/editor palette.
  */
 :root,
 .editor-styles-wrapper {
@@ -36,33 +36,6 @@
 	--theme-scanline-subtle: rgba(0, 0, 0, 0.08);
 }
 
-:root[data-theme="light"],
-.editor-styles-wrapper[data-theme="light"] {
-	--theme-bg: #edf2ed;
-	--theme-bg-alt: #dde4dd;
-	--theme-fg: #080e06;
-	--theme-fg-muted: #2d3d2d;
-	--theme-primary: #0d5005;
-	--theme-primary-dark: #0a3d04;
-	--theme-border: #556b55;
-	--theme-error: #b42318;
-	--theme-warning: #775000;
-	--theme-success: #0d5005;
-	--theme-card-bg: #f4f8f4;
-	--theme-card-bg-hover: #eaf2ea;
-	--theme-card-shadow: 0 1px 4px rgba(13, 80, 5, 0.12), 0 0 0 1px rgba(13, 80, 5, 0.08);
-	--theme-card-shadow-hover: 0 3px 10px rgba(13, 80, 5, 0.2), 0 0 0 1px rgba(13, 80, 5, 0.15);
-	--theme-code-bg-start: #e8f0e8;
-	--theme-code-bg-end: #edf2ed;
-	--theme-glow: rgba(13, 80, 5, 0.4);
-	--theme-glow-strong: rgba(13, 80, 5, 0.6);
-	--theme-glow-subtle: rgba(13, 80, 5, 0.18);
-	--theme-glow-minimal: rgba(13, 80, 5, 0.1);
-	--theme-glow-bg: rgba(13, 80, 5, 0.05);
-	--theme-scanline: rgba(0, 0, 0, 0.05);
-	--theme-scanline-subtle: rgba(0, 0, 0, 0.03);
-}
-
 .terminal-site-header,
 .terminal-site-footer {
 	--theme-bg: var(--surface-dark-bg);
@@ -92,4 +65,33 @@
 	--wp--preset--color--error: var(--theme-error);
 	--wp--preset--color--warning: var(--theme-warning);
 	--wp--preset--color--success: var(--theme-success);
+}
+
+:root[data-theme="light"],
+.editor-styles-wrapper[data-theme="light"],
+[data-theme="light"] .terminal-site-header,
+[data-theme="light"] .terminal-site-footer {
+	--theme-bg: #edf2ed;
+	--theme-bg-alt: #dde4dd;
+	--theme-fg: #080e06;
+	--theme-fg-muted: #2d3d2d;
+	--theme-primary: #0d5005;
+	--theme-primary-dark: #0a3d04;
+	--theme-border: #556b55;
+	--theme-error: #b42318;
+	--theme-warning: #775000;
+	--theme-success: #0d5005;
+	--theme-card-bg: #f4f8f4;
+	--theme-card-bg-hover: #eaf2ea;
+	--theme-card-shadow: 0 1px 4px rgba(13, 80, 5, 0.12), 0 0 0 1px rgba(13, 80, 5, 0.08);
+	--theme-card-shadow-hover: 0 3px 10px rgba(13, 80, 5, 0.2), 0 0 0 1px rgba(13, 80, 5, 0.15);
+	--theme-code-bg-start: #e8f0e8;
+	--theme-code-bg-end: #edf2ed;
+	--theme-glow: rgba(13, 80, 5, 0.4);
+	--theme-glow-strong: rgba(13, 80, 5, 0.6);
+	--theme-glow-subtle: rgba(13, 80, 5, 0.18);
+	--theme-glow-minimal: rgba(13, 80, 5, 0.1);
+	--theme-glow-bg: rgba(13, 80, 5, 0.05);
+	--theme-scanline: rgba(0, 0, 0, 0.05);
+	--theme-scanline-subtle: rgba(0, 0, 0, 0.03);
 }
