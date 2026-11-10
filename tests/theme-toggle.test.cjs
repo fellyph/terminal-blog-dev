@@ -9,14 +9,15 @@ const script = fs.readFileSync( path.join( themeRoot, 'assets/js/theme-toggle.js
 const earlyScript = fs.readFileSync( path.join( themeRoot, 'functions.php' ), 'utf8' )
 	.match( /<script id="terminal-early-theme">([\s\S]*?)<\/script>/ )[ 1 ];
 
-function browser( { stored = null, light = false, blockReads = false, blockWrites = false } = {} ) {
+function browser( { stored = null, light = false, blockReads = false, blockWrites = false, nativeButton = false } = {} ) {
 	const attributes = {};
 	const listeners = {};
 	const buttonAttributes = {};
 	const value = { textContent: '' };
 	const button = {
+		textContent: '',
 		setAttribute( key, val ) { buttonAttributes[ key ] = val; },
-		querySelector() { return value; },
+		querySelector() { return nativeButton ? null : value; },
 		addEventListener( name, callback ) { listeners[ name ] = callback; },
 		classList: { add() {}, remove() {} },
 	};
@@ -53,7 +54,7 @@ function browser( { stored = null, light = false, blockReads = false, blockWrite
 	return {
 		run( source = script ) { vm.runInNewContext( source, context ); },
 		theme() { return attributes[ 'data-theme' ]; },
-		label() { return value.textContent; },
+		label() { return nativeButton ? button.textContent : value.textContent; },
 		accessibleLabel() { return buttonAttributes[ 'aria-label' ]; },
 		saved() { return stored; },
 		click() { listeners.click(); },
@@ -104,6 +105,18 @@ test( 'working storage persists the selected theme', () => {
 	const reloaded = browser( { stored: page.saved() } );
 	reloaded.run();
 	assert.equal( reloaded.theme(), 'light' );
+} );
+
+test( 'native Button blocks show and announce the current theme', () => {
+	const page = browser( { nativeButton: true, blockWrites: true } );
+	page.run();
+	assert.equal( page.label(), '[TEMA: ESCURO]' );
+	page.click();
+	assert.equal( page.theme(), 'light' );
+	assert.equal( page.label(), '[TEMA: CLARO]' );
+	assert.match( page.accessibleLabel(), /Claro/ );
+	page.key( 'Enter' );
+	assert.equal( page.label(), '[TEMA: ESCURO]' );
 } );
 
 test( 'system changes apply until an explicit theme is selected', () => {

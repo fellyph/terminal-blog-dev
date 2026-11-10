@@ -2,7 +2,7 @@
 /**
  * Title: ASCII Art Header
  * Slug: terminal-blog-dev/ascii-art-header
- * Categories: header, featured
+ * Categories: banner, terminal-blog-dev
  * Keywords: ascii, art, logo, header, terminal, banner
  * Description: Stylized ASCII art text header for terminal aesthetic.
  * Viewport Width: 1200

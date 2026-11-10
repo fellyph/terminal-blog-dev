@@ -15,11 +15,14 @@
 	const STORAGE_KEY = 'terminal-blog-theme';
 	const DARK_THEME = 'dark';
 	const LIGHT_THEME = 'light';
+	const TOGGLE_SELECTOR =
+		'.theme-toggle, .terminal-theme-toggle > .wp-block-button__link';
 	let sessionTheme = null;
 	const STRINGS =
 		typeof terminalBlogThemeI18n === 'object'
 			? terminalBlogThemeI18n
 			: {
+					label: 'TEMA',
 					dark: 'Escuro',
 					light: 'Claro',
 					toggle: 'Alternar tema de cores',
@@ -79,7 +82,7 @@
 		document.documentElement.setAttribute( 'data-theme', theme );
 
 		// Update all toggle buttons
-		const toggles = document.querySelectorAll( '.theme-toggle' );
+		const toggles = document.querySelectorAll( TOGGLE_SELECTOR );
 		toggles.forEach( function ( toggle ) {
 			toggle.setAttribute( 'data-theme', theme );
 			toggle.setAttribute(
@@ -94,6 +97,13 @@
 			const valueEl = toggle.querySelector( '.theme-toggle__value' );
 			if ( valueEl ) {
 				valueEl.textContent = getThemeLabel( theme ).toUpperCase();
+			} else {
+				toggle.textContent =
+					'[' +
+					( STRINGS.label || 'TEMA' ) +
+					': ' +
+					getThemeLabel( theme ).toUpperCase() +
+					']';
 			}
 		} );
 	}
@@ -115,7 +125,7 @@
 		}
 
 		// Apply with animation
-		const toggles = document.querySelectorAll( '.theme-toggle' );
+		const toggles = document.querySelectorAll( TOGGLE_SELECTOR );
 		toggles.forEach( function ( toggle ) {
 			toggle.classList.add( 'switching' );
 			setTimeout( function () {
@@ -172,8 +182,9 @@
 	 * Set up click handlers for toggle buttons
 	 */
 	function setupToggleHandlers() {
-		const toggles = document.querySelectorAll( '.theme-toggle' );
+		const toggles = document.querySelectorAll( TOGGLE_SELECTOR );
 		toggles.forEach( function ( toggle ) {
+			toggle.classList.add( 'theme-toggle' );
 			toggle.addEventListener( 'click', toggleTheme );
 
 			// Keyboard support

@@ -14,6 +14,10 @@ O cabeçalho padrão não pressupõe que exista uma página de contato. Para adi
 
 Cabeçalhos e rodapés personalizados no Editor do site ficam salvos no banco de dados e têm prioridade sobre `parts/header.html` e `parts/footer.html`. Atualizar o tema ou sua versão não substitui essas partes: para aplicar o novo layout, atualize as versões salvas no Editor do site, preservando o logo, os menus e os links sociais. Essas personalizações também precisam ser transferidas separadamente entre o ambiente local e o site publicado; elas não entram em um commit Git.
 
+O seletor de cabeçalhos oferece três padrões completos: **Cabeçalho padrão** (logo, título, descrição e menu), **Cabeçalho compacto** (título e menu) e **Cabeçalho com busca** (identidade, pesquisa e menu). Todos incluem o seletor de cores em um bloco Botão nativo e reutilizam o menu do cabeçalho personalizado atual. Sem um menu selecionado, usam uma lista de páginas em vez de escolher um menu de outra área do site. O cabeçalho padrão do tema usa a opção com busca. O seletor de cores avulso fica na categoria Terminal Blog Dev; a arte ASCII fica em Banners.
+
+As sugestões de cabeçalho que dependem de blocos não registrados, como conta e carrinho do WooCommerce sem o plugin ativo, são omitidas do editor. Isso inclui dependências em padrões aninhados. Instalar o plugin necessário torna essas opções disponíveis novamente. O filtro afeta apenas as sugestões; não modifica os cabeçalhos salvos nem as demais categorias. Para conferir a integração com o registro real de blocos, execute `studio wp eval-file /caminho/absoluto/do/tema/tests/header-patterns.php`.
+
 ## Desenvolvimento
 
 ```bash
