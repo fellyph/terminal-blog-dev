@@ -10,6 +10,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+require_once get_template_directory() . '/includes/agent-readiness.php';
+
 /**
  * Add resource hints for fonts to improve loading performance.
  * Preconnect establishes early connections, preload fetches the font early.

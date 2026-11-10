@@ -12,12 +12,14 @@
     "plugin-zip": "wp-scripts plugin-zip",
     "lint:css": "wp-scripts lint-style 'assets/css/**/*.css'",
     "lint:js": "wp-scripts lint-js 'assets/js/**/*.js'",
-    "test:theme-toggle": "node --test tests/theme-toggle.test.cjs"
+    "test:theme-toggle": "node --test tests/theme-toggle.test.cjs",
+    "test:agent-readiness": "php tests/agent-readiness.php && node --test tests/agent-readiness-http.test.cjs"
   },
   "files": [
     "assets",
     "parts",
     "patterns",
+    "includes",
     "templates",
     "functions.php",
     "screenshot.png",
