@@ -4,7 +4,7 @@ Block theme do blog de Fellyph Cintra, com estética inspirada em terminal e foc
 
 ## Requisitos
 
-- WordPress 6.4 ou superior
+- WordPress 6.6 ou superior (configuração `theme.json` versão 3)
 - PHP 8.0 ou superior
 - Node.js 22 LTS (22.12 ou superior) e npm 10 para executar os linters
 
@@ -40,6 +40,16 @@ npm run test:agent-readiness
 ```
 
 Se o tema estiver fora de uma instalação, defina `WP_TEST_CORE_DIR` com o caminho do WordPress. Os testes usam suas APIs de HTML e URL, sem carregar a configuração, os plugins ou o banco de dados. Cobrem preferências de mídia, conteúdo protegido, preservação de código, marcação da pesquisa e respostas CGI `GET`/`HEAD`, sem abrir um servidor. Defina `PHP_CGI` se o executável CGI tiver outro caminho. No navegador com WebMCP, confirme `search_blog` no painel Application → WebMCP do DevTools, execute uma pesquisa e verifique a navegação, a recuperação sem resultados e a ausência de duplicação. Confira também a categoria Agentic browsing do Lighthouse quando disponível.
+
+## Prévia de pull requests
+
+O workflow `PR Preview` adiciona um botão à descrição dos pull requests deste repositório. Ao abrir a prévia, o WordPress Playground instala e ativa o tema da branch do pull request em um ambiente temporário no navegador.
+
+O Blueprint abre a página inicial com seis posts de demonstração em português, divididos entre WordPress, inteligência artificial e desenvolvimento web. Os artigos incluem resumos, datas, autor, seis tags e blocos nativos de parágrafo, título, lista, citação e código. O conteúdo está em [`.github/playground/posts.xml`](.github/playground/posts.xml), no formato de exportação do WordPress (WXR).
+
+O tema e o WXR são carregados do mesmo commit do pull request. O Blueprint remove o conteúdo inicial do Playground antes da importação e entra como administrador para permitir a edição dos exemplos. Esses dados existem apenas na prévia; instalar ou ativar o tema em outro site não cria posts.
+
+O tema funciona diretamente com os arquivos versionados, sem etapa de compilação. A integração usa o `GITHUB_TOKEN` fornecido pelo GitHub; não é necessário cadastrar um segredo. Esta configuração atende a branches do próprio repositório. Para prévias de pull requests vindos de forks, use os dois workflows descritos no [guia do WordPress Playground](https://developer.wordpress.org/playground/handbook/guides/github-action-pr-preview/).
 
 ## Licença
 
