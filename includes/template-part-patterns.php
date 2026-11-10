@@ -1,6 +1,6 @@
 <?php
 /**
- * Keep header choices usable when optional plugin blocks are unavailable.
+ * Keep header and footer choices usable without optional plugin blocks.
  *
  * @package Terminal_Blog_Dev
  */
@@ -49,7 +49,7 @@ function terminal_blog_dev_current_header_menu() {
  * @param array $seen   Pattern slugs already traversed on this branch.
  * @return bool Whether the content requires an unavailable block or pattern.
  */
-function terminal_blog_dev_header_missing_blocks( $blocks, $seen = array() ) {
+function terminal_blog_dev_template_part_missing_blocks( $blocks, $seen = array() ) {
 	$types    = WP_Block_Type_Registry::get_instance();
 	$patterns = WP_Block_Patterns_Registry::get_instance();
 	foreach ( $blocks as $block ) {
@@ -63,11 +63,11 @@ function terminal_blog_dev_header_missing_blocks( $blocks, $seen = array() ) {
 				return true;
 			}
 			$pattern = $patterns->get_registered( $slug );
-			if ( terminal_blog_dev_header_missing_blocks( parse_blocks( $pattern['content'] ), array_merge( $seen, array( $slug ) ) ) ) {
+			if ( terminal_blog_dev_template_part_missing_blocks( parse_blocks( $pattern['content'] ), array_merge( $seen, array( $slug ) ) ) ) {
 				return true;
 			}
 		}
-		if ( terminal_blog_dev_header_missing_blocks( $block['innerBlocks'], $seen ) ) {
+		if ( terminal_blog_dev_template_part_missing_blocks( $block['innerBlocks'], $seen ) ) {
 			return true;
 		}
 	}
@@ -78,9 +78,9 @@ function terminal_blog_dev_header_missing_blocks( $blocks, $seen = array() ) {
  * Filter suggestions only; existing templates and plugin registrations stay intact.
  *
  * @param array $patterns Pattern definitions from the registry or REST API.
- * @return array Compatible header choices and unchanged non-header patterns.
+ * @return array Compatible header/footer choices and unchanged other patterns.
  */
-function terminal_blog_dev_compatible_header_patterns( $patterns ) {
+function terminal_blog_dev_compatible_template_part_patterns( $patterns ) {
 	return array_values( array_filter( $patterns, static function ( $pattern ) {
 		if ( ! is_array( $pattern ) ) {
 			return true;
@@ -90,8 +90,8 @@ function terminal_blog_dev_compatible_header_patterns( $patterns ) {
 			$pattern    = array_merge( $registered ?? array(), $pattern );
 		}
 		$block_types = array_merge( $pattern['blockTypes'] ?? array(), $pattern['block_types'] ?? array() );
-		$is_header   = in_array( 'header', $pattern['categories'] ?? array(), true ) || in_array( 'core/template-part/header', $block_types, true );
-		return ! $is_header || ! terminal_blog_dev_header_missing_blocks( parse_blocks( $pattern['content'] ?? '' ) );
+		$is_part     = array_intersect( array( 'header', 'footer' ), $pattern['categories'] ?? array() ) || array_intersect( array( 'core/template-part/header', 'core/template-part/footer' ), $block_types );
+		return ! $is_part || ! terminal_blog_dev_template_part_missing_blocks( parse_blocks( $pattern['content'] ?? '' ) );
 	} ) );
 }
 
@@ -99,15 +99,15 @@ function terminal_blog_dev_compatible_header_patterns( $patterns ) {
  * Support editors that still receive registered patterns in their settings.
  *
  * @param array $settings Block editor settings.
- * @return array Settings with compatible header suggestions.
+ * @return array Settings with compatible header and footer suggestions.
  */
-function terminal_blog_dev_header_editor_settings( $settings ) {
+function terminal_blog_dev_template_part_editor_settings( $settings ) {
 	if ( isset( $settings['__experimentalBlockPatterns'] ) ) {
-		$settings['__experimentalBlockPatterns'] = terminal_blog_dev_compatible_header_patterns( $settings['__experimentalBlockPatterns'] );
+		$settings['__experimentalBlockPatterns'] = terminal_blog_dev_compatible_template_part_patterns( $settings['__experimentalBlockPatterns'] );
 	}
 	return $settings;
 }
-add_filter( 'block_editor_settings_all', 'terminal_blog_dev_header_editor_settings', 100 );
+add_filter( 'block_editor_settings_all', 'terminal_blog_dev_template_part_editor_settings', 100 );
 
 /**
  * Filter the final collection so late-loaded hosting patterns are checked too.
@@ -117,12 +117,12 @@ add_filter( 'block_editor_settings_all', 'terminal_blog_dev_header_editor_settin
  * @param WP_REST_Request  $request  REST request.
  * @return WP_HTTP_Response Unchanged response or compatible pattern collection.
  */
-function terminal_blog_dev_header_pattern_response( $response, $server, $request ) {
+function terminal_blog_dev_template_part_pattern_response( $response, $server, $request ) {
 	if ( $response instanceof WP_HTTP_Response &&
 		'/wp/v2/block-patterns/patterns' === untrailingslashit( $request->get_route() ) &&
 		200 === $response->get_status() && is_array( $response->get_data() ) ) {
-		$response->set_data( terminal_blog_dev_compatible_header_patterns( $response->get_data() ) );
+		$response->set_data( terminal_blog_dev_compatible_template_part_patterns( $response->get_data() ) );
 	}
 	return $response;
 }
-add_filter( 'rest_post_dispatch', 'terminal_blog_dev_header_pattern_response', 100, 3 );
+add_filter( 'rest_post_dispatch', 'terminal_blog_dev_template_part_pattern_response', 100, 3 );

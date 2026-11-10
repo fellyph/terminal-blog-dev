@@ -3,12 +3,13 @@
  * The centre crop keeps the workstation visible on narrow screens.
  */
 .terminal-footer-art {
+	--terminal-footer-image: url(../images/footer-terminal.svg);
 	position: relative;
 	min-height: clamp(12rem, 18.75vw, 24rem);
 	margin-block-start: 0;
 	margin-block-end: var(--wp--preset--spacing--50);
 	background-color: var(--theme-bg);
-	background-image: url(../images/footer-terminal.svg);
+	background-image: var(--terminal-footer-image);
 	background-position: center bottom;
 	background-repeat: no-repeat;
 	background-size: cover;
@@ -17,15 +18,34 @@
 }
 
 .terminal-footer-art.is-animated {
-	background-image: url(../images/footer-terminal.svg#animated);
+	--terminal-footer-image: url(../images/footer-terminal.svg#animated);
 }
 
 [data-theme="light"] .terminal-footer-art {
-	background-image: url(../images/footer-terminal-light.svg);
+	--terminal-footer-image: url(../images/footer-terminal-light.svg);
 }
 
 [data-theme="light"] .terminal-footer-art.is-animated {
-	background-image: url(../images/footer-terminal-light.svg#animated);
+	--terminal-footer-image: url(../images/footer-terminal-light.svg#animated);
+}
+
+/* A native Image block avoids the empty Group's layout picker. */
+.terminal-footer-art--image {
+	background-image: none;
+	line-height: 0;
+}
+
+.terminal-footer .wp-block-image.terminal-footer-art--image img {
+	display: block;
+	inline-size: 100%;
+	block-size: clamp(12rem, 18.75vw, 24rem);
+	object-fit: cover;
+	object-position: center bottom;
+	content: var(--terminal-footer-image);
+}
+
+.editor-styles-wrapper .terminal-footer-art {
+	pointer-events: auto;
 }
 
 .terminal-footer-art__toggle {
@@ -41,6 +61,7 @@
 	color: var(--theme-fg-muted);
 	font-family: inherit;
 	font-size: var(--wp--preset--font-size--small);
+	line-height: 1.4;
 	cursor: pointer;
 	pointer-events: auto;
 }

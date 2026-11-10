@@ -4,7 +4,7 @@ const postcss = require( 'postcss' );
 const cssnano = require( 'cssnano' );
 
 const directory = path.resolve( __dirname, '../assets/css' );
-const names = [ 'colors', 'custom', 'header', 'footer-art', 'menu-pixels' ];
+const names = [ 'colors', 'custom', 'header', 'footer', 'footer-art', 'menu-pixels' ];
 const check = process.argv.includes( '--check' );
 
 async function build() {

@@ -11,7 +11,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 require_once get_template_directory() . '/includes/agent-readiness.php';
-require_once get_template_directory() . '/includes/header-patterns.php';
+require_once get_template_directory() . '/includes/template-part-patterns.php';
+require_once get_template_directory() . '/includes/footer-patterns.php';
 
 /**
  * Add resource hints for fonts to improve loading performance.
@@ -97,7 +98,7 @@ function terminal_blog_dev_setup() {
 	add_theme_support( 'editor-styles' );
 
 	// Enqueue editor styles
-	add_editor_style( array( 'assets/css/colors.css', 'assets/css/editor-style.css', 'assets/css/header.css', 'assets/css/footer-art.css', 'assets/css/menu-pixels.css' ) );
+	add_editor_style( array( 'assets/css/colors.css', 'assets/css/editor-style.css', 'assets/css/header.css', 'assets/css/footer.css', 'assets/css/footer-art.css', 'assets/css/menu-pixels.css' ) );
 
 	// Add support for responsive embedded content
 	add_theme_support( 'responsive-embeds' );
@@ -177,6 +178,7 @@ function terminal_blog_dev_scripts() {
 
 	terminal_blog_dev_enqueue_css( 'colors' );
 	terminal_blog_dev_enqueue_css( 'header', array( 'terminal-blog-dev-colors' ) );
+	terminal_blog_dev_enqueue_css( 'footer', array( 'terminal-blog-dev-colors' ) );
 	terminal_blog_dev_enqueue_css( 'custom', array( 'terminal-blog-dev-colors' ), false );
 	terminal_blog_dev_enqueue_css( 'footer-art', array( 'terminal-blog-dev-colors' ) );
 	terminal_blog_dev_enqueue_css( 'menu-pixels', array( 'terminal-blog-dev-custom' ) );
@@ -616,7 +618,7 @@ function terminal_blog_dev_inline_css_budget( $limit ) {
 	}
 	$styles = wp_styles();
 	// Navigation is above the fold and must no longer depend on deferred CSS.
-	foreach ( array( 'terminal-blog-dev-colors', 'terminal-blog-dev-header', 'terminal-blog-dev-footer-art', 'terminal-blog-dev-menu-pixels', 'gravatar-enhanced-patterns-shared', 'gravatar-enhanced-patterns-view', 'super-web-share', 'wp-block-navigation' ) as $handle ) {
+	foreach ( array( 'terminal-blog-dev-colors', 'terminal-blog-dev-header', 'terminal-blog-dev-footer', 'terminal-blog-dev-footer-art', 'terminal-blog-dev-menu-pixels', 'gravatar-enhanced-patterns-shared', 'gravatar-enhanced-patterns-view', 'super-web-share', 'wp-block-navigation' ) as $handle ) {
 		$path = $styles->get_data( $handle, 'path' );
 		if ( wp_style_is( $handle, 'enqueued' ) && $path && is_readable( $path ) ) {
 			$limit += (int) filesize( $path );
