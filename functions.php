@@ -33,11 +33,10 @@ add_action( 'wp_head', 'terminal_blog_dev_resource_hints', 1 );
  * Runs before CSS to set data-theme attribute instantly, preventing FOUC.
  */
 function terminal_blog_dev_early_theme_script() {
-	?>
-	<script id="terminal-early-theme">
-	(function(){var t;try{t=localStorage.getItem('terminal-blog-theme')}catch(e){/* Storage is optional. */}if(t!=='dark'&&t!=='light'){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme:light)').matches?'light':'dark'}document.documentElement.setAttribute('data-theme',t)})();
-	</script>
-	<?php
+	wp_print_inline_script_tag(
+		"(function(){var t;try{t=localStorage.getItem('terminal-blog-theme')}catch(e){}if(t!=='dark'&&t!=='light'){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme:light)').matches?'light':'dark'}document.documentElement.setAttribute('data-theme',t)})();",
+		array( 'id' => 'terminal-early-theme' )
+	);
 }
 add_action( 'wp_head', 'terminal_blog_dev_early_theme_script', 0 );
 
@@ -367,7 +366,7 @@ function terminal_blog_dev_optimize_css_loading( $tag, $handle, $href ) {
 		$processor = new WP_HTML_Tag_Processor( $tag );
 		if ( $processor->next_tag( 'link' ) && 'all' === $processor->get_attribute( 'media' ) ) {
 			$processor->set_attribute( 'media', 'print' );
-			$processor->set_attribute( 'onload', "this.onload=null;this.media='all'" );
+			$processor->set_attribute( 'data-terminal-defer-style', '1' );
 			$tag = $processor->get_updated_html();
 			$tag .= '<noscript><link rel="stylesheet" href="' . esc_url( $href ) . '"></noscript>' . "\n";
 		}
@@ -376,6 +375,18 @@ function terminal_blog_dev_optimize_css_loading( $tag, $handle, $href ) {
 	return $tag;
 }
 add_filter( 'style_loader_tag', 'terminal_blog_dev_optimize_css_loading', 10, 3 );
+
+/**
+ * Activate deferred stylesheets without using inline onload attributes,
+ * keeping markup compatible with a strict Content Security Policy.
+ */
+function terminal_blog_dev_activate_deferred_styles() {
+	wp_print_inline_script_tag(
+		"document.querySelectorAll('link[data-terminal-defer-style]').forEach(function(l){if(l.sheet){l.media='all'}else{l.addEventListener('load',function(){l.media='all'},{once:true})}});",
+		array( 'id' => 'terminal-defer-styles' )
+	);
+}
+add_action( 'wp_head', 'terminal_blog_dev_activate_deferred_styles', 10 );
 
 /**
  * Add custom CSS for terminal effects
@@ -620,8 +631,9 @@ function terminal_blog_dev_inline_css_budget( $limit ) {
 		return $limit;
 	}
 	$styles = wp_styles();
-	// Navigation is above the fold and must no longer depend on deferred CSS.
-	foreach ( array( 'terminal-blog-dev-colors', 'terminal-blog-dev-header', 'terminal-blog-dev-footer', 'terminal-blog-dev-archive', 'terminal-blog-dev-footer-art', 'terminal-blog-dev-menu-pixels', 'gravatar-enhanced-patterns-shared', 'gravatar-enhanced-patterns-view', 'super-web-share', 'wp-block-navigation' ) as $handle ) {
+	// Reserve image sizing styles too: the editable footer art uses core/image.
+	// Otherwise its CSS can push the larger, critical navigation CSS over budget.
+	foreach ( array( 'terminal-blog-dev-colors', 'terminal-blog-dev-header', 'terminal-blog-dev-footer', 'terminal-blog-dev-archive', 'terminal-blog-dev-footer-art', 'terminal-blog-dev-menu-pixels', 'gravatar-enhanced-patterns-shared', 'gravatar-enhanced-patterns-view', 'super-web-share', 'wp-block-navigation', 'wp-block-image' ) as $handle ) {
 		$path = $styles->get_data( $handle, 'path' );
 		if ( wp_style_is( $handle, 'enqueued' ) && $path && is_readable( $path ) ) {
 			$limit += (int) filesize( $path );

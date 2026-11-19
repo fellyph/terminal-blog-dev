@@ -6,8 +6,11 @@ const vm = require( 'node:vm' );
 
 const themeRoot = path.resolve( __dirname, '..' );
 const script = fs.readFileSync( path.join( themeRoot, 'assets/js/theme-toggle.js' ), 'utf8' );
-const earlyScript = fs.readFileSync( path.join( themeRoot, 'functions.php' ), 'utf8' )
-	.match( /<script id="terminal-early-theme">([\s\S]*?)<\/script>/ )[ 1 ];
+const functionsSource = fs.readFileSync( path.join( themeRoot, 'functions.php' ), 'utf8' );
+const earlyScriptMatch =
+	functionsSource.match( /<script id="terminal-early-theme">([\s\S]*?)<\/script>/ ) ||
+	functionsSource.match( /function terminal_blog_dev_early_theme_script\(\)\s*\{\s*wp_print_inline_script_tag\(\s*"([\s\S]*?)",\s*array\(/ );
+const earlyScript = earlyScriptMatch[ 1 ];
 
 function browser( { stored = null, light = false, blockReads = false, blockWrites = false, nativeButton = false } = {} ) {
 	const attributes = {};

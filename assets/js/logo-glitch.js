@@ -41,9 +41,22 @@
 		const cyan = document.createElement( 'span' );
 		cyan.className = 'logo-glitch-layer logo-glitch-cyan';
 
-		const src = logoImg.currentSrc || logoImg.src;
+		const rawSrc = logoImg.currentSrc || logoImg.src;
+		let safeSrc = '';
+		try {
+			const parsed = new URL( rawSrc, window.location.href );
+			if ( parsed.protocol === 'http:' || parsed.protocol === 'https:' ) {
+				safeSrc = parsed.href.replace( /[\\"]/g, '\\$&' );
+			}
+		} catch {
+			return;
+		}
+		if ( ! safeSrc ) {
+			return;
+		}
+
 		[ base, red, cyan ].forEach( function ( layer ) {
-			layer.style.backgroundImage = 'url("' + src + '")';
+			layer.style.backgroundImage = 'url("' + safeSrc + '")';
 		} );
 
 		stage.appendChild( red );

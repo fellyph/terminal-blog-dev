@@ -20,4 +20,4 @@ if ( $terminal_header_menu ) {
 	$terminal_header_navigation['ref'] = $terminal_header_menu;
 }
 // Attributes come from the active header and the theme, never user-supplied HTML.
-echo '<!-- wp:navigation ' . wp_json_encode( $terminal_header_navigation ) . ( $terminal_header_menu ? ' /-->' : ' --><!-- wp:page-list /--><!-- /wp:navigation -->' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+echo '<!-- wp:navigation ' . wp_json_encode( $terminal_header_navigation, JSON_HEX_TAG | JSON_HEX_AMP ) . ( $terminal_header_menu ? ' /-->' : ' --><!-- wp:page-list /--><!-- /wp:navigation -->' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped

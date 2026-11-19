@@ -60,10 +60,10 @@ function terminal_blog_dev_footer_navigation() {
 	$ref = absint( $navigation['attrs']['ref'] ?? 0 );
 	if ( $ref && 'wp_navigation' === get_post_type( $ref ) && 'publish' === get_post_status( $ref ) ) {
 		$attributes['ref'] = $ref;
-		return '<!-- wp:navigation ' . wp_json_encode( $attributes ) . ' /-->';
+		return '<!-- wp:navigation ' . wp_json_encode( $attributes, JSON_HEX_TAG | JSON_HEX_AMP ) . ' /-->';
 	}
 	$links = ! $ref && ! empty( $navigation['innerBlocks'] )
 		? serialize_blocks( $navigation['innerBlocks'] )
 		: '<!-- wp:page-list /-->';
-	return '<!-- wp:navigation ' . wp_json_encode( $attributes ) . ' -->' . $links . '<!-- /wp:navigation -->';
+	return '<!-- wp:navigation ' . wp_json_encode( $attributes, JSON_HEX_TAG | JSON_HEX_AMP ) . ' -->' . $links . '<!-- /wp:navigation -->';
 }
