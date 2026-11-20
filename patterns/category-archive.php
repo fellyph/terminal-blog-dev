@@ -20,7 +20,7 @@
 		</div>
 		<!-- /wp:group -->
 		<!-- wp:image {"sizeSlug":"full","linkDestination":"none","className":"terminal-archive__art"} -->
-		<figure class="wp-block-image size-full terminal-archive__art"><img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/archive-folder.svg#frame-1' ); ?>" alt=""/></figure>
+		<figure class="wp-block-image size-full terminal-archive__art"><img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/archive-folder.svg#frame-1' ); ?>" alt="" width="256" height="64" decoding="async"/></figure>
 		<!-- /wp:image -->
 	</div>
 	<!-- /wp:group -->

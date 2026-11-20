@@ -17,3 +17,5 @@ skills-lock.json
 .aws/
 dist/
 build/
+playwright-report/
+test-results/

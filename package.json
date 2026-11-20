@@ -16,7 +16,8 @@
     "lint:css": "wp-scripts lint-style 'assets/css/**/*.css' --ignore-pattern '**/*.min.css'",
     "lint:js": "wp-scripts lint-js 'assets/js/**/*.js'",
     "test:theme-toggle": "node --test tests/theme-toggle.test.cjs",
-    "test:agent-readiness": "php tests/agent-readiness.php && node --test tests/agent-readiness-http.test.cjs"
+    "test:agent-readiness": "php tests/agent-readiness.php && node --test tests/agent-readiness-http.test.cjs",
+    "test:e2e": "playwright test"
   },
   "files": [
     "assets",
@@ -37,7 +38,9 @@
     "terminal"
   ],
   "devDependencies": {
+    "@playwright/test": "^1.65.1",
     "@wordpress/scripts": "31.8.0",
+    "@wp-playground/cli": "^3.1.65",
     "cssnano": "6.1.2",
     "postcss": "8.5.25",
     "puppeteer": "^25.4.0",

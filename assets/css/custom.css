@@ -80,12 +80,27 @@
 	--shadow-border-glow: 0 0 10px var(--theme-glow-subtle), inset 0 0 10px var(--theme-glow-minimal);
 	--shadow-border-glow-hover: 0 0 20px var(--theme-glow-subtle), inset 0 0 15px var(--theme-glow-minimal);
 
+	/* Standard scrollbar theming (>= 3:1 contrast against track and canvas) */
+	--scrollbar-thumb: var(--theme-fg-muted);
+	--scrollbar-track: var(--theme-bg-alt);
+	scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+	scrollbar-width: thin;
+
 }
 
 /* Apply theme variables to body */
 body {
 	background-color: var(--theme-bg);
 	color: var(--theme-fg);
+}
+
+/* Legibility for long-form article body copy */
+.entry-content > p,
+.entry-content > blockquote,
+.entry-content > ul li,
+.entry-content > ol li,
+.entry-content > .wp-block-list li {
+	text-wrap: pretty;
 }
 
 .wp-block-navigation-item__content {
@@ -2090,3 +2105,78 @@ form[toolname="search_blog"] button:tool-submit-active {
 }
 
 /* stylelint-enable selector-pseudo-class-no-unknown */
+
+/* ========================================
+   Modern Web Enhancements
+   ======================================== */
+
+/* Legacy WebKit scrollbar fallback when scrollbar-color is unsupported */
+@supports not (scrollbar-color: auto) {
+
+	:root,
+	pre.wp-block-code {
+		scrollbar-width: auto;
+	}
+
+	::-webkit-scrollbar {
+		width: 8px;
+		height: 8px;
+	}
+
+	::-webkit-scrollbar-track {
+		background: var(--scrollbar-track);
+	}
+
+	::-webkit-scrollbar-thumb {
+		background: var(--scrollbar-thumb);
+		border: 1px solid var(--theme-primary);
+		border-radius: 4px;
+	}
+
+	::-webkit-scrollbar-thumb:hover {
+		background: var(--theme-primary);
+	}
+}
+
+/* Scroll-driven reading progress bar on single posts */
+@media (prefers-reduced-motion: no-preference) {
+
+	@supports (animation-timeline: scroll()) {
+
+		@keyframes terminal-reading-progress-grow {
+
+			from {
+				transform: scaleX(0);
+			}
+
+			to {
+				transform: scaleX(1);
+			}
+		}
+
+		.terminal-reading-progress {
+			position: fixed;
+			inset-block-start: 0;
+			inset-inline: 0;
+			block-size: 2px;
+			background: var(--theme-primary);
+			transform-origin: 0 50%;
+			transform: scaleX(0);
+			z-index: 9998;
+			pointer-events: none;
+			animation: terminal-reading-progress-grow auto linear;
+			animation-timeline: scroll();
+		}
+
+		body.admin-bar .terminal-reading-progress {
+			inset-block-start: var(--wp-admin--admin-bar--height, 32px);
+		}
+	}
+}
+
+@media print {
+
+	.terminal-reading-progress {
+		display: none;
+	}
+}

@@ -158,7 +158,7 @@
 							"fontStyle": "normal",
 							"fontDisplay": "swap",
 							"src": [
-								"https://fonts.gstatic.com/s/spacegrotesk/v16/V8mDoQDjQSkFtoMM3T6r8E7mPbF4Cw.woff2"
+								"file:./assets/fonts/space-grotesk-latin-variable.woff2"
 							]
 						}
 					]

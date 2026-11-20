@@ -100,7 +100,7 @@ function terminal_blog_dev_agent_headers() {
 	}
 	terminal_blog_dev_vary_accept();
 	// Accept is used only for media negotiation, never echoed into a response.
-	$accept = isset( $_SERVER['HTTP_ACCEPT'] ) ? sanitize_text_field( wp_unslash( $_SERVER['HTTP_ACCEPT'] ) ) : '';
+	$accept = isset( $_SERVER['HTTP_ACCEPT'] ) ? (string) preg_replace( '/[\x00-\x1F\x7F]/', '', (string) wp_unslash( $_SERVER['HTTP_ACCEPT'] ) ) : '';
 	if ( terminal_blog_dev_prefers_markdown( $accept ) ) {
 		if ( ! defined( 'DONOTCACHEPAGE' ) ) {
 			define( 'DONOTCACHEPAGE', true );
@@ -119,7 +119,7 @@ add_action( 'template_redirect', 'terminal_blog_dev_agent_headers', 20 );
  * @return string Template path.
  */
 function terminal_blog_dev_markdown_template( $template ) {
-	$accept = isset( $_SERVER['HTTP_ACCEPT'] ) ? sanitize_text_field( wp_unslash( $_SERVER['HTTP_ACCEPT'] ) ) : '';
+	$accept = isset( $_SERVER['HTTP_ACCEPT'] ) ? (string) preg_replace( '/[\x00-\x1F\x7F]/', '', (string) wp_unslash( $_SERVER['HTTP_ACCEPT'] ) ) : '';
 	if ( class_exists( 'DOMDocument' ) && apply_filters( 'terminal_blog_dev_markdown_enabled', true ) &&
 		terminal_blog_dev_is_public_content_request() && terminal_blog_dev_prefers_markdown( $accept ) ) {
 		$GLOBALS['terminal_blog_dev_html_template'] = $template;

@@ -6,6 +6,8 @@
  */
 :root,
 .editor-styles-wrapper {
+	color-scheme: dark;
+	accent-color: var(--theme-primary);
 	--theme-bg: var(--wp--preset--color--background, #050804);
 	--theme-bg-alt: var(--wp--preset--color--background-alt, #0a0f09);
 	--theme-fg: var(--wp--preset--color--foreground, #f6f8f6);
@@ -68,6 +70,11 @@
 }
 
 :root[data-theme="light"],
+.editor-styles-wrapper[data-theme="light"] {
+	color-scheme: light;
+}
+
+:root[data-theme="light"],
 .editor-styles-wrapper[data-theme="light"],
 [data-theme="light"] .terminal-site-header,
 [data-theme="light"] .terminal-site-footer {
@@ -94,4 +101,12 @@
 	--theme-glow-bg: rgba(13, 80, 5, 0.05);
 	--theme-scanline: rgba(0, 0, 0, 0.05);
 	--theme-scanline-subtle: rgba(0, 0, 0, 0.03);
+}
+
+/* Opt in to cross-document view transitions in render-blocking CSS. */
+@media (prefers-reduced-motion: no-preference) {
+
+	@view-transition {
+		navigation: auto;
+	}
 }

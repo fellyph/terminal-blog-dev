@@ -1,0 +1,17 @@
+{
+	"$schema": "https://playground.wordpress.net/blueprint-schema.json",
+	"preferredVersions": {
+		"php": "8.3",
+		"wp": "latest"
+	},
+	"steps": [
+		{
+			"step": "activateTheme",
+			"themeFolderName": "terminal-blog-dev"
+		},
+		{
+			"step": "runPHP",
+			"code": "<?php require '/wordpress/wp-load.php'; global $wp_rewrite; $wp_rewrite->set_permalink_structure( '/%postname%/' ); update_option( 'permalink_structure', '/%postname%/' ); $cat = wp_insert_term( 'Tutoriais', 'category', array( 'slug' => 'tutoriais' ) ); $cat_id = is_wp_error( $cat ) ? (int) get_cat_ID( 'Tutoriais' ) : (int) $cat['term_id']; $tag = wp_insert_term( 'WordPress', 'post_tag', array( 'slug' => 'wordpress' ) ); $posts = array( array( 'post_title' => 'Hello Terminal', 'post_name' => 'hello-terminal', 'post_content' => \"<!-- wp:paragraph --><p>Um guia pratico sobre terminal, WordPress e web moderna.</p><!-- /wp:paragraph --><!-- wp:code --><pre class=\\\"wp-block-code\\\"><code>console.log('terminal-blog-dev');</code></pre><!-- /wp:code -->\", 'post_status' => 'publish', 'post_type' => 'post', 'post_author' => 1, 'post_category' => array( $cat_id ) ), array( 'post_title' => 'Guia de Performance', 'post_name' => 'guia-de-performance', 'post_content' => '<!-- wp:paragraph --><p>Outro artigo relacionado na categoria Tutoriais.</p><!-- /wp:paragraph -->', 'post_status' => 'publish', 'post_type' => 'post', 'post_author' => 1, 'post_category' => array( $cat_id ) ), array( 'post_title' => 'Sobre', 'post_name' => 'about', 'post_content' => '<!-- wp:paragraph --><p>Conteudo da pagina sobre o projeto Terminal Blog Dev.</p><!-- /wp:paragraph -->', 'post_status' => 'publish', 'post_type' => 'page', 'post_author' => 1 ), array( 'post_title' => 'Contato', 'post_name' => 'contact', 'post_content' => '', 'post_status' => 'publish', 'post_type' => 'page', 'post_author' => 1 ) ); foreach ( $posts as $post_data ) { $id = wp_insert_post( $post_data ); if ( ! is_wp_error( $id ) && 'post' === $post_data['post_type'] && ! is_wp_error( $tag ) ) { wp_set_post_terms( $id, array( (int) $tag['term_id'] ), 'post_tag' ); } } $wp_rewrite->flush_rules( true );"
+		}
+	]
+}

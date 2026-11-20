@@ -18,15 +18,43 @@ require_once get_template_directory() . '/includes/footer-patterns.php';
 
 /**
  * Add resource hints for fonts to improve loading performance.
- * Preconnect establishes early connections, preload fetches the font early.
+ * Space Grotesk is self-hosted (SIL OFL 1.1), so the preload reuses the page's
+ * own connection instead of opening one to a third-party font server.
  */
 function terminal_blog_dev_resource_hints() {
-	// Preconnect to Google Fonts origin.
-	echo '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>' . "\n";
-	// Preload the main font file for faster text rendering.
-	echo '<link rel="preload" href="https://fonts.gstatic.com/s/spacegrotesk/v16/V8mDoQDjQSkFtoMM3T6r8E7mPbF4Cw.woff2" as="font" type="font/woff2" crossorigin>' . "\n";
+	// Declare supported color schemes early to minimize white flashes on load.
+	echo '<meta name="color-scheme" content="dark light">' . "\n";
+	// Preload the main font file for faster text rendering. Fonts always need crossorigin.
+	printf(
+		'<link rel="preload" href="%s" as="font" type="font/woff2" crossorigin>' . "\n",
+		esc_url( get_theme_file_uri( 'assets/fonts/space-grotesk-latin-variable.woff2' ) )
+	);
 }
 add_action( 'wp_head', 'terminal_blog_dev_resource_hints', 1 );
+
+/**
+ * Drop the Google Fonts preconnect that plugins (e.g. WP Rocket) add by default:
+ * the theme font is self-hosted, so the extra connection is wasted work.
+ *
+ * @param array  $urls          Resource hint URLs.
+ * @param string $relation_type Hint type.
+ * @return array Filtered hints.
+ */
+function terminal_blog_dev_drop_font_preconnect( $urls, $relation_type ) {
+	if ( 'preconnect' !== $relation_type ) {
+		return $urls;
+	}
+	return array_values(
+		array_filter(
+			$urls,
+			static function ( $url ) {
+				$href = is_array( $url ) ? ( $url['href'] ?? '' ) : (string) $url;
+				return false === strpos( $href, 'fonts.gstatic.com' );
+			}
+		)
+	);
+}
+add_filter( 'wp_resource_hints', 'terminal_blog_dev_drop_font_preconnect', 99, 2 );
 
 /**
  * Inline early theme detection script.
@@ -71,6 +99,12 @@ function terminal_blog_dev_critical_css() {
 	.wp-block-site-logo img { height: auto; max-width: 100%; }
 	.wp-block-site-logo.is-default-size img { width: 120px; }
 	.wp-block-navigation-item__content { display: inline-flex !important; align-items: center; min-height: 44px; }
+	/* Above-the-fold home & card stability before deferred custom.css */
+	h1.wp-block-heading, h1.wp-block-post-title, h2.wp-block-heading, h2.wp-block-post-title { text-wrap: balance; }
+	.terminal-topic-index .wp-block-categories-list { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0; padding: 0; list-style: none; }
+	.terminal-topic-index .wp-block-categories-list li { margin: 0; }
+	.wp-block-post-featured-image { overflow: hidden; border-radius: 0.25rem; }
+	.wp-block-post-featured-image a, .wp-block-post-featured-image img { display: block; width: 100%; height: auto; }
 	/* Theme toggle button critical */
 	.theme-toggle {
 		background: transparent;
@@ -181,7 +215,9 @@ function terminal_blog_dev_scripts() {
 	terminal_blog_dev_enqueue_css( 'header', array( 'terminal-blog-dev-colors' ) );
 	terminal_blog_dev_enqueue_css( 'footer', array( 'terminal-blog-dev-colors' ) );
 	terminal_blog_dev_enqueue_css( 'custom', array( 'terminal-blog-dev-colors' ), false );
-	terminal_blog_dev_enqueue_css( 'archive', array( 'terminal-blog-dev-colors', 'terminal-blog-dev-custom' ) );
+	if ( is_archive() ) {
+		terminal_blog_dev_enqueue_css( 'archive', array( 'terminal-blog-dev-colors', 'terminal-blog-dev-custom' ) );
+	}
 	terminal_blog_dev_enqueue_css( 'footer-art', array( 'terminal-blog-dev-colors' ) );
 	terminal_blog_dev_enqueue_css( 'menu-pixels', array( 'terminal-blog-dev-custom' ) );
 
@@ -343,6 +379,77 @@ function terminal_blog_dev_logo_dimensions( $html, $block ) {
 add_filter( 'render_block_core/site-logo', 'terminal_blog_dev_logo_dimensions', 10, 2 );
 
 /**
+ * Ensure decorative theme SVG image blocks always ship explicit intrinsic
+ * dimensions (including in customized Site Editor template parts) to avoid CLS
+ * diagnostics, and lazy-load the below-the-fold footer art.
+ *
+ * @param string $html  Rendered image block markup.
+ * @param array  $block Parsed block data.
+ * @return string Image markup with explicit dimensions.
+ */
+function terminal_blog_dev_decorative_svg_dimensions( $html, $block ) {
+	$classes = preg_split( '/\s+/', trim( $block['attrs']['className'] ?? '' ) );
+	$specs   = null;
+
+	if ( in_array( 'terminal-footer-art--image', $classes, true ) ) {
+		$specs = array(
+			'width'   => '768',
+			'height'  => '144',
+			'loading' => 'lazy',
+		);
+	} elseif ( in_array( 'terminal-archive__art', $classes, true ) ) {
+		$specs = array(
+			'width'  => '256',
+			'height' => '64',
+		);
+	}
+
+	if ( null === $specs ) {
+		return $html;
+	}
+
+	$processor = new WP_HTML_Tag_Processor( $html );
+	if ( ! $processor->next_tag( 'IMG' ) ) {
+		return $html;
+	}
+
+	foreach ( $specs as $attr => $value ) {
+		if ( null === $processor->get_attribute( $attr ) ) {
+			$processor->set_attribute( $attr, $value );
+		}
+	}
+	if ( null === $processor->get_attribute( 'decoding' ) ) {
+		$processor->set_attribute( 'decoding', 'async' );
+	}
+
+	return $processor->get_updated_html();
+}
+add_filter( 'render_block_core/image', 'terminal_blog_dev_decorative_svg_dimensions', 10, 2 );
+
+/**
+ * Tighten responsive image sizes on the 2-column home post grid so browsers do
+ * not fetch 1024px+ thumbnails for ~560px desktop cards or ~360px mobile cards.
+ *
+ * @param string $html  Rendered post-featured-image block markup.
+ * @param array  $block Parsed block data.
+ * @return string Image markup with tightened sizes attribute.
+ */
+function terminal_blog_dev_home_featured_image_sizes( $html, $block ) {
+	if ( is_admin() || ( ! is_front_page() && ! is_home() ) || empty( $block['attrs']['isLink'] ) ) {
+		return $html;
+	}
+
+	$processor = new WP_HTML_Tag_Processor( $html );
+	if ( ! $processor->next_tag( 'IMG' ) || ! $processor->get_attribute( 'srcset' ) ) {
+		return $html;
+	}
+
+	$processor->set_attribute( 'sizes', '(max-width: 781px) calc(100vw - 2rem), 560px' );
+	return $processor->get_updated_html();
+}
+add_filter( 'render_block_core/post-featured-image', 'terminal_blog_dev_home_featured_image_sizes', 10, 2 );
+
+/**
  * Add fetchpriority and async loading hints to stylesheets.
  * Defers non-critical CSS to improve LCP.
  *
@@ -406,26 +513,6 @@ function terminal_blog_dev_custom_css() {
 
 		.terminal-cursor {
 			animation: terminal-blink 1s step-end infinite;
-		}
-
-		/* Custom scrollbar */
-		::-webkit-scrollbar {
-			width: 8px;
-			height: 8px;
-		}
-
-		::-webkit-scrollbar-track {
-			background: var(--wp--preset--color--background-alt, #0a0f09);
-		}
-
-		::-webkit-scrollbar-thumb {
-			background: var(--wp--preset--color--secondary, #2e3928);
-			border: 1px solid var(--wp--preset--color--primary, #5bec13);
-			border-radius: 4px;
-		}
-
-		::-webkit-scrollbar-thumb:hover {
-			background: var(--wp--preset--color--primary, #5bec13);
 		}
 
 		/* Code blocks styling */
@@ -620,6 +707,24 @@ function terminal_blog_dev_trim_unused_assets() {
 add_action( 'wp_enqueue_scripts', 'terminal_blog_dev_trim_unused_assets', 100 );
 
 /**
+ * Take consent scripts off the critical path.
+ *
+ * Site Kit prints the gtag consent defaults inline in <head>; its external
+ * file and the WP Consent API only react to later consent changes, so they
+ * can run deferred (in order) instead of blocking the parser. Runs just before
+ * footer scripts print, so it also catches scripts enqueued late.
+ */
+function terminal_blog_dev_defer_consent_scripts() {
+	foreach ( array( 'googlesitekit-consent-mode', 'wp-consent-api' ) as $handle ) {
+		if ( wp_script_is( $handle, 'registered' ) && ! wp_scripts()->get_data( $handle, 'strategy' ) ) {
+			wp_script_add_data( $handle, 'strategy', 'defer' );
+		}
+	}
+}
+add_action( 'wp_enqueue_scripts', 'terminal_blog_dev_defer_consent_scripts', 999 );
+add_action( 'wp_print_footer_scripts', 'terminal_blog_dev_defer_consent_scripts', 5 );
+
+/**
  * Allow room for the opted-in CSS without displacing core's navigation and
  * other block styles from their existing inline budget. Respect an opt-out.
  *
@@ -631,9 +736,33 @@ function terminal_blog_dev_inline_css_budget( $limit ) {
 		return $limit;
 	}
 	$styles = wp_styles();
-	// Reserve image sizing styles too: the editable footer art uses core/image.
-	// Otherwise its CSS can push the larger, critical navigation CSS over budget.
-	foreach ( array( 'terminal-blog-dev-colors', 'terminal-blog-dev-header', 'terminal-blog-dev-footer', 'terminal-blog-dev-archive', 'terminal-blog-dev-footer-art', 'terminal-blog-dev-menu-pixels', 'gravatar-enhanced-patterns-shared', 'gravatar-enhanced-patterns-view', 'super-web-share', 'wp-block-navigation', 'wp-block-image' ) as $handle ) {
+	// Reserve room for theme, plugin, and core block styles so the largest
+	// critical stylesheet (wp-block-navigation) is not evicted into a blocking
+	// network request by wp_maybe_inline_styles().
+	$handles = array(
+		'terminal-blog-dev-colors',
+		'terminal-blog-dev-header',
+		'terminal-blog-dev-footer',
+		'terminal-blog-dev-archive',
+		'terminal-blog-dev-footer-art',
+		'terminal-blog-dev-menu-pixels',
+		'gravatar-enhanced-patterns-shared',
+		'gravatar-enhanced-patterns-view',
+		'super-web-share',
+		'plvt-view-transitions',
+		'wp-block-navigation',
+		'wp-block-image',
+		'wp-block-social-links',
+		'wp-block-library',
+		'wp-block-search',
+		'wp-block-button',
+		'wp-block-buttons',
+		'wp-block-post-featured-image',
+		'wp-block-post-template',
+		'wp-block-heading',
+		'wp-block-paragraph',
+	);
+	foreach ( $handles as $handle ) {
 		$path = $styles->get_data( $handle, 'path' );
 		if ( wp_style_is( $handle, 'enqueued' ) && $path && is_readable( $path ) ) {
 			$limit += (int) filesize( $path );
@@ -678,3 +807,14 @@ function terminal_blog_dev_contact_empty_state( $block_content, $block ) {
 		'</p>';
 }
 add_filter( 'render_block_core/post-content', 'terminal_blog_dev_contact_empty_state', 10, 2 );
+
+/**
+ * Render a purely decorative scroll-progress bar on single posts.
+ */
+function terminal_blog_dev_reading_progress_bar() {
+	if ( is_admin() || ! is_singular( 'post' ) ) {
+		return;
+	}
+	echo '<div class="terminal-reading-progress" aria-hidden="true"></div>' . "\n";
+}
+add_action( 'wp_body_open', 'terminal_blog_dev_reading_progress_bar' );

@@ -12,7 +12,7 @@
 <!-- wp:group {"align":"full","className":"terminal-site-footer terminal-footer terminal-footer--pixel-art","backgroundColor":"background","layout":{"type":"constrained"}} -->
 <div class="wp-block-group alignfull terminal-site-footer terminal-footer terminal-footer--pixel-art has-background-background-color has-background">
 	<!-- wp:image {"align":"full","sizeSlug":"full","linkDestination":"none","className":"terminal-footer-art terminal-footer-art--image"} -->
-	<figure class="wp-block-image alignfull size-full terminal-footer-art terminal-footer-art--image"><img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/footer-terminal.svg' ); ?>" alt=""/></figure>
+	<figure class="wp-block-image alignfull size-full terminal-footer-art terminal-footer-art--image"><img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/footer-terminal.svg' ); ?>" alt="" width="768" height="144" loading="lazy" decoding="async"/></figure>
 	<!-- /wp:image -->
 	<!-- wp:pattern {"slug":"terminal-blog-dev/footer-content"} /-->
 </div>
